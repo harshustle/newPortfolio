@@ -9,17 +9,17 @@ const Footer = () => {
            <div>
               <span style={{ fontSize: '0.7rem', fontWeight: 600, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Socials</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
-                 <a href="#" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>LinkedIn <ArrowUpRight size={14}/></a>
-                 <a href="#" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Instagram <ArrowUpRight size={14}/></a>
-                 <a href="#" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Twitter <ArrowUpRight size={14}/></a>
-                 <a href="#" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>GitHub <ArrowUpRight size={14}/></a>
+                 <a href="https://linkedin.com/in/harshustle" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>LinkedIn <ArrowUpRight size={14}/></a>
+                 <a href="https://instagram.com/harshustler" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Instagram <ArrowUpRight size={14}/></a>
+                 <a href="https://twitter.com/harshustle" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Twitter <ArrowUpRight size={14}/></a>
+                 <a href="https://github.com/harshustle" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>GitHub <ArrowUpRight size={14}/></a>
               </div>
            </div>
            <div>
               <span style={{ fontSize: '0.7rem', fontWeight: 600, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Contact</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
-                 <a href="mailto:hsrivastav099@gmail.com" className="nav-link">hsrivastav099@gmail.com</a>
-                 <a href="tel:+9161955178" className="nav-link">+91 61955 178</a>
+                 <a href="mailto:harshustle@gmail.com" className="nav-link">harshustle@gmail.com</a>
+                 <a href="tel:+917839661372" className="nav-link">+91 78396 61372</a>
               </div>
            </div>
            <div style={{ gridColumn: 'span 2' }}>

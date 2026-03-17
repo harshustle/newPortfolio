@@ -51,6 +51,15 @@
   gap: 1.5rem;
 }
 
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
 .nav-link {
   color: var(--text-secondary);
   font-size: 0.85rem;
@@ -145,7 +154,7 @@
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: 900;
   letter-spacing: -0.05em;
   margin-bottom: 1.5rem;
@@ -230,7 +239,9 @@
   .bento-grid { grid-template-columns: 1fr; }
   .bento-card.large, .bento-card.wide, .bento-card.tall { grid-column: span 1; grid-row: span 1; }
   .navbar { width: 95%; top: 1rem; }
-  .hero-title { font-size: 3.5rem; }
+  .hero-title { font-size: 2.8rem; }
+  .nav-links { display: none; }
+  .menu-btn { display: flex; align-items: center; justify-content: center; }
   .footer-content { flex-direction: column; align-items: flex-start; gap: 2rem; }
 }
 
