@@ -73,40 +73,25 @@ const Contact = () => {
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
 
-    const NOTION_KEY = import.meta.env.VITE_NOTION_KEY;
-    const NOTION_DB  = import.meta.env.VITE_NOTION_DB_ID;
-
     try {
-      // 🚀 Send directly to Notion API — no backend needed!
-      const response = await fetch("https://api.notion.com/v1/pages", {
+      const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Authorization": `Bearer ${NOTION_KEY}`,
-          "Content-Type": "application/json",
-          "Notion-Version": "2022-06-28"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          parent: { database_id: NOTION_DB },
-          properties: {
-            Name:     { title:     [{ text: { content: data.name     || "Unknown" } }] },
-            Email:    { email:      data.email    || "no-email@example.com" },
-            Service:  { select:    { name: selectedService || "Other" } },
-            Budget:   { rich_text: [{ text: { content: data.budget   || "N/A" } }] },
-            Timeline: { rich_text: [{ text: { content: data.timeline || "N/A" } }] },
-            Message:  { rich_text: [{ text: { content: data.message  || ""    } }] },
-          }
-        })
+          service: selectedService || 'Not specified',
+          ...data
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      if (result.success) {
         setSubmitted(true);
       } else {
-        const err = await response.json();
-        alert("Notion Error: " + (err.message || "Unknown error"));
+        alert("Error: " + result.error);
       }
     } catch (err) {
       console.error(err);
-      alert("Network error. Please check your internet connection.");
+      alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
