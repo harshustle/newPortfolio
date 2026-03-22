@@ -1,13 +1,22 @@
-import nodemailer from 'nodemailer';
-import { Client } from '@notionhq/client';
+const nodemailer = require('nodemailer');
+const { Client } = require('@notionhq/client');
 
-// Vercel Functions Setup (Modern ESM Style)
-export default async function handler(req, res) {
+// Vercel Function Setup (Safe CommonJS Style)
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   const { name, email, budget, timeline, message, service } = req.body;
+  
+  // 🛡️ Safety Check: If keys aren't set in Vercel, don't crash
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    return res.status(500).json({ 
+      success: false, 
+      error: "MISSING_KEYS: Please add EMAIL_USER and EMAIL_PASS in Vercel Settings -> Environment Variables." 
+    });
+  }
+
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
   // Setup Nodemailer
@@ -29,7 +38,7 @@ export default async function handler(req, res) {
     };
     await transporter.sendMail(mailOptions);
 
-    // 2. Add to Notion (if keys are set)
+    // 2. Add to Notion (if settings are ready)
     if (process.env.NOTION_API_KEY && process.env.NOTION_DATABASE_ID && process.env.NOTION_API_KEY !== 'YOUR_NOTION_API_KEY_HERE') {
       await notion.pages.create({
         parent: { database_id: process.env.NOTION_DATABASE_ID },
@@ -49,4 +58,4 @@ export default async function handler(req, res) {
     console.error("Server Error:", error);
     res.status(500).json({ success: false, error: error.message });
   }
-}
+};
