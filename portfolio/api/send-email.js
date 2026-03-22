@@ -1,32 +1,29 @@
-const express = require('express');
-const serverless = require('serverless-http');
 const nodemailer = require('nodemailer');
 const { Client } = require('@notionhq/client');
-require('dotenv').config();
 
-const app = express();
-app.use(express.json());
-
-// Setup Notion Client
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
-
-// Setup Nodemailer (using your Gmail)
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER, 
-    pass: process.env.EMAIL_PASS
+// Vercel Functions Setup
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
-});
 
-app.post('/.netlify/functions/send-email', async (req, res) => {
   const { name, email, budget, timeline, message, service } = req.body;
+  const notion = new Client({ auth: process.env.NOTION_API_KEY });
+
+  // Setup Nodemailer (using your Gmail)
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
 
   try {
     // 1. Send Email
     const mailOptions = {
       from: email,
-      to: process.env.EMAIL_USER, 
+      to: process.env.EMAIL_USER,
       subject: `New Portfolio Message from ${name}`,
       text: `💼 Service: ${service}\n👤 Name: ${name}\n📧 Email: ${email}\n💰 Budget: ${budget}\n⏳ Timeline: ${timeline}\n📝 Details: ${message}`
     };
@@ -45,7 +42,6 @@ app.post('/.netlify/functions/send-email', async (req, res) => {
           Message: { rich_text: [{ text: { content: message || '' } }] },
         },
       });
-      console.log('✅ Lead saved to Notion');
     }
 
     res.status(200).json({ success: true });
@@ -53,6 +49,4 @@ app.post('/.netlify/functions/send-email', async (req, res) => {
     console.error("Server Error:", error);
     res.status(500).json({ success: false, error: error.message });
   }
-});
-
-module.exports.handler = serverless(app);
+}

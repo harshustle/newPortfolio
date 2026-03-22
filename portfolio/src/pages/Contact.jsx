@@ -74,8 +74,8 @@ const Contact = () => {
     const data = Object.fromEntries(fd.entries());
 
     try {
-      // 🚀 Sending silently to your new Netlify backend
-      const response = await fetch("/.netlify/functions/send-email", {
+      // 🚀 Sending silently to your new Vercel backend
+      const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
