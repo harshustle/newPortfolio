@@ -64,6 +64,22 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const data = Object.fromEntries(fd.entries());
+
+    const subject = encodeURIComponent(`New Project Inquiry from ${data.name || 'someone'}`);
+    const body = encodeURIComponent(
+      `💼 Service: ${selectedService || 'Not specified'}\n` +
+      `👤 Name: ${data.name}\n` +
+      `📧 Email: ${data.email}\n` +
+      `💰 Budget: ${data.budget}\n` +
+      `⏳ Timeline: ${data.timeline}\n` +
+      `📝 Details: ${data.message}`
+    );
+
+    // This opens the user's default email app (Gmail, Outlook, etc.)
+    window.location.href = `mailto:harshustle@gmail.com?subject=${subject}&body=${body}`;
+    
     setSubmitted(true);
   };
 
@@ -163,6 +179,7 @@ const Contact = () => {
                   <div>
                     <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Full Name</span>
                     <input
+                      name="name"
                       type="text"
                       placeholder="Harsh Srivastav"
                       required
@@ -174,6 +191,7 @@ const Contact = () => {
                   <div>
                     <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Email</span>
                     <input
+                      name="email"
                       type="email"
                       placeholder="you@company.com"
                       required
@@ -189,6 +207,7 @@ const Contact = () => {
                   <div>
                     <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Budget Range</span>
                     <select
+                      name="budget"
                       style={{ ...inputStyle('budget'), cursor: 'pointer' }}
                       onFocus={() => setFocused('budget')}
                       onBlur={() => setFocused(null)}
@@ -203,6 +222,7 @@ const Contact = () => {
                   <div>
                     <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Timeline</span>
                     <select
+                      name="timeline"
                       style={{ ...inputStyle('timeline'), cursor: 'pointer' }}
                       onFocus={() => setFocused('timeline')}
                       onBlur={() => setFocused(null)}
@@ -220,6 +240,7 @@ const Contact = () => {
                 <div style={{ marginBottom: '3rem' }}>
                   <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Project Details</span>
                   <textarea
+                    name="message"
                     placeholder="Tell me what you're building, what results you need, and any specific requirements..."
                     rows="4"
                     required
