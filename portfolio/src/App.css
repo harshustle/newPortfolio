@@ -1,267 +1,74 @@
-/* Dark Mode Layout & Componentry */
+/* Light Mode Base Layout */
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--bg-color);
 }
 
 .main-content {
   flex-grow: 1;
   position: relative;
   z-index: 2;
-  margin-top: 100px;
 }
 
-/* Glass Navbar */
-.navbar {
-  position: fixed;
-  top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 800px;
-  height: 64px;
-  background: rgba(10, 10, 10, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 99px;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  padding: 0 1.5rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.navbar.scrolled {
-  background: rgba(0, 0, 0, 0.8);
-  width: 95%;
-  top: 1rem;
-}
-
-.nav-content {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1001;
-}
-
-.nav-link {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav-link:hover, .nav-link.active {
-  color: var(--text-primary);
-}
-
-.nav-logo {
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.05em;
-  text-decoration: none;
-  color: #ffffff;
-}
-
-/* Background Atmosphere */
+/* Background Atmosphere (Light Noise/Gradient) */
 .bg-wrapper {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #000000 100%);
+  background: var(--bg-color);
 }
 
 .bg-shape {
   position: absolute;
   border-radius: 50%;
   filter: blur(140px);
-  opacity: 0.15;
+  opacity: 0.1;
 }
 
-.bg-shape-1 { width: 40vw; height: 40vw; background: #3b82f6; top: -10vw; left: -10vw; }
-.bg-shape-2 { width: 30vw; height: 30vw; background: #8b5cf6; bottom: -5vw; right: -5vw; }
+.bg-shape-1 { width: 40vw; height: 40vw; background: #e0d9d5; top: -10vw; left: -10vw; }
+.bg-shape-2 { width: 30vw; height: 30vw; background: #e9e2de; bottom: -5vw; right: -5vw; }
 
-/* Bento Grid System */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  grid-auto-rows: minmax(240px, auto);
-}
-
-.bento-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 32px;
-  padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.bento-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-.bento-card.large { grid-column: span 2; grid-row: span 2; }
-.bento-card.wide { grid-column: span 2; }
-.bento-card.tall { grid-row: span 2; }
-
-/* Components in Bento */
-.card-icon {
-  width: 48px; height: 48px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 2rem;
-  color: #fff;
-}
-
-/* Hero Section */
-.hero {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.hero-content {
-  max-width: 900px;
-}
-
-.hero-title {
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  margin-bottom: 1.5rem;
-  line-height: 0.95;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 3rem auto;
-  line-height: 1.6;
-}
-
-/* Project Styling */
-.project-thumb {
-  width: calc(100% + 5rem);
-  height: 240px;
-  margin: -2.5rem -2.5rem 2rem -2.5rem;
-  object-fit: cover;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-
-.bento-card:hover .project-thumb {
-  opacity: 1;
-}
-
-.project-tag {
-  font-size: 0.75rem;
-  padding: 0.4rem 0.8rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 99px;
-  color: var(--text-secondary);
-}
-
-/* Footer Section */
-.footer {
-  padding: 8rem 0 4rem;
-  border-top: 1px solid var(--border-color);
-  background: #000;
-  position: relative;
-  z-index: 10;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.footer-logo {
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-}
-
-/* Stats */
-.stats-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
-  border-top: 1px solid var(--border-color);
-  padding-top: 4rem;
-}
-
-.stat-value {
-  font-size: 4rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-}
-
+/* Responsive Nav Toggle */
 @media (max-width: 768px) {
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-card.large, .bento-card.wide, .bento-card.tall { grid-column: span 1; grid-row: span 1; }
-  .navbar { width: 95%; top: 1rem; }
-  .hero-title { font-size: 2.8rem; }
+  .menu-btn { 
+    display: flex !important; 
+    align-items: center; 
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+  }
   .nav-links { display: none; }
-  .menu-btn { display: flex; align-items: center; justify-content: center; }
-  .footer-content { flex-direction: column; align-items: flex-start; gap: 2rem; }
 }
 
-/* Floating WhatsApp */
+/* Floating WhatsApp (Keep but style light) */
 .floating-whatsapp {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 56px;
-  height: 56px;
-  background: #ffffff;
-  color: #000000;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
   z-index: 1000;
-  transition: transform 0.3s;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .floating-whatsapp:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Page Container padding for navbar */
+.page-container {
+  padding-bottom: 4rem;
 }

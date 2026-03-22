@@ -15,19 +15,17 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'HOME', path: '/' },
-    { name: 'SERVICES', path: '/services' },
-    { name: 'PROJECTS', path: '/projects' },
-    { name: 'UGC', path: '/ugc-videos' },
-    { name: 'ABOUT', path: '/about' },
-    { name: 'CONTACT', path: '/contact' }
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-content">
-        <NavLink to="/" className="nav-logo">
-          HARSHUSTLE
+        <NavLink to="/" className="nav-logo" style={{ textDecoration: 'none' }}>
+           <div className="serif-italic" style={{ textTransform: 'none', fontSize: '1.8rem', color: '#000', fontWeight: 500 }}>Harshustle</div>
         </NavLink>
         
         <div className="nav-links">
@@ -36,16 +34,18 @@ const Navbar = () => {
               key={idx} 
               to={link.path} 
               className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-              style={{ letterSpacing: '0.05em' }}
             >
               {link.name}
             </NavLink>
           ))}
         </div>
 
-        <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={20} color="#fff" /> : <Menu size={20} color="#fff" />}
-        </button>
+        <div className="nav-actions">
+           <a href="#contact" className="btn btn-primary nav-pill">Book a call</a>
+           <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+             <Menu size={20} />
+           </button>
+        </div>
       </div>
 
       {menuOpen && (
