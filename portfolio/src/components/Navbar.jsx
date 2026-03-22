@@ -1,75 +1,232 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ArrowUpRight } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="nav-content">
-        <NavLink to="/" className="nav-logo" style={{ textDecoration: 'none' }}>
-           <div className="serif-italic" style={{ textTransform: 'none', fontSize: '1.8rem', color: '#000', fontWeight: 500 }}>Harshustle</div>
-        </NavLink>
-        
-        <div className="nav-links">
-          {navLinks.map((link, idx) => (
-            <NavLink 
-              key={idx} 
-              to={link.path} 
-              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-            >
-              {link.name}
-            </NavLink>
-          ))}
-        </div>
+    <>
+      {/* ── Floating Pill Navbar ── */}
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        style={{
+          position: 'fixed',
+          top: '1.5rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 900,
+          width: 'calc(100% - 3rem)',
+          maxWidth: '900px',
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr auto 1fr',
+            alignItems: 'center',
+            padding: '0.6rem 0.8rem 0.6rem 1.6rem',
+            borderRadius: '99px',
+            position: 'relative',
+            background: scrolled ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.65)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            boxShadow: scrolled
+              ? '0 8px 40px rgba(0,0,0,0.12)'
+              : '0 4px 24px rgba(0,0,0,0.07)',
+            border: '1px solid rgba(255,255,255,0.8)',
+            transition: 'background 0.4s ease, box-shadow 0.4s ease',
+          }}
+        >
+          {/* Column 1 — Logo (left-aligned) */}
+          <NavLink to="/" style={{ textDecoration: 'none' }}>
+            <span className="serif-italic" style={{ fontSize: '1.3rem', fontWeight: 500, color: '#000' }}>
+              Harshustle
+            </span>
+          </NavLink>
 
-        <div className="nav-actions">
-           <a href="#contact" className="btn btn-primary nav-pill">Book a call</a>
-           <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-             <Menu size={20} />
-           </button>
-        </div>
-      </div>
+          {/* Column 2 — Nav Links (true center) */}
+          <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                style={({ isActive }) => ({
+                  textDecoration: 'none',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  padding: '0.42rem 1rem',
+                  borderRadius: '99px',
+                  color: isActive ? '#fff' : '#555',
+                  background: isActive ? '#000' : 'transparent',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
+                })}
+                onMouseEnter={e => {
+                  if (e.currentTarget.style.color !== 'rgb(255, 255, 255)') {
+                    e.currentTarget.style.background = 'rgba(0,0,0,0.07)';
+                    e.currentTarget.style.color = '#000';
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (e.currentTarget.style.color !== 'rgb(255, 255, 255)') {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#555';
+                  }
+                }}
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </div>
 
-      {menuOpen && (
-        <div style={{ 
-          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
-          background: '#000', zIndex: 999, display: 'flex', flexDirection: 'column', 
-          justifyContent: 'center', alignItems: 'center', gap: '2rem' 
-        }}>
-          <button style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'none', border: 'none' }} onClick={() => setMenuOpen(false)}>
-            <X size={32} color="#fff" />
-          </button>
-          {navLinks.map((link, idx) => (
-            <NavLink 
-              key={idx} 
-              to={link.path} 
-              onClick={() => setMenuOpen(false)}
-              style={{ color: '#fff', textDecoration: 'none', fontSize: '3rem', fontWeight: 900, letterSpacing: '-0.05em' }}
+          {/* Column 3 — CTA + Hamburger (right-aligned) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', justifyContent: 'flex-end' }}>
+            <NavLink
+              to="/contact"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                background: '#00ff78',
+                color: '#000',
+                padding: '0.5rem 1.2rem',
+                borderRadius: '99px',
+                fontSize: '0.8rem',
+                fontWeight: 900,
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                boxShadow: '0 2px 12px rgba(0,255,120,0.3)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
             >
-              {link.name}
+              Book a Call <ArrowUpRight size={13} />
             </NavLink>
-          ))}
+
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setMenuOpen(true)}
+              style={{
+                display: 'none',
+                background: '#000',
+                border: 'none',
+                borderRadius: '50%',
+                width: '36px',
+                height: '36px',
+                cursor: 'pointer',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: '4px',
+              }}
+              className="hamburger-btn"
+              aria-label="Open menu"
+            >
+              <span style={{ width: '14px', height: '1.5px', background: '#fff', display: 'block' }} />
+              <span style={{ width: '14px', height: '1.5px', background: '#fff', display: 'block' }} />
+            </button>
+          </div>
         </div>
-      )}
-    </nav>
+      </motion.nav>
+
+      {/* ── Full-Screen Mobile Menu ── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
+            animate={{ opacity: 1, clipPath: 'circle(150% at calc(100% - 3rem) 3rem)' }}
+            exit={{ opacity: 0, clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: 'fixed', inset: 0,
+              background: '#000',
+              zIndex: 9999,
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '2.5rem',
+            }}
+          >
+            {/* Close */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4rem' }}>
+              <span className="serif-italic" style={{ fontSize: '1.4rem', color: '#fff', fontWeight: 500 }}>Harshustle</span>
+              <button
+                onClick={() => setMenuOpen(false)}
+                style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '44px', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              >
+                <X size={20} color="#fff" />
+              </button>
+            </div>
+
+            {/* Links */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.5rem' }}>
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.path}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <NavLink
+                    to={link.path}
+                    onClick={() => setMenuOpen(false)}
+                    style={({ isActive }) => ({
+                      display: 'block',
+                      color: isActive ? '#00ff78' : '#fff',
+                      textDecoration: 'none',
+                      fontSize: 'clamp(2.5rem, 10vw, 4.5rem)',
+                      fontWeight: 900,
+                      letterSpacing: '-0.04em',
+                      lineHeight: 1.1,
+                      padding: '0.5rem 0',
+                      borderBottom: '1px solid rgba(255,255,255,0.07)',
+                    })}
+                  >
+                    {link.name}
+                  </NavLink>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom contact */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}
+            >
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.8rem' }}>Get in touch</p>
+              <a href="mailto:harshustle@gmail.com" style={{ color: '#fff', fontSize: '0.95rem', textDecoration: 'none', opacity: 0.7 }}>harshustle@gmail.com</a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

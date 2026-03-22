@@ -1,43 +1,141 @@
 import React from 'react';
-import { Github, Linkedin, Instagram, Twitter, Mail, ArrowUpRight } from 'lucide-react';
+import { Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer style={{ background: '#fff', borderTop: '1px solid rgba(0,0,0,0.07)', padding: '4rem 0 2rem', position: 'relative', zIndex: 2 }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '4rem', marginBottom: '8rem' }}>
-           <div>
-              <span style={{ fontSize: '0.7rem', fontWeight: 600, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Socials</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
-                 <a href="https://linkedin.com/in/harshustle" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>LinkedIn <ArrowUpRight size={14}/></a>
-                 <a href="https://instagram.com/harshustler" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Instagram <ArrowUpRight size={14}/></a>
-                 <a href="https://twitter.com/harshustle" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Twitter <ArrowUpRight size={14}/></a>
-                 <a href="https://github.com/harshustle" target="_blank" rel="noreferrer" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>GitHub <ArrowUpRight size={14}/></a>
+
+        {/* ── Main Grid ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '3rem', marginBottom: '4rem', alignItems: 'start' }}>
+
+          {/* Brand Column */}
+          <div>
+            {/* Logo */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
+              <div style={{ width: '32px', height: '32px', background: '#000', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ color: '#00ff78', fontWeight: 900, fontSize: '1rem', lineHeight: 1 }}>H</span>
               </div>
-           </div>
-           <div>
-              <span style={{ fontSize: '0.7rem', fontWeight: 600, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Contact</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
-                 <a href="mailto:harshustle@gmail.com" className="nav-link">harshustle@gmail.com</a>
-                 <a href="tel:+917839661372" className="nav-link">+91 78396 61372</a>
-              </div>
-           </div>
-           <div style={{ gridColumn: 'span 2' }}>
-              <span style={{ fontSize: '0.7rem', fontWeight: 600, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Inquiry</span>
-              <h2 style={{ fontSize: '3.5rem', fontWeight: 900, marginTop: '1rem', letterSpacing: '-0.06em' }}>LET'S ARCHITECT YOUR BRAND.</h2>
-           </div>
+              <span style={{ fontSize: '1.1rem', fontWeight: 500, color: '#000' }}>Harshustle</span>
+            </div>
+
+            <p style={{ fontSize: '0.8rem', color: '#555', lineHeight: 1.65, marginBottom: '1.5rem', maxWidth: '200px' }}>
+              AI content, cinematic shoots, landing pages, and automation. Built for brands that convert.
+            </p>
+
+            {/* Social Icons */}
+            <div style={{ display: 'flex', gap: '0.6rem' }}>
+              {[
+                { icon: <Instagram size={15} />, href: "https://instagram.com/harshustler" },
+                { icon: <Linkedin size={15} />, href: "https://linkedin.com/in/harshustle" },
+                { icon: <Twitter size={15} />, href: "https://twitter.com/harshustle" },
+              ].map((s, i) => (
+                <a
+                  key={i}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '50%',
+                    border: '1px solid var(--border-color)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'inherit',
+                    textDecoration: 'none',
+                    transition: 'background 0.2s, border-color 0.2s',
+                    background: 'transparent',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#000'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'inherit'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigate Column */}
+          <div>
+            <p style={{ fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#000', opacity: 0.4, marginBottom: '1.2rem' }}>Navigate</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Projects', href: '/projects' },
+                { label: 'Contact', href: '/contact' },
+              ].map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  style={{ fontSize: '0.85rem', color: '#555', textDecoration: 'none' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#000'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#555'}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Connect Column */}
+          <div>
+            <p style={{ fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#000', opacity: 0.4, marginBottom: '1.2rem' }}>Connect</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {[
+                { label: 'Book a Call', href: 'mailto:harshustle@gmail.com' },
+                { label: 'Instagram', href: 'https://instagram.com/harshustler' },
+                { label: 'LinkedIn', href: 'https://linkedin.com/in/harshustle', highlight: true },
+                { label: 'Twitter', href: 'https://twitter.com/harshustle' },
+              ].map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  target={l.href.startsWith('http') ? '_blank' : undefined}
+                  rel="noreferrer"
+                  style={{ fontSize: '0.85rem', color: l.highlight ? '#7b4dff' : '#555', textDecoration: 'none', fontWeight: l.highlight ? 700 : 400 }}
+                  onMouseEnter={e => { if (!l.highlight) e.currentTarget.style.color = '#000'; }}
+                  onMouseLeave={e => { if (!l.highlight) e.currentTarget.style.color = '#555'; }}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Services Column */}
+          <div>
+            <p style={{ fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#000', opacity: 0.4, marginBottom: '1.2rem' }}>Services</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {[
+                { label: 'AI UGC Videos', href: '/#ai-video' },
+                { label: 'IRL Shoots', href: '/#real-video' },
+                { label: 'Landing Pages', href: '/#real-video' },
+                { label: 'Automation', href: '/#chatbot' },
+              ].map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  style={{ fontSize: '0.85rem', color: '#555', textDecoration: 'none' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#000'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#555'}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
         </div>
 
-        <div className="footer-content" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '4rem' }}>
-          <div className="footer-logo">
-            HARSHUSTLE
-          </div>
-          <div style={{ display: 'flex', gap: '2rem', opacity: 0.4, fontSize: '0.8rem' }}>
-            <span>© 2026</span>
-            <span>Based in India</span>
-            <span>All Rights Reserved</span>
-          </div>
+        {/* ── Bottom Bar ── */}
+        <div style={{ borderTop: '1px solid rgba(0,0,0,0.07)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+          <p style={{ fontSize: '0.75rem', color: '#777' }}>© 2026 Harshustle. All rights reserved.</p>
+          <p style={{ fontSize: '0.75rem', color: '#777' }}>Built with care.</p>
         </div>
+
       </div>
     </footer>
   );
