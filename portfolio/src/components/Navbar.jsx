@@ -109,7 +109,7 @@ const Navbar = () => {
           </div>
 
           {/* Column 3 — CTA (desktop) + Hamburger (mobile) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end' }}>
+          <div className="nav-actions">
             {/* Book a Call — hidden on mobile */}
             <NavLink
               to="/contact"
@@ -120,7 +120,7 @@ const Navbar = () => {
                 gap: '0.4rem',
                 background: '#00ff78',
                 color: '#000',
-                padding: '0.5rem 1.1rem',
+                padding: '0.45rem 1.1rem',
                 borderRadius: '99px',
                 fontSize: '0.8rem',
                 fontWeight: 900,
@@ -140,23 +140,9 @@ const Navbar = () => {
               onClick={() => setMenuOpen(true)}
               className="hamburger-btn"
               aria-label="Open menu"
-              style={{
-                display: 'none',
-                background: '#000',
-                border: 'none',
-                borderRadius: '50%',
-                width: '34px',
-                height: '34px',
-                cursor: 'pointer',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                gap: '4px',
-                flexShrink: 0,
-              }}
             >
-              <span style={{ width: '13px', height: '1.5px', background: '#fff', display: 'block', borderRadius: '2px' }} />
-              <span style={{ width: '13px', height: '1.5px', background: '#fff', display: 'block', borderRadius: '2px' }} />
+              <span className="hamburger-line" />
+              <span className="hamburger-line" />
             </button>
           </div>
         </div>

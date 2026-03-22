@@ -120,7 +120,7 @@ const Home = () => {
 
       {/* Detailed Real Video Section - HIGH IMPACT */}
       <section className="section container" id="real-video" style={{ background: '#f9f6f4', borderRadius: '40px', margin: '4rem auto', position: 'relative', overflow: 'hidden', padding: '6rem 3rem' }}>
-        <div style={{ position: 'absolute', top: '2rem', right: '-5rem', fontSize: '15rem', fontWeight: 950, opacity: 0.03, pointerEvents: 'none' }}>REAL</div>
+        <div className="bg-watermark hide-on-mobile" style={{ position: 'absolute', top: '2rem', right: '-5rem', fontSize: '15rem', fontWeight: 950, opacity: 0.03, pointerEvents: 'none' }}>REAL</div>
         <div style={{ marginBottom: '5rem', position: 'relative', zIndex: 1, textAlign: 'left' }}>
           <h2 style={{ fontSize: '0.85rem', fontWeight: 850, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
              <span style={{ width: '40px', height: '1px', background: '#000' }}></span>
@@ -129,7 +129,7 @@ const Home = () => {
           <h1 style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 0.85, fontWeight: 900, letterSpacing: '-0.04em' }}>
              40+ <span className="serif-italic">IRL</span> <br/>PRODUCTIONS.
           </h1>
-          <p style={{ marginTop: '2rem', color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '450px', lineHeight: 1.5 }}>Property storytelling for the world's most <br/>sophisticated real estate developments.</p>
+          <p style={{ marginTop: '2rem', color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '450px', lineHeight: 1.5 }}>Property storytelling for the world's most <br className="hide-on-mobile" />sophisticated real estate developments.</p>
         </div>
 
         <div className="video-grid" style={{ maxWidth: '1000px', margin: '0 auto 6rem' }}>
@@ -159,13 +159,13 @@ const Home = () => {
 
       {/* Detailed AI Video Section - HIGH IMPACT */}
       <section className="section container" id="ai-video" style={{ margin: '6rem auto', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: '0', left: '-2rem', fontSize: '12rem', fontWeight: 950, opacity: 0.02, pointerEvents: 'none' }}>900+</div>
+        <div className="bg-watermark hide-on-mobile" style={{ position: 'absolute', top: '0', left: '-2rem', fontSize: '12rem', fontWeight: 950, opacity: 0.02, pointerEvents: 'none' }}>900+</div>
         <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
           <h2 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', opacity: 0.4 }}>Synthetic Human Capital</h2>
           <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 0.9 }}>
              900+ <span className="serif-italic">AI UGC</span><br />DEPLOYED.
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '500px', margin: '2rem auto 0' }}>Industrial scale influencer content without the <br/>logistical complexity of human talent.</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '500px', margin: '2rem auto 0' }}>Industrial scale influencer content without the <br className="hide-on-mobile" />logistical complexity of human talent.</p>
         </div>
 
         <div className="video-grid" style={{ maxWidth: '900px', margin: '0 auto 6rem' }}>
@@ -195,7 +195,7 @@ const Home = () => {
 
       {/* Detailed Automation Section - HIGH IMPACT */}
       <section className="section container" id="chatbot" style={{ background: '#f9f6f4', borderRadius: '40px', margin: '4rem auto', position: 'relative', overflow: 'hidden', padding: '6rem 3rem' }}>
-        <div style={{ position: 'absolute', bottom: '2rem', left: '-5rem', fontSize: '15rem', fontWeight: 950, opacity: 0.03, pointerEvents: 'none', transform: 'rotate(-5deg)' }}>SYSTEM</div>
+        <div className="bg-watermark hide-on-mobile" style={{ position: 'absolute', bottom: '2rem', left: '-5rem', fontSize: '15rem', fontWeight: 950, opacity: 0.03, pointerEvents: 'none', transform: 'rotate(-5deg)' }}>SYSTEM</div>
         <div style={{ marginBottom: '5rem', position: 'relative', zIndex: 1, textAlign: 'right' }}>
           <h2 style={{ fontSize: '0.85rem', fontWeight: 850, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'flex-end' }}>
              Lead Management Architecture

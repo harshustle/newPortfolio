@@ -77,61 +77,71 @@ h1, h2, h3, h4 {
   padding: 3rem 0;
 }
 
-/* Navbar inner pill container */
+/* ══════════════════════════════════════
+   NAVBAR & PILL
+══════════════════════════════════════ */
+
+/* Pill container — Desktop */
 .nav-pill-inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   padding: 0.6rem 0.8rem 0.6rem 1.6rem;
+  width: 100%;
 }
 
-/* Navbar — desktop nav links hidden on mobile */
+/* Nav Links Container (Center column) */
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 0.3rem;
+  justify-content: center;
 }
 
-/* Hamburger — hidden on desktop, shown on mobile */
+/* Actions Container (Right column) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Hamburger Base Style (Hidden on Desktop) */
 .hamburger-btn {
   display: none !important;
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none !important;
-  }
-  .hamburger-btn {
-    display: flex !important;
-  }
-}
-
-.nav-content {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 4rem;
-  display: flex;
-  justify-content: space-between;
+  background: #000;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
+.hamburger-line {
+  width: 14px;
+  height: 1.5px;
+  background: #fff;
+  display: block;
+  border-radius: 2px;
+}
+
+.hamburger-btn:active {
+  transform: scale(0.95);
+}
+
+/* Sub-components needed globally */
 .logo-box {
   border: 1.5px solid #000;
   padding: 0.2rem 0.6rem;
   font-weight: 900;
   font-size: 1rem;
   letter-spacing: 0.1rem;
-}
-
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2.5rem;
 }
 
 .nav-link {
@@ -623,18 +633,28 @@ h1, h2, h3, h4 {
 
 /* Projects page — card image+content grid */
 @media (max-width: 768px) {
+  .hide-on-mobile { display: none !important; }
+  
   /* Force the alternating 2-col project card to stack */
-  [style*="gridTemplateColumns"][style*="420px"] {
+  [style*="grid-template-columns"][style*="420px"] {
     grid-template-columns: 1fr !important;
   }
   /* About page — contact strip */
-  [style*="justifyContent: 'space-between'"][style*="alignItems: 'flex-end'"] {
+  [style*="justify-content: space-between"][style*="align-items: flex-end"] {
     flex-direction: column;
     align-items: flex-start !important;
     gap: 1.5rem !important;
   }
+  
+  /* Section round panels tighter margins/padding */
+  [style*="padding: 6rem 3rem"] { padding: 4rem 1.5rem !important; border-radius: 28px !important; margin: 2rem auto !important; }
+  [style*="width: 40px"] { width: 20px !important; } /* Make the line next to "Property Boutique" shorter */
+
+  /* Background texts are now handled by .hide-on-mobile directly in JSX */
+
+
   /* Contact form grid */
-  [style*="gridTemplateColumns: '1fr 380px'"] {
+  [style*="grid-template-columns: 1fr 380px"] {
     grid-template-columns: 1fr !important;
   }
   /* Bento grid auto-fit min 300 → min 260 */
@@ -642,42 +662,42 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
   }
   /* Bar chart 2-col → 1-col */
-  [style*="gridTemplateColumns: '1fr 1fr'"] {
+  [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
   /* Footer 4-col → 2-col */
-  [style*="gridTemplateColumns: '1fr 1fr 1fr 1fr'"] {
+  [style*="grid-template-columns: 1fr 1fr 1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
     gap: 2rem !important;
   }
   /* Project alternating card rows */
-  [style*="gridTemplateColumns: '1fr 420px'"],
-  [style*="gridTemplateColumns: '420px 1fr'"] {
+  [style*="grid-template-columns: 1fr 420px"],
+  [style*="grid-template-columns: 420px 1fr"] {
     grid-template-columns: 1fr !important;
   }
   /* Re-order image (it might be order:1) */
   [style*="order: 1"] { order: 0 !important; }
   /* About page bento large cards */
-  [style*="gridColumn: 'span 2'"] { grid-column: span 1 !important; }
+  [style*="grid-column: span 2"] { grid-column: span 1 !important; }
 
   /* Pill navbar top padding for content below */
   .page-container { padding-top: 1rem; }
 
   /* section headings */
-  [style*="clamp(3rem"] { font-size: clamp(2rem, 8vw, 3.5rem); }
-  [style*="clamp(3.5rem"] { font-size: clamp(2rem, 8vw, 3.5rem); }
+  [style*="clamp(3rem"],
+  [style*="clamp(3.5rem"] { font-size: clamp(2.2rem, 8vw, 3.5rem) !important; }
 }
 
 @media (max-width: 480px) {
   /* Footer drop to 1 col */
-  [style*="gridTemplateColumns: '1fr 1fr 1fr 1fr'"],
-  [style*="gridTemplateColumns: '1fr 1fr'"] {
+  [style*="grid-template-columns: 1fr 1fr 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
   /* Nav pill padding */
-  [style*="padding: '0 1.5rem'"] { padding: 0 0.8rem; }
+  [style*="padding: 0px 1.5rem"] { padding: 0 0.8rem; }
   /* Automation chatbot cards */
-  [style*="gridTemplateColumns: 'repeat(auto-fit, minmax(330px"] {
+  [style*="grid-template-columns: repeat(auto-fit, minmax(330px"] {
     grid-template-columns: 1fr !important;
   }
 }
@@ -765,8 +785,4 @@ h1, h2, h3, h4 {
   [style*="borderRadius: '40px'"] { border-radius: 20px !important; }
   [style*="borderRadius: '36px'"] { border-radius: 20px !important; }
   [style*="borderRadius: '32px'"] { border-radius: 20px !important; }
-
-  /* Background "REAL", "SYSTEM" text — hide on tiny screens */
-  [style*="fontSize: '15rem'"],
-  [style*="fontSize: '12rem'"] { display: none !important; }
 }
