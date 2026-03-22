@@ -21,6 +21,11 @@
   scroll-behavior: smooth;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   background: var(--bg-gradient);
   background-attachment: fixed;
@@ -70,6 +75,13 @@ h1, h2, h3, h4 {
 
 .section {
   padding: 3rem 0;
+}
+
+/* Navbar inner pill container */
+.nav-pill-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 0.6rem 0.8rem 0.6rem 1.6rem;
 }
 
 /* Navbar — desktop nav links hidden on mobile */
@@ -503,4 +515,258 @@ h1, h2, h3, h4 {
   .bento-card.wide {
     grid-column: span 1;
   }
+}
+
+/* ══════════════════════════════════════
+   TABLET — 768px
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Page padding */
+  .container { padding: 0 1.2rem; }
+  .section { padding: 2rem 0; }
+
+  /* Navbar pill — hide links, show hamburger */
+  .nav-links { display: none !important; }
+  .nav-cta-desktop { display: none !important; }
+  .hamburger-btn { display: flex !important; }
+
+  /* Switch pill from 3-col grid to simple flex so hamburger goes to the right */
+  .nav-pill-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.5rem 0.5rem 0.5rem 1.2rem !important;
+  }
+
+  /* Hero */
+  .hero-editorial {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+    padding-top: 8rem;
+    min-height: auto;
+  }
+  .editorial-headline { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+  .editorial-social-strip { justify-content: center; }
+  .editorial-subtext { margin: 0 auto 2rem; }
+  .editorial-image-container { max-width: 100%; margin: 0 auto; }
+
+  /* Bento grid — single column on mobile */
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .bento-card.large,
+  .bento-card.wide { grid-column: span 1 !important; }
+  .bento-card { border-radius: 24px; padding: 2rem; min-height: auto !important; }
+
+  /* Video grid — single column */
+  .video-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  /* Chatbot cards */
+  .chatbot-card { padding: 2rem !important; }
+
+  /* Big rect buttons */
+  .big-rect-btn {
+    font-size: 0.85rem !important;
+    padding: 1.2rem 1.5rem !important;
+  }
+
+  /* Contact form container */
+  .contact-form-container { padding: 2rem 1.5rem; border-radius: 28px; }
+}
+
+/* ══════════════════════════════════════
+   SMALL MOBILE — 480px
+══════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* Typography */
+  h1, .editorial-headline { letter-spacing: -0.03em; }
+  .section { padding: 1.5rem 0; }
+
+  /* Hero */
+  .hero-editorial { padding-top: 7rem; gap: 2rem; }
+
+  /* Bento */
+  .bento-card { padding: 1.5rem; border-radius: 20px; }
+
+  /* Project cards — stack image + content */
+  .project-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer — 2 col on small screens */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Overall containers */
+  .container { padding: 0 1rem; }
+
+  /* Stats row — 2 columns on mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ══════════════════════════════════════
+   Inline-styled responsive overrides
+   (for JSX components using style={{...}})
+══════════════════════════════════════ */
+
+/* Projects page — card image+content grid */
+@media (max-width: 768px) {
+  /* Force the alternating 2-col project card to stack */
+  [style*="gridTemplateColumns"][style*="420px"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* About page — contact strip */
+  [style*="justifyContent: 'space-between'"][style*="alignItems: 'flex-end'"] {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+  }
+  /* Contact form grid */
+  [style*="gridTemplateColumns: '1fr 380px'"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Bento grid auto-fit min 300 → min 260 */
+  [style*="minmax(300px"] {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  }
+  /* Bar chart 2-col → 1-col */
+  [style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Footer 4-col → 2-col */
+  [style*="gridTemplateColumns: '1fr 1fr 1fr 1fr'"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+  /* Project alternating card rows */
+  [style*="gridTemplateColumns: '1fr 420px'"],
+  [style*="gridTemplateColumns: '420px 1fr'"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Re-order image (it might be order:1) */
+  [style*="order: 1"] { order: 0 !important; }
+  /* About page bento large cards */
+  [style*="gridColumn: 'span 2'"] { grid-column: span 1 !important; }
+
+  /* Pill navbar top padding for content below */
+  .page-container { padding-top: 1rem; }
+
+  /* section headings */
+  [style*="clamp(3rem"] { font-size: clamp(2rem, 8vw, 3.5rem); }
+  [style*="clamp(3.5rem"] { font-size: clamp(2rem, 8vw, 3.5rem); }
+}
+
+@media (max-width: 480px) {
+  /* Footer drop to 1 col */
+  [style*="gridTemplateColumns: '1fr 1fr 1fr 1fr'"],
+  [style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Nav pill padding */
+  [style*="padding: '0 1.5rem'"] { padding: 0 0.8rem; }
+  /* Automation chatbot cards */
+  [style*="gridTemplateColumns: 'repeat(auto-fit, minmax(330px"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ══════════════════════════════════════
+   MINIMUM MOBILE — 320px
+   (Galaxy S5, iPhone 4/5, old Androids)
+══════════════════════════════════════ */
+@media (max-width: 360px) {
+
+  /* Tightest container padding */
+  .container { padding: 0 0.8rem !important; }
+  .section { padding: 1.2rem 0 !important; }
+
+  /* Typography — use vw so it never overflows */
+  h1 { font-size: clamp(1.8rem, 9vw, 2.5rem) !important; line-height: 1 !important; }
+  h2 { font-size: clamp(1.4rem, 7vw, 2rem) !important; }
+  h3 { font-size: clamp(1.1rem, 5vw, 1.4rem) !important; }
+
+  /* Navbar pill — shrink it on tiny screens */
+  [style*="maxWidth: '900px'"] { max-width: 100% !important; }
+  [style*="padding: '0 1.5rem'"] { padding: 0 0.5rem !important; }
+  .hamburger-btn { display: flex !important; }
+  .nav-links { display: none !important; }
+
+  /* Logo font size in navbar */
+  .serif-italic { font-size: 1.1rem !important; }
+
+  /* Hero section */
+  .hero-editorial {
+    padding-top: 6.5rem !important;
+    gap: 1.5rem !important;
+    min-height: auto !important;
+  }
+  .editorial-headline { font-size: clamp(2rem, 10vw, 2.8rem) !important; }
+  .editorial-subtext { font-size: 0.85rem !important; }
+
+  /* All cards — tighter padding */
+  .bento-card { padding: 1.2rem !important; border-radius: 16px !important; }
+  .chatbot-card { padding: 1.2rem !important; border-radius: 16px !important; }
+
+  /* Force everything single column */
+  .bento-grid { grid-template-columns: 1fr !important; gap: 0.8rem !important; }
+  .video-grid { grid-template-columns: 1fr !important; gap: 0.8rem !important; }
+
+  /* Stats grid — 2 columns */
+  [style*="gridTemplateColumns: 'repeat(4, 1fr)'"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Footer — full single column */
+  [style*="gridTemplateColumns: '1fr 1fr 1fr 1fr'"],
+  [style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  /* Project cards */
+  [style*="gridTemplateColumns: '1fr 420px'"],
+  [style*="gridTemplateColumns: '420px 1fr'"],
+  [style*="gridTemplateColumns: '1fr 380px'"],
+  [style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Remove any fixed heights on video thumbs */
+  .video-thumb-container { height: 240px !important; }
+
+  /* Contact form */
+  .contact-form-container { padding: 1.2rem !important; border-radius: 20px !important; }
+
+  /* Buttons — full width, smaller text */
+  .btn { font-size: 0.8rem !important; padding: 0.8rem 1.5rem !important; }
+  .big-rect-btn { font-size: 0.75rem !important; padding: 1rem 1.2rem !important; }
+  .pill-cta { padding: 0.9rem 2rem !important; font-size: 0.9rem !important; }
+
+  /* Page container */
+  .page-container { padding-bottom: 2rem !important; }
+
+  /* About page hero name */
+  [style*="clamp(3rem, 8vw"] { font-size: clamp(1.8rem, 10vw, 2.6rem) !important; }
+
+  /* Bar chart 2-col → 1-col */
+  [style*="gridTemplateColumns: '1fr 1fr'"] { grid-template-columns: 1fr !important; }
+
+  /* Section round panels tighter */
+  [style*="padding: '6rem 3rem'"] { padding: 3rem 1.2rem !important; }
+  [style*="borderRadius: '40px'"] { border-radius: 20px !important; }
+  [style*="borderRadius: '36px'"] { border-radius: 20px !important; }
+  [style*="borderRadius: '32px'"] { border-radius: 20px !important; }
+
+  /* Background "REAL", "SYSTEM" text — hide on tiny screens */
+  [style*="fontSize: '15rem'"],
+  [style*="fontSize: '12rem'"] { display: none !important; }
 }

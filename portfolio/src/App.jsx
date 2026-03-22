@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
+
 
 // Components
 import Navbar from './components/Navbar';
@@ -46,15 +46,6 @@ function App() {
           <AnimatedRoutes />
         </main>
         <Footer />
-        <a 
-          href="https://wa.me/917839661372" 
-          className="floating-whatsapp" 
-          target="_blank" 
-          rel="noreferrer"
-          aria-label="Contact on WhatsApp"
-        >
-          <MessageCircle size={28} />
-        </a>
       </div>
     </Router>
   );

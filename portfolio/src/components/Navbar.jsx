@@ -28,27 +28,32 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ── Floating Pill Navbar ── */}
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        style={{
-          position: 'fixed',
-          top: '1.5rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 900,
-          width: 'calc(100% - 3rem)',
-          maxWidth: '900px',
-        }}
-      >
-        <div
+      {/* Fixed full-width container for proper centering */}
+      <div style={{
+        position: 'fixed',
+        top: '1.5rem',
+        left: 0,
+        right: 0,
+        zIndex: 900,
+        display: 'flex',
+        justifyContent: 'center',
+        pointerEvents: 'none',
+        padding: '0 1.5rem',
+      }}>
+        <motion.nav
+          initial={{ y: -80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
+            width: '100%',
+            maxWidth: '900px',
+            pointerEvents: 'all',
+          }}
+        >
+        <div
+          className="nav-pill-inner"
+          style={{
             alignItems: 'center',
-            padding: '0.6rem 0.8rem 0.6rem 1.6rem',
             borderRadius: '99px',
             position: 'relative',
             background: scrolled ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.65)',
@@ -103,24 +108,26 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Column 3 — CTA + Hamburger (right-aligned) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', justifyContent: 'flex-end' }}>
+          {/* Column 3 — CTA (desktop) + Hamburger (mobile) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end' }}>
+            {/* Book a Call — hidden on mobile */}
             <NavLink
               to="/contact"
+              className="nav-cta-desktop"
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.4rem',
                 background: '#00ff78',
                 color: '#000',
-                padding: '0.5rem 1.2rem',
+                padding: '0.5rem 1.1rem',
                 borderRadius: '99px',
                 fontSize: '0.8rem',
                 fontWeight: 900,
                 textDecoration: 'none',
-                letterSpacing: '0.02em',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                whiteSpace: 'nowrap',
                 boxShadow: '0 2px 12px rgba(0,255,120,0.3)',
+                transition: 'transform 0.2s ease',
               }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
@@ -131,28 +138,30 @@ const Navbar = () => {
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setMenuOpen(true)}
+              className="hamburger-btn"
+              aria-label="Open menu"
               style={{
                 display: 'none',
                 background: '#000',
                 border: 'none',
                 borderRadius: '50%',
-                width: '36px',
-                height: '36px',
+                width: '34px',
+                height: '34px',
                 cursor: 'pointer',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
                 gap: '4px',
+                flexShrink: 0,
               }}
-              className="hamburger-btn"
-              aria-label="Open menu"
             >
-              <span style={{ width: '14px', height: '1.5px', background: '#fff', display: 'block' }} />
-              <span style={{ width: '14px', height: '1.5px', background: '#fff', display: 'block' }} />
+              <span style={{ width: '13px', height: '1.5px', background: '#fff', display: 'block', borderRadius: '2px' }} />
+              <span style={{ width: '13px', height: '1.5px', background: '#fff', display: 'block', borderRadius: '2px' }} />
             </button>
           </div>
         </div>
-      </motion.nav>
+        </motion.nav>
+      </div>
 
       {/* ── Full-Screen Mobile Menu ── */}
       <AnimatePresence>
