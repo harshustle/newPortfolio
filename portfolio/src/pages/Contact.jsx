@@ -62,6 +62,9 @@ const Contact = () => {
     exit: { opacity: 0, transition: { duration: 0.4 } }
   };
 
+  const services = ["AI UGC Videos", "IRL Shoots", "Landing Pages", "Automation Systems"];
+  const [selectedService, setSelectedService] = useState(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
@@ -82,16 +85,6 @@ const Contact = () => {
     
     setSubmitted(true);
   };
-
-  const contactLinks = [
-    { icon: <Mail size={18} />, label: "Email", value: "harshustle@gmail.com", href: "mailto:harshustle@gmail.com" },
-    { icon: <Phone size={18} />, label: "Phone", value: "+91 7839661372", href: "tel:7839661372" },
-    { icon: <Linkedin size={18} />, label: "LinkedIn", value: "linkedin.com/in/harshustle", href: "https://linkedin.com/in/harshustle" },
-    { icon: <Instagram size={18} />, label: "Instagram", value: "@harshustler", href: "https://instagram.com/harshustler" },
-  ];
-
-  const services = ["AI UGC Videos", "IRL Shoots", "Landing Pages", "Automation Systems"];
-  const [selectedService, setSelectedService] = useState(null);
 
   const inputStyle = (name) => ({
     background: focused === name ? 'rgba(123,77,255,0.04)' : 'transparent',
