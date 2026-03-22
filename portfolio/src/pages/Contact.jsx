@@ -73,26 +73,40 @@ const Contact = () => {
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
 
+    const NOTION_KEY = import.meta.env.VITE_NOTION_KEY;
+    const NOTION_DB  = import.meta.env.VITE_NOTION_DB_ID;
+
     try {
-      // 🚀 Sending silently to your new Vercel backend
-      const response = await fetch("/api/send-email", {
+      // 🚀 Send directly to Notion API — no backend needed!
+      const response = await fetch("https://api.notion.com/v1/pages", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Authorization": `Bearer ${NOTION_KEY}`,
+          "Content-Type": "application/json",
+          "Notion-Version": "2022-06-28"
+        },
         body: JSON.stringify({
-          service: selectedService || 'Not specified',
-          ...data
-        }),
+          parent: { database_id: NOTION_DB },
+          properties: {
+            Name:     { title:     [{ text: { content: data.name     || "Unknown" } }] },
+            Email:    { email:      data.email    || "no-email@example.com" },
+            Service:  { select:    { name: selectedService || "Other" } },
+            Budget:   { rich_text: [{ text: { content: data.budget   || "N/A" } }] },
+            Timeline: { rich_text: [{ text: { content: data.timeline || "N/A" } }] },
+            Message:  { rich_text: [{ text: { content: data.message  || ""    } }] },
+          }
+        })
       });
 
-      const result = await response.json();
-      if (result.success) {
+      if (response.ok) {
         setSubmitted(true);
       } else {
-        alert("Server Error: " + result.error);
+        const err = await response.json();
+        alert("Notion Error: " + (err.message || "Unknown error"));
       }
-     } catch (err) {
+    } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please check your Vercel dashboard for errors.");
+      alert("Network error. Please check your internet connection.");
     } finally {
       setIsSubmitting(false);
     }
