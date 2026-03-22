@@ -90,9 +90,9 @@ const Contact = () => {
       } else {
         alert("Server Error: " + result.error);
       }
-    } catch (err) {
+     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please check your Netlify dashboard for errors.");
+      alert("Something went wrong. Please check your Vercel dashboard for errors.");
     } finally {
       setIsSubmitting(false);
     }
