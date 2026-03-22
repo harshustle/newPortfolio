@@ -65,26 +65,45 @@ const Contact = () => {
   const services = ["AI UGC Videos", "IRL Shoots", "Landing Pages", "Automation Systems"];
   const [selectedService, setSelectedService] = useState(null);
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
 
-    const subject = encodeURIComponent(`New Project Inquiry from ${data.name || 'someone'}`);
-    const body = encodeURIComponent(
-      `💼 Service: ${selectedService || 'Not specified'}\n` +
-      `👤 Name: ${data.name}\n` +
-      `📧 Email: ${data.email}\n` +
-      `💰 Budget: ${data.budget}\n` +
-      `⏳ Timeline: ${data.timeline}\n` +
-      `📝 Details: ${data.message}`
-    );
+    try {
+      // 🚀 Sending silently to your new Netlify backend
+      const response = await fetch("/.netlify/functions/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          service: selectedService || 'Not specified',
+          ...data
+        }),
+      });
 
-    // This opens the user's default email app (Gmail, Outlook, etc.)
-    window.location.href = `mailto:harshustle@gmail.com?subject=${subject}&body=${body}`;
-    
-    setSubmitted(true);
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        alert("Server Error: " + result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please check your Netlify dashboard for errors.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const contactLinks = [
+    { icon: <Mail size={18} />, label: "Email", value: "harshustle@gmail.com", href: "mailto:harshustle@gmail.com" },
+    { icon: <Phone size={18} />, label: "Phone", value: "+91 7839661372", href: "tel:7839661372" },
+    { icon: <Linkedin size={18} />, label: "LinkedIn", value: "linkedin.com/in/harshustle", href: "https://linkedin.com/in/harshustle" },
+    { icon: <Instagram size={18} />, label: "Instagram", value: "@harshustler", href: "https://instagram.com/harshustler" },
+  ];
 
   const inputStyle = (name) => ({
     background: focused === name ? 'rgba(123,77,255,0.04)' : 'transparent',
@@ -246,17 +265,18 @@ const Contact = () => {
                 {/* Submit */}
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   style={{
                     width: '100%',
                     padding: '1.2rem 2rem',
-                    background: '#000',
+                    background: isSubmitting ? '#555' : '#000',
                     color: '#fff',
                     border: 'none',
                     borderRadius: '16px',
                     fontSize: '0.85rem',
                     fontWeight: 900,
                     fontFamily: 'inherit',
-                    cursor: 'pointer',
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -265,10 +285,10 @@ const Contact = () => {
                     textTransform: 'uppercase',
                     transition: 'transform 0.2s ease, background 0.2s ease',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#7b4dff'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#000'}
+                  onMouseEnter={e => !isSubmitting && (e.currentTarget.style.background = '#7b4dff')}
+                  onMouseLeave={e => !isSubmitting && (e.currentTarget.style.background = '#000')}
                 >
-                  <Send size={16} /> SEND MESSAGE
+                  {isSubmitting ? 'SENDING...' : <><Send size={16} /> SEND MESSAGE</>}
                 </button>
               </form>
             )}

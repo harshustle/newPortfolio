@@ -7,10 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Sensitive info
+**/.env
+**/.env.*
+backend/
+
+# Other
+coverage
 dist
-dist-ssr
-*.local
+node_modules
+.netlify
 
 # Editor directories and files
 .vscode/*
