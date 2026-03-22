@@ -1,7 +1,7 @@
-const nodemailer = require('nodemailer');
-const { Client } = require('@notionhq/client');
+import nodemailer from 'nodemailer';
+import { Client } from '@notionhq/client';
 
-// Vercel Functions Setup
+// Vercel Functions Setup (Modern ESM Style)
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const { name, email, budget, timeline, message, service } = req.body;
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-  // Setup Nodemailer (using your Gmail)
+  // Setup Nodemailer
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
