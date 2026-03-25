@@ -67,28 +67,34 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // 👇 Paste your deployed Google Apps Script Web App URL here
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBPiDi5ZO9V9L_z6oDydRTmEiX6UiFQn66gmvUVVDPgOQPc9cMyPYSVDDrmn5G4poiGw/exec";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
 
+    const payload = new URLSearchParams({
+      service: selectedService || 'Not specified',
+      name: data.name || '',
+      email: data.email || '',
+      budget: data.budget || '',
+      timeline: data.timeline || '',
+      message: data.message || '',
+    });
+
     try {
-      const response = await fetch("/api/send-email", {
+      await fetch(APPS_SCRIPT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          service: selectedService || 'Not specified',
-          ...data
-        }),
+        mode: "no-cors",  // Apps Script doesn't return CORS headers
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: payload.toString(),
       });
 
-      const result = await response.json();
-      if (result.success) {
-        setSubmitted(true);
-      } else {
-        alert("Error: " + result.error);
-      }
+      // no-cors means we can't read the response — assume success
+      setSubmitted(true);
     } catch (err) {
       console.error(err);
       alert("Something went wrong. Please try again.");
