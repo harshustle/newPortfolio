@@ -208,10 +208,12 @@ const Home = () => {
 
         <div className="editorial-right">
            <div className="editorial-image-container">
-              <img 
-                src="https://images.unsplash.com/photo-1621360841013-c7683c659ec6?auto=format&fit=crop&q=80&w=1200" 
-                alt="Viral Content" 
-                className="editorial-img" 
+              <iframe
+                src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Video1_czrsxw&player[showLogo]=false&player[autoplay]=true&player[loop]=true&player[muted]=true"
+                className="editorial-img"
+                style={{ border: 'none' }}
+                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                allowFullScreen
               />
               <div className="status-badge">
                  <div className="status-dot"></div>
@@ -290,19 +292,30 @@ const Home = () => {
 
         <div className="video-grid" style={{ maxWidth: '1000px', margin: '0 auto 6rem' }}>
            {[
-             { title: "Luxury Villa Tour", cat: "PROPERTIES", img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=800" },
+             { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Video1_czrsxw&player[showLogo]=false" },
              { title: "Modern Loft Walkthrough", cat: "ARCHITECTURAL", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" },
              { title: "Penthouse Showcase", cat: "CINEMATIC", img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=800" }
            ].map((v, idx) => (
              <motion.div key={idx} className="video-thumb-container" whileHover={{ y: -10 }} style={{ height: '520px', borderRadius: '24px', overflow: 'hidden', position: 'relative' }}>
-                <img src={v.img} alt={v.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
-                <div style={{ position: 'absolute', inset: 0, padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }}>
-                   <p style={{ fontSize: '0.65rem', color: '#fff', opacity: 0.7, textTransform: 'uppercase', fontWeight: 800 }}>{v.cat}</p>
-                   <h4 style={{ color: '#fff', fontSize: '1.2rem', marginTop: '0.4rem', fontWeight: 700 }}>{v.title}</h4>
-                </div>
-                <div className="play-button" style={{ background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', position: 'absolute', top: '2rem', right: '2rem' }}>
-                   <Play size={20} fill="#fff" color="#fff" />
-                </div>
+                {v.videoEmbed ? (
+                  <iframe
+                    src={v.videoEmbed}
+                    style={{ width: '100%', height: '100%', border: 'none', position: 'absolute', inset: 0 }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    <img src={v.img} alt={v.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+                    <div style={{ position: 'absolute', inset: 0, padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }}>
+                       <p style={{ fontSize: '0.65rem', color: '#fff', opacity: 0.7, textTransform: 'uppercase', fontWeight: 800 }}>{v.cat}</p>
+                       <h4 style={{ color: '#fff', fontSize: '1.2rem', marginTop: '0.4rem', fontWeight: 700 }}>{v.title}</h4>
+                    </div>
+                    <div className="play-button" style={{ background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', position: 'absolute', top: '2rem', right: '2rem' }}>
+                       <Play size={20} fill="#fff" color="#fff" />
+                    </div>
+                  </>
+                )}
              </motion.div>
            ))}
         </div>

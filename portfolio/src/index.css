@@ -241,7 +241,7 @@ h4 {
 .editorial-image-container {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 520px; /* Increased from 380px */
   aspect-ratio: 9/16;
   border-radius: 36px;
   overflow: hidden;
@@ -498,7 +498,7 @@ h4 {
   }
 
   .editorial-image-container {
-    max-width: 340px;
+    max-width: 440px; /* Increased from 340px */
     margin: 0 auto;
   }
 }
