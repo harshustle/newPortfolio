@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import { Play, ArrowRight, MonitorPlay, Bot, Video, Globe, Instagram, Facebook, Twitter, Ghost, Workflow, MessageSquare } from 'lucide-react';
@@ -7,6 +7,42 @@ import _CountUp from 'react-countup';
 const CountUp = _CountUp.default || _CountUp;
 
 const Home = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const fd = new FormData(e.currentTarget);
+    const data = Object.fromEntries(fd.entries());
+
+    const payload = new URLSearchParams({
+      name:     data.name     || '',
+      email:    data.email    || '',
+      service:  'Not specified',
+      budget:   '',
+      timeline: '',
+      message:  data.message  || '',
+    });
+
+    try {
+      await fetch(SHEET_URL, {
+        method:  "POST",
+        mode:    "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body:    payload.toString(),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const pageVariants = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
@@ -29,10 +65,10 @@ const Home = () => {
       <section className="hero-editorial container">
         <div className="editorial-left">
            <div className="editorial-social-strip">
-              <Instagram size={18} />
-              <Facebook size={18} />
-              <Twitter size={18} />
-              <Ghost size={18} />
+              <a href="https://instagram.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href="https://facebook.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook"><Facebook size={18} /></a>
+              <a href="https://twitter.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Twitter"><Twitter size={18} /></a>
+              <a href="https://snapchat.com/add/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Snapchat"><Ghost size={18} /></a>
            </div>
            <h1 className="editorial-headline">
               Short form <br />
@@ -277,25 +313,32 @@ const Home = () => {
             <h2 style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: 900 }}>Meet your <br /> <span className="serif-italic">success.</span></h2>
          </div>
          <div className="contact-form-container">
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
-                  <div className="form-group">
-                     <span className="form-label">FULL NAME</span>
-                     <input type="text" placeholder="John Doe" className="form-input" style={{ width: '100%', padding: '1rem 0' }} />
-                  </div>
-                  <div className="form-group">
-                     <span className="form-label">EMAIL ADDRESS</span>
-                     <input type="email" placeholder="john@example.com" className="form-input" style={{ width: '100%', padding: '1rem 0' }} />
-                  </div>
-               </div>
-               <div className="form-group" style={{ marginTop: '3rem' }}>
-                  <span className="form-label">TELL US ABOUT YOUR PROJECT</span>
-                  <textarea placeholder="How can we help you grow?" rows="4" className="form-input textarea" style={{ width: '100%', padding: '1rem 0' }}></textarea>
-               </div>
-               <button type="submit" className="btn btn-primary pill-cta" style={{ marginTop: '4rem', padding: '1.5rem 4rem', width: '100%' }}>
-                  SEND MESSAGE NOW
-               </button>
-            </form>
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+                <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Message Sent!</h3>
+                <p style={{ color: 'var(--text-secondary)' }}>We'll get back to you shortly.</p>
+              </div>
+            ) : (
+              <form className="contact-form" onSubmit={handleSubmit}>
+                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+                    <div className="form-group">
+                       <span className="form-label">FULL NAME</span>
+                       <input type="text" name="name" required placeholder="John Doe" className="form-input" style={{ width: '100%', padding: '1rem 0' }} />
+                    </div>
+                    <div className="form-group">
+                       <span className="form-label">EMAIL ADDRESS</span>
+                       <input type="email" name="email" required placeholder="john@example.com" className="form-input" style={{ width: '100%', padding: '1rem 0' }} />
+                    </div>
+                 </div>
+                 <div className="form-group" style={{ marginTop: '3rem' }}>
+                    <span className="form-label">TELL US ABOUT YOUR PROJECT</span>
+                    <textarea name="message" required placeholder="How can we help you grow?" rows="4" className="form-input textarea" style={{ width: '100%', padding: '1rem 0' }}></textarea>
+                 </div>
+                 <button type="submit" disabled={isSubmitting} className="btn btn-primary pill-cta" style={{ marginTop: '4rem', padding: '1.5rem 4rem', width: '100%', opacity: isSubmitting ? 0.7 : 1 }}>
+                    {isSubmitting ? "SENDING..." : "SEND MESSAGE NOW"}
+                 </button>
+              </form>
+            )}
          </div>
       </section>
     </motion.div>
