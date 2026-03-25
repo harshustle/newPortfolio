@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import { Play, ArrowRight, MonitorPlay, Bot, Video, Globe, Instagram, Facebook, Twitter, Ghost, Workflow, MessageSquare } from 'lucide-react';
 import _CountUp from 'react-countup';
@@ -9,6 +9,60 @@ const CountUp = _CountUp.default || _CountUp;
 const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const armControls = useAnimation();
+  const textControls = useAnimation();
+  const topClawControls = useAnimation();
+  const bottomClawControls = useAnimation();
+  const isAnimating = useRef(false);
+
+  const runSequence = useCallback(async () => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+
+    try {
+      // 1. Reset text and put arm securely off-screen
+      textControls.set({ x: 0, opacity: 1 });
+      armControls.set({ x: '-100vw' });
+      topClawControls.set({ rotate: -25 });
+      bottomClawControls.set({ rotate: 25 });
+
+      // 2. Creep in slowly towards the text
+      await armControls.start({ x: 0, transition: { duration: 2.5, ease: 'easeOut' } });
+      
+      // 3. Claws snap shut
+      topClawControls.start({ rotate: 0, transition: { duration: 0.2, type: 'spring' } });
+      await bottomClawControls.start({ rotate: 0, transition: { duration: 0.2, type: 'spring' } });
+      
+      // Dramatic pause before snatching
+      await new Promise(r => setTimeout(r, 400));
+      
+      // 4. Jerk the text and arm away together
+      await textControls.start({ x: '-100vw', transition: { duration: 1.2, ease: [0.5, 0, 0.1, 1] } });
+      
+      // 5. Instantly reset layout positions while hidden
+      armControls.set({ x: '-100vw' });
+      topClawControls.set({ rotate: -25 });
+      bottomClawControls.set({ rotate: 25 });
+      textControls.set({ x: 0, opacity: 0 });
+      
+      // 6. Smoothly fade the text back into the headline
+      await textControls.start({ opacity: 1, transition: { duration: 1.5, ease: 'easeInOut' } });
+    } catch (err) {
+      console.log('Animation interrupted');
+    } finally {
+      isAnimating.current = false;
+    }
+  }, [armControls, textControls, topClawControls, bottomClawControls]);
+
+  useEffect(() => {
+    // Start animation on mount only
+    const timer = setTimeout(() => {
+       runSequence();
+    }, 500); // slight delay to let the page load
+    
+    return () => clearTimeout(timer);
+  }, [runSequence]);
 
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
 
@@ -70,9 +124,75 @@ const Home = () => {
               <a href="https://twitter.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Twitter"><Twitter size={18} /></a>
               <a href="https://snapchat.com/add/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Snapchat"><Ghost size={18} /></a>
            </div>
-           <h1 className="editorial-headline">
-              Short form <br />
-              done <span className="serif-italic">right.</span>
+           <h1 className="editorial-headline" style={{ position: 'relative', cursor: 'default' }} onMouseEnter={runSequence}>
+              <motion.span 
+                 animate={textControls}
+                 style={{ display: 'inline-block', position: 'relative' }}
+              >
+                 <motion.div
+                    animate={armControls}
+                    style={{
+                       position: 'absolute',
+                       right: '100%',
+                       top: '50%',
+                       marginTop: '-60px',
+                       marginRight: '-15px',
+                       zIndex: 10,
+                       pointerEvents: 'none',
+                    }}
+                 >
+                    <svg width="260" height="120" viewBox="0 0 260 120" fill="none" style={{ overflow: 'visible', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}>
+                       <defs>
+                          <linearGradient id="armWhite" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+                             <stop offset="0%" stopColor="#ffffff" />
+                             <stop offset="100%" stopColor="#e2e2e2" />
+                          </linearGradient>
+                          <linearGradient id="armDark" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+                             <stop offset="0%" stopColor="#222" />
+                             <stop offset="100%" stopColor="#0a0a0a" />
+                          </linearGradient>
+                          <linearGradient id="neonGlow" x1="0" y1="0" x2="1" y2="1">
+                             <stop offset="0%" stopColor="#00ff78" />
+                             <stop offset="100%" stopColor="#00b354" />
+                          </linearGradient>
+                       </defs>
+
+                       <rect x="-800" y="50" width="940" height="20" rx="4" fill="url(#armWhite)" />
+                       <rect x="-800" y="56" width="940" height="8" fill="url(#armDark)" />
+                       <rect x="-800" y="58" width="940" height="4" fill="url(#neonGlow)" opacity="0.8" />
+                       <rect x="100" y="47" width="10" height="26" rx="2" fill="url(#armDark)" />
+                       <rect x="70" y="47" width="10" height="26" rx="2" fill="url(#armDark)" />
+
+                       <rect x="120" y="38" width="46" height="44" rx="12" fill="url(#armWhite)" />
+                       <circle cx="143" cy="60" r="18" fill="url(#armDark)" />
+
+                       <motion.g 
+                          animate={topClawControls}
+                          style={{ transformOrigin: "143px 60px" }}
+                       >
+                          <path d="M 143 50 C 180 15, 220 15, 260 35 L 253 44 C 215 28, 180 28, 143 60 Z" fill="url(#armWhite)" />
+                          <path d="M 235 32 L 260 35 L 253 44 L 227 40 Z" fill="url(#armDark)" />
+                          <circle cx="245" cy="38" r="3" fill="url(#neonGlow)" />
+                       </motion.g>
+
+                       <motion.g 
+                          animate={bottomClawControls}
+                          style={{ transformOrigin: "143px 60px" }}
+                       >
+                          <path d="M 143 70 C 180 105, 220 105, 260 85 L 253 76 C 215 92, 180 92, 143 60 Z" fill="url(#armWhite)" />
+                          <path d="M 235 88 L 260 85 L 253 76 L 227 80 Z" fill="url(#armDark)" />
+                          <circle cx="245" cy="82" r="3" fill="url(#neonGlow)" />
+                       </motion.g>
+
+                       <circle cx="143" cy="60" r="10" fill="url(#armWhite)" />
+                       <circle cx="143" cy="60" r="4" fill="url(#neonGlow)" />
+                       <circle cx="143" cy="60" r="2" fill="#fff" />
+                    </svg>
+                 </motion.div>
+                 Short
+              </motion.span>
+               {' '}form <br />
+               done <span className="serif-italic">right.</span>
            </h1>
            <p className="editorial-subtext">
               We combine technical engineering, creative management, and 
