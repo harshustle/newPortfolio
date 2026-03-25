@@ -67,8 +67,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 👇 Paste your deployed Google Apps Script Web App URL here
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBPiDi5ZO9V9L_z6oDydRTmEiX6UiFQn66gmvUVVDPgOQPc9cMyPYSVDDrmn5G4poiGw/exec";
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,23 +76,23 @@ const Contact = () => {
     const data = Object.fromEntries(fd.entries());
 
     const payload = new URLSearchParams({
-      service: selectedService || 'Not specified',
-      name: data.name || '',
-      email: data.email || '',
-      budget: data.budget || '',
+      name:     data.name     || '',
+      email:    data.email    || '',
+      service:  selectedService || 'Not specified',
+      budget:   data.budget   || '',
       timeline: data.timeline || '',
-      message: data.message || '',
+      message:  data.message  || '',
     });
 
     try {
-      await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",  // Apps Script doesn't return CORS headers
+      await fetch(SHEET_URL, {
+        method:  "POST",
+        mode:    "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: payload.toString(),
+        body:    payload.toString(),
       });
 
-      // no-cors means we can't read the response — assume success
+      // no-cors = can't read response, assume success if no network error
       setSubmitted(true);
     } catch (err) {
       console.error(err);
