@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Code2, MonitorPlay, Video, Cpu, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   const serviceList = [
@@ -49,7 +50,7 @@ const Services = () => {
           <p style={{ fontSize: '1.25rem', maxWidth: '600px', margin: '2rem auto' }}>
             Transform your agency with AI, UGC, and custom software.
           </p>
-          <a href="/contact" className="btn btn-primary" style={{ background: '#000', color: '#fff', padding: '1.5rem 3rem', fontSize: '1.2rem' }}>Initiate Connect</a>
+          <Link to="/contact" className="btn btn-primary" style={{ display: 'inline-flex', justifyContent: 'center', background: '#000', color: '#fff', padding: '1.5rem 3rem', fontSize: '1.2rem', textDecoration: 'none' }}>Initiate Connect</Link>
         </div>
       </section>
     </motion.div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 const projects = [
@@ -247,9 +248,9 @@ const Projects = () => {
           <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, letterSpacing: '-0.04em', marginBottom: '3rem', color: '#fff', lineHeight: 0.9 }}>
             Let's build something<br /><span className="serif-italic" style={{ color: '#00ff78' }}>that converts.</span>
           </h2>
-          <a href="#contact" className="big-rect-btn" style={{ background: '#00ff78', color: '#000', border: 'none', maxWidth: '600px', margin: '0 auto', fontWeight: 900 }}>
+          <Link to="/contact" className="big-rect-btn" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#00ff78', color: '#000', border: 'none', maxWidth: '600px', margin: '0 auto', fontWeight: 900, textDecoration: 'none' }}>
             START YOUR PROJECT <ArrowUpRight size={20} />
-          </a>
+          </Link>
         </div>
       </section>
 

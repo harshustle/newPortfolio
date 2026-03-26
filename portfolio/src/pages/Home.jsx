@@ -440,6 +440,31 @@ const Home = () => {
          </div>
       </section>
 
+      {/* Performance Package Section */}
+      <section className="section container" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
+        <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE PACKAGE</p>
+
+        <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 64px)', fontWeight: 700, margin: '20px 0', lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+          Let's scale content <br />
+          <span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>that converts.</span>
+        </h1>
+
+        <div style={{ maxWidth: '600px', margin: '40px auto', textAlign: 'left', fontSize: '1.2rem', color: '#ccc', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '0 1.5rem' }}>
+          <p>• 6 high-performing videos every 2 weeks</p>
+          <p>• Hook optimization for better retention</p>
+          <p>• Fast-paced editing + clean captions</p>
+          <p>• Content improvement suggestions</p>
+          <p>• Optimized for Reels / Shorts</p>
+
+          <h2 style={{ color: 'white', marginTop: '30px', fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 800 }}>₹18,000 / 2 weeks</h2>
+          <p style={{ color: '#777', fontSize: '1.1rem', marginTop: '-0.5rem', fontWeight: 600 }}>(₹36,000/month)</p>
+        </div>
+
+        <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#00ff9c', color: 'black', padding: '16px 40px', borderRadius: '99px', fontWeight: 800, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+           START YOUR PROJECT <ArrowRight size={18} />
+        </a>
+      </section>
+
       {/* Contact Section */}
       <section className="section container" id="contact">
          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
