@@ -293,8 +293,8 @@ const Home = () => {
         <div className="video-grid" style={{ maxWidth: '1000px', margin: '0 auto 6rem' }}>
            {[
              { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Video1_czrsxw&player[showLogo]=false" },
-             { title: "Modern Loft Walkthrough", cat: "ARCHITECTURAL", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" },
-             { title: "Penthouse Showcase", cat: "CINEMATIC", img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=800" }
+             { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=SanjeevniEnclavePhase2_isj6lw.mp4&player[showLogo]=false" },
+             { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=__%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80_%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BE_%E0%A4%95%E0%A5%81%E0%A4%82%E0%A4%9C_%E0%A4%87%E0%A4%A8%E0%A5%8D%E0%A4%AB%E0%A5%8D%E0%A4%B0%E0%A4%BE_%E0%A4%AC%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%A1_%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%87%E0%A4%B5%E0%A5%87%E0%A4%9F_%E0%A4%B2%E0%A4%BF%E0%A4%AE%E0%A4%BF%E0%A4%9F%E0%A5%87%E0%A4%A1_%E0%A4%95%E0%A5%80_%E0%A4%A4%E0%A4%B0%E0%A4%AB%E0%A4%BC_%E0%A4%B8%E0%A5%87_%E0%A4%9C%E0%A4%BC%E0%A4%AC%E0%A4%B0%E0%A4%A6%E0%A4%B8%E0%A5%8D%E0%A4%A4_%E0%A4%85%E0%A4%A8%E0%A4%BE%E0%A4%89%E0%A4%82%E0%A4%B8%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F__%E0%A4%B2%E0%A4%96%E0%A4%A8%E0%A4%8A_SCR_%E0%A4%AE%E0%A5%87%E0%A4%82_xkttqd&player[showLogo]=false" }
            ].map((v, idx) => (
              <motion.div key={idx} className="video-thumb-container" whileHover={{ y: -10 }} style={{ height: '520px', borderRadius: '24px', overflow: 'hidden', position: 'relative' }}>
                 {v.videoEmbed ? (
@@ -440,29 +440,184 @@ const Home = () => {
          </div>
       </section>
 
-      {/* Performance Package Section */}
+      {/* Performance Package Section / Conversion Details */}
       <section className="section container" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
-        <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE PACKAGE</p>
-
-        <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 64px)', fontWeight: 700, margin: '20px 0', lineHeight: 1.1, letterSpacing: '-0.03em' }}>
-          Let's scale content <br />
-          <span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>that converts.</span>
+        <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE CONTENT SYSTEMS</p>
+        <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 54px)', fontWeight: 700, margin: '20px auto 40px', lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px' }}>
+          Video Content That <br className="hide-on-mobile" /><span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>Drives Results.</span>
         </h1>
+        <p style={{ color: '#aaa', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 4rem', lineHeight: 1.6 }}>
+          We don’t just create videos — we build a <strong style={{color: '#fff'}}>content system designed to attract, engage, and convert your audience.</strong>
+        </p>
 
-        <div style={{ maxWidth: '600px', margin: '40px auto', textAlign: 'left', fontSize: '1.2rem', color: '#ccc', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '0 1.5rem' }}>
-          <p>• 6 high-performing videos every 2 weeks</p>
-          <p>• Hook optimization for better retention</p>
-          <p>• Fast-paced editing + clean captions</p>
-          <p>• Content improvement suggestions</p>
-          <p>• Optimized for Reels / Shorts</p>
+        {/* Bento Grid layout for Pricing */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+          
+          {/* Packages */}
+          <div style={{ background: '#161616', padding: '3rem 2.5rem', borderRadius: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, borderBottom: '1px solid #333', paddingBottom: '1rem', marginBottom: '0' }}>💼 Packages</h2>
+            
+            <div style={{ background: 'rgba(0, 255, 156, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0, 255, 156, 0.1)' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#00ff9c' }}>Starter Package</h3>
+              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', marginBottom: '1.2rem', opacity: 0.9 }}>2 Videos — ₹8,000</p>
+              <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Strategy</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Scriptwriting</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Editing</li>
+              </ul>
+            </div>
 
-          <h2 style={{ color: 'white', marginTop: '30px', fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 800 }}>₹18,000 / 2 weeks</h2>
-          <p style={{ color: '#777', fontSize: '1.1rem', marginTop: '-0.5rem', fontWeight: 600 }}>(₹36,000/month)</p>
+            <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '1.5rem', borderRadius: '16px' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Growth Package</h3>
+              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', marginBottom: '1.2rem', opacity: 0.9 }}>3 Videos — ₹9,000</p>
+              <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Strategy</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Scriptwriting</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Editing</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Production Options */}
+          <div style={{ background: '#161616', padding: '3rem 2.5rem', borderRadius: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, borderBottom: '1px solid #333', paddingBottom: '1rem', marginBottom: '0' }}>🎥 Production Options</h2>
+            
+            <div style={{ padding: '0.5rem 0' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>AI UGC Content</h3>
+              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#00ff9c', marginBottom: '0.8rem' }}>₹3,000 / video</p>
+              <p style={{ color: '#aaa', lineHeight: 1.5, fontSize: '0.95rem' }}>High-converting AI-generated content tailored to your brand voice.</p>
+            </div>
+
+            <div style={{ padding: '0.5rem 0' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Shoot-Based Content</h3>
+              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#00ff9c', marginBottom: '0.8rem' }}>₹4,000 / video</p>
+              <p style={{ color: '#aaa', lineHeight: 1.5, fontSize: '0.95rem', marginBottom: '1.2rem' }}>We guide you step-by-step for shooting.</p>
+              <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#00ff9c', marginTop: '2px'}}>✔</span> Direction by us</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#00ff9c', marginTop: '2px'}}>✔</span> Scripting + Editing handled completely</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#00ff9c', color: 'black', padding: '16px 40px', borderRadius: '99px', fontWeight: 800, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-           START YOUR PROJECT <ArrowRight size={18} />
-        </a>
+        {/* Visual 5-Step Process Flow */}
+        <div style={{ maxWidth: '1000px', margin: '4rem auto', textAlign: 'left', background: '#111', borderRadius: '32px', padding: '4rem 3rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '3.5rem', color: '#fff', textAlign: 'center' }}>The Custom Flow</h3>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+            
+            {/* Step 1 */}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+               <div style={{ background: 'rgba(0, 255, 156, 0.08)', color: '#00ff9c', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>01</div>
+               <div style={{ flex: 1, paddingTop: '0.2rem' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.8rem' }}>Strategy Call</h4>
+                  <p style={{ color: '#ddd', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                    Before we create, we align. <br/>
+                    <span style={{ opacity: 0.6, fontSize: '0.9rem', fontStyle: 'italic' }}>Banane se pehle, hum clarity ensure karte hain.</span>
+                  </p>
+                  
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.03)' }}>
+                    <p style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800, marginBottom: '1rem' }}>On this call, we understand <br/><span style={{ fontWeight: 400, opacity: 0.5, fontStyle: 'italic', fontSize: '0.85rem' }}>Is call mein hum samajhte hain:</span></p>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.2rem' }}>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Type of videos needed</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Aap kis type ke videos chahte ho</div>
+                      </div>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Number of videos & timeline</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Kitne videos chahiye aur kab</div>
+                      </div>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Target audience</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Aapka target audience kaun hai</div>
+                      </div>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Goal of the content</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Sales / branding / engagement</div>
+                      </div>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Style & references</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Kis type ka content chahiye</div>
+                      </div>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Current content performance</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Abhi kya perform kar raha hai</div>
+                      </div>
+                      <div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Best approach</div>
+                        <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>AI UGC ya real shoot better rahega</div>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+
+            <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #00ff9c, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.5 }} className="hide-on-mobile"></div>
+
+            {/* Step 2 */}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+               <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>02</div>
+               <div style={{ flex: 1, paddingTop: '0.8rem' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Trial Video</h4>
+                  <p style={{ color: '#aaa', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1.2rem' }}>We start with 1 paid trial video. This allows you to evaluate:</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
+                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#00ff9c', marginRight: '8px'}}>✔</span> Content quality</span>
+                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#00ff9c', marginRight: '8px'}}>✔</span> Editing style</span>
+                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#00ff9c', marginRight: '8px'}}>✔</span> Overall direction</span>
+                  </div>
+               </div>
+            </div>
+
+            <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #fff, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.15 }} className="hide-on-mobile"></div>
+
+            {/* Step 3 */}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+               <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>03</div>
+               <div style={{ flex: 1, paddingTop: '0.8rem' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>First Delivery</h4>
+                  <p style={{ color: '#aaa', fontSize: '1.05rem', lineHeight: 1.6 }}>The trial video is delivered based on the agreed strategy. Feedback (if any) is incorporated to refine the approach.</p>
+               </div>
+            </div>
+
+            <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #fff, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.15 }} className="hide-on-mobile"></div>
+
+            {/* Step 4 */}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+               <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>04</div>
+               <div style={{ flex: 1, paddingTop: '0.8rem' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Scale or Exit</h4>
+                  <p style={{ color: '#aaa', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1rem' }}>If you’re satisfied with the results:</p>
+                  <ul style={{ listStyle: 'none', padding: 0, color: '#ddd', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem', marginBottom: '1.2rem' }}>
+                    <li style={{display: 'flex', gap: '0.6rem'}}><span style={{color: '#00ff9c'}}>•</span> We move forward with a 6-video package (2-week cycle)</li>
+                    <li style={{display: 'flex', gap: '0.6rem'}}><span style={{color: '#00ff9c'}}>•</span> A formal agreement is signed</li>
+                  </ul>
+                  <p style={{ color: '#777', fontStyle: 'italic', fontSize: '0.95rem' }}>If not, no obligation — we part ways professionally.</p>
+               </div>
+            </div>
+
+            <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #fff, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.15 }} className="hide-on-mobile"></div>
+
+            {/* Step 5 */}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+               <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>05</div>
+               <div style={{ flex: 1, paddingTop: '0.8rem' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Ongoing Growth</h4>
+                  <p style={{ color: '#aaa', fontSize: '1.05rem', lineHeight: 1.6 }}>Once validated, we scale into a consistent content system for long-term results.</p>
+               </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style={{ borderTop: '1px solid #333', margin: '4rem auto 0', maxWidth: '900px', paddingTop: '4rem', paddingBottom: '1rem' }}>
+           <h3 style={{ color: '#fff', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+              <span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>You only commit</span> <br/> after seeing real results.
+           </h3>
+
+           <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#00ff9c', color: 'black', padding: '16px 48px', borderRadius: '99px', fontWeight: 900, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.95rem' }}>
+              RESERVE YOUR TRIAL <ArrowRight size={18} />
+           </a>
+        </div>
       </section>
 
       {/* Contact Section */}
