@@ -66,7 +66,6 @@ const Navbar = () => {
             transition: 'background 0.4s ease, box-shadow 0.4s ease',
           }}
         >
-          {/* Column 1 — Logo (left-aligned) */}
           <NavLink to="/" style={{ textDecoration: 'none' }}>
             <span className="serif-italic" style={{ fontSize: '1.3rem', fontWeight: 500, color: '#000' }}>
               Harshustle

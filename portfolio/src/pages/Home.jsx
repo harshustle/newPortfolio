@@ -441,7 +441,7 @@ const Home = () => {
       </section>
 
       {/* Performance Package Section / Conversion Details */}
-      <section className="section container" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
+      <section className="section container performance-section" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
         <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE CONTENT SYSTEMS</p>
         <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 54px)', fontWeight: 700, margin: '20px auto 40px', lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px' }}>
           Video Content That <br className="hide-on-mobile" /><span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>Drives Results.</span>
@@ -451,7 +451,7 @@ const Home = () => {
         </p>
 
         {/* Bento Grid layout for Pricing */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+        <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
           
           {/* Packages */}
           <div style={{ background: '#161616', padding: '3rem 2.5rem', borderRadius: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
@@ -501,13 +501,13 @@ const Home = () => {
         </div>
 
         {/* Visual 5-Step Process Flow */}
-        <div style={{ maxWidth: '1000px', margin: '4rem auto', textAlign: 'left', background: '#111', borderRadius: '32px', padding: '4rem 3rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div className="flow-container" style={{ maxWidth: '1000px', margin: '4rem auto', textAlign: 'left', background: '#111', borderRadius: '32px', padding: '4rem 3rem', border: '1px solid rgba(255,255,255,0.05)' }}>
           <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '3.5rem', color: '#fff', textAlign: 'center' }}>The Custom Flow</h3>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
             
             {/* Step 1 */}
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+            <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                <div style={{ background: 'rgba(0, 255, 156, 0.08)', color: '#00ff9c', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>01</div>
                <div style={{ flex: 1, paddingTop: '0.2rem' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.8rem' }}>Strategy Call</h4>
@@ -518,7 +518,7 @@ const Home = () => {
                   
                   <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.03)' }}>
                     <p style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800, marginBottom: '1rem' }}>On this call, we understand <br/><span style={{ fontWeight: 400, opacity: 0.5, fontStyle: 'italic', fontSize: '0.85rem' }}>Is call mein hum samajhte hain:</span></p>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.2rem' }}>
+                    <div className="flow-features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.2rem' }}>
                       <div>
                         <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Type of videos needed</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Aap kis type ke videos chahte ho</div>
@@ -555,7 +555,7 @@ const Home = () => {
             <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #00ff9c, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.5 }} className="hide-on-mobile"></div>
 
             {/* Step 2 */}
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+            <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>02</div>
                <div style={{ flex: 1, paddingTop: '0.8rem' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Trial Video</h4>
@@ -571,7 +571,7 @@ const Home = () => {
             <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #fff, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.15 }} className="hide-on-mobile"></div>
 
             {/* Step 3 */}
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+            <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>03</div>
                <div style={{ flex: 1, paddingTop: '0.8rem' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>First Delivery</h4>
@@ -582,7 +582,7 @@ const Home = () => {
             <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #fff, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.15 }} className="hide-on-mobile"></div>
 
             {/* Step 4 */}
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+            <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>04</div>
                <div style={{ flex: 1, paddingTop: '0.8rem' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Scale or Exit</h4>
@@ -598,7 +598,7 @@ const Home = () => {
             <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #fff, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.15 }} className="hide-on-mobile"></div>
 
             {/* Step 5 */}
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+            <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                <div style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>05</div>
                <div style={{ flex: 1, paddingTop: '0.8rem' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Ongoing Growth</h4>
@@ -614,7 +614,7 @@ const Home = () => {
               <span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>You only commit</span> <br/> after seeing real results.
            </h3>
 
-           <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#00ff9c', color: 'black', padding: '16px 48px', borderRadius: '99px', fontWeight: 900, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.95rem' }}>
+           <a href="#contact" className="btn pill-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#00ff9c', color: 'black', fontWeight: 900, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.95rem' }}>
               RESERVE YOUR TRIAL <ArrowRight size={18} />
            </a>
         </div>

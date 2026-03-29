@@ -12,11 +12,8 @@ const Footer = () => {
           {/* Brand Column */}
           <div>
             {/* Logo */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <div style={{ width: '32px', height: '32px', background: '#000', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ color: '#00ff78', fontWeight: 900, fontSize: '1rem', lineHeight: 1 }}>H</span>
-              </div>
-              <span style={{ fontSize: '1.1rem', fontWeight: 500, color: '#000' }}>Harshustle</span>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+              <img src="https://res.cloudinary.com/dobulag2p/image/upload/v1774819007/HarshPng_fynfd0.png" alt="Harshustle Logo" style={{ height: '40px', objectFit: 'contain' }} />
             </div>
 
             <p style={{ fontSize: '0.8rem', color: '#555', lineHeight: 1.65, marginBottom: '1.5rem', maxWidth: '200px' }}>

@@ -724,6 +724,31 @@ h4 {
     padding: 0 1rem; /* Universal left/right margin for mobile design */
     overflow-x: hidden;
   }
+
+  /* Performance section mobile overrides */
+  .performance-section {
+    padding: 3rem 1.5rem !important;
+    margin: 2rem auto !important;
+    border-radius: 24px !important;
+  }
+  
+  .pricing-bento {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .flow-container {
+    padding: 2rem 1.5rem !important;
+    border-radius: 20px !important;
+  }
+  
+  .flow-step {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .flow-features-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* ══════════════════════════════════════
