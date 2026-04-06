@@ -6,8 +6,32 @@ const Footer = () => {
     <footer style={{ background: '#fff', borderTop: '1px solid rgba(0,0,0,0.07)', padding: '4rem 0 2rem', position: 'relative', zIndex: 2 }}>
       <div className="container">
 
+        {/* Responsive styling for footer grid */}
+        <style>
+          {`
+            .mobile-footer-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr 1fr;
+              gap: 3rem;
+              margin-bottom: 4rem;
+              align-items: start;
+            }
+            @media (max-width: 768px) {
+              .mobile-footer-grid {
+                grid-template-columns: 1fr 1fr;
+              }
+            }
+            @media (max-width: 480px) {
+              .mobile-footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+              }
+            }
+          `}
+        </style>
+
         {/* ── Main Grid ── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '3rem', marginBottom: '4rem', alignItems: 'start' }}>
+        <div className="mobile-footer-grid">
 
           {/* Brand Column */}
           <div>

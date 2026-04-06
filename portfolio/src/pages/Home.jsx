@@ -152,7 +152,7 @@ const Home = () => {
                              <stop offset="100%" stopColor="#0a0a0a" />
                           </linearGradient>
                           <linearGradient id="neonGlow" x1="0" y1="0" x2="1" y2="1">
-                             <stop offset="0%" stopColor="#00ff78" />
+                             <stop offset="0%" stopColor="#c084fc" />
                              <stop offset="100%" stopColor="#00b354" />
                           </linearGradient>
                        </defs>
@@ -192,7 +192,7 @@ const Home = () => {
                  Short
               </motion.span>
                {' '}form <br />
-               done <span className="serif-italic">right.</span>
+               done <span className="serif-italic highlight-purple">right.</span>
            </h1>
            <p className="editorial-subtext">
               We combine technical engineering, creative management, and 
@@ -209,7 +209,7 @@ const Home = () => {
         <div className="editorial-right">
            <div className="editorial-image-container">
               <iframe
-                src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Video1_czrsxw&player[showLogo]=false&player[autoplay]=true&player[loop]=true&player[muted]=true"
+                src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=0404_itrkrs&player[showLogo]=false&player[autoplay]=true&player[loop]=true&player[muted]=true"
                 className="editorial-img"
                 style={{ border: 'none' }}
                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
@@ -226,7 +226,7 @@ const Home = () => {
       {/* Services Overview Section (Bento Grid) */}
       <section className="section container" style={{ textAlign: 'center' }}>
          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginBottom: '4rem', fontWeight: 800 }}>
-            How we can <br /> help you <span className="serif-italic">grow.</span>
+            How we can <br /> help you <span className="serif-italic highlight-purple">grow.</span>
          </h2>
          
          <div className="bento-grid" style={{ maxWidth: '1200px', margin: '0 auto', gap: '1.5rem' }}>
@@ -240,7 +240,7 @@ const Home = () => {
                   </div>
                </div>
                <div style={{ marginTop: 'auto', textAlign: 'left' }} className="mobile-center">
-                  <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', fontWeight: 900 }}>Cinematic <br/><span className="serif-italic">Storytelling.</span></h3>
+                  <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', fontWeight: 900 }}>Cinematic <br/><span className="serif-italic highlight-purple">Storytelling.</span></h3>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '400px', lineHeight: 1.5 }}>High-end property tours designed for HNW conversion. Property focused architectures.</p>
                   <a href="#real-video" className="nav-link" style={{ opacity: 1, fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '2rem', display: 'block' }}>Explore Capability →</a>
                </div>
@@ -249,7 +249,7 @@ const Home = () => {
             {/* AI UGC - SQUARE BENTO */}
             <div className="bento-card mobile-center" style={{ padding: '2.5rem', background: '#f9f6f4', textAlign: 'left' }}>
                <div style={{ fontSize: '3rem', fontWeight: 950, marginBottom: '1rem' }}><CountUp end={900} duration={3} />+</div>
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>AI UGC <br/><span className="serif-italic">Assets.</span></h3>
+               <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>AI UGC <br/><span className="serif-italic highlight-purple">Assets.</span></h3>
                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '2rem' }}>Automated video pipelines with hyper-realistic avatars.</p>
                <a href="#ai-video" className="nav-link" style={{ opacity: 1, fontWeight: 700, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>View Infrastructure →</a>
             </div>
@@ -257,7 +257,7 @@ const Home = () => {
             {/* Architecture - SQUARE BENTO */}
             <div className="bento-card mobile-center" style={{ padding: '2.5rem', background: '#f2efed', textAlign: 'left' }}>
                <div style={{ fontSize: '3rem', fontWeight: 950, marginBottom: '1rem' }}><CountUp end={80} duration={3} />+</div>
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Landing <br/><span className="serif-italic">Pages.</span></h3>
+               <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Landing <br/><span className="serif-italic highlight-purple">Pages.</span></h3>
                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '2rem' }}>High-converting pages built on premium technical stacks.</p>
                <a href="#real-video" className="nav-link" style={{ opacity: 1, fontWeight: 700, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>View Portfolio →</a>
             </div>
@@ -265,7 +265,7 @@ const Home = () => {
             {/* Automation - WIDE BENTO */}
             <div className="bento-card wide mobile-center-parent" style={{ padding: '2.5rem', background: '#fff', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '3rem', display: 'flex', textAlign: 'left' }}>
                <div style={{ maxWidth: '450px' }} className="mobile-center">
-                  <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Autonomous <br/><span className="serif-italic">Lead Gen.</span></h3>
+                  <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Autonomous <br/><span className="serif-italic highlight-purple">Lead Gen.</span></h3>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Lead qualification and CRM routing systems that work while you sleep. 20+ Systems Deployed.</p>
                </div>
                <div style={{ textAlign: 'right' }} className="mobile-center">
@@ -285,7 +285,7 @@ const Home = () => {
              Property Boutique
           </h2>
           <h1 style={{ fontSize: 'clamp(2.1rem, 10vw, 6rem)', lineHeight: 0.85, fontWeight: 900, letterSpacing: '-0.04em' }}>
-             40+ <span className="serif-italic">IRL</span> <br/>PRODUCTIONS.
+             40+ <span className="serif-italic highlight-purple">IRL</span> <br/>PRODUCTIONS.
           </h1>
           <p style={{ marginTop: '2rem', color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '450px', lineHeight: 1.5 }}>Property storytelling for the world's most <br className="hide-on-mobile" />sophisticated real estate developments.</p>
         </div>
@@ -320,7 +320,7 @@ const Home = () => {
            ))}
         </div>
         <div style={{ textAlign: 'center' }}>
-           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#00ff78', color: '#000', border: 'none' }}>
+           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#c084fc', color: '#000', border: 'none' }}>
               RESERVE YOUR PRODUCTION <ArrowRight size={20} />
            </a>
         </div>
@@ -332,33 +332,120 @@ const Home = () => {
         <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
           <h2 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', opacity: 0.4 }} className="mobile-pretitle">Synthetic Human Capital</h2>
           <h1 style={{ fontSize: 'clamp(2rem, 9vw, 5rem)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 0.9 }}>
-             900+ <span className="serif-italic">AI UGC</span><br />DEPLOYED.
+             900+ <span className="serif-italic highlight-purple">AI UGC</span><br />DEPLOYED.
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '500px', margin: '2rem auto 0' }}>Industrial scale influencer content without the <br className="hide-on-mobile" />logistical complexity of human talent.</p>
         </div>
 
-        <div className="video-grid" style={{ maxWidth: '900px', margin: '0 auto 6rem' }}>
-           {[
-             { title: "Avatar Ecosystem", cat: "INFRASTRUCTURE", img: "https://images.unsplash.com/photo-1633539408181-43285090e547?auto=format&fit=crop&q=80&w=800" },
-             { title: "Global Localization", cat: "EXPANSION", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" },
-             { title: "Synthetic Influencer", cat: "BRAND ASSET", img: "https://images.unsplash.com/photo-1626544827763-d516dce335e2?auto=format&fit=crop&q=80&w=800" }
-           ].map((v, idx) => (
-             <motion.div key={idx} className="video-thumb-container" whileHover={{ y: -10 }} style={{ height: '420px', borderRadius: '24px', overflow: 'hidden', position: 'relative' }}>
-                <img src={v.img} alt={v.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
-                <div style={{ position: 'absolute', inset: 0, padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)' }}>
+        <div style={{ position: 'relative', maxWidth: '900px', margin: '0 auto 6rem' }}>
+           <style>
+             {`
+               @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+               .my-clone-annotation {
+                 position: absolute; top: -100px; left: -170px;
+                 z-index: 10; pointer-events: none; display: flex; flex-direction: column; align-items: center;
+               }
+               @media (max-width: 768px) {
+                 .my-clone-annotation {
+                   top: -75px; left: -15px; transform: scale(0.6); transform-origin: left bottom;
+                 }
+               }
+             `}
+           </style>
+           {/* Decorative hand-drawn arrow */}
+           <div className="my-clone-annotation">
+              <div style={{ fontFamily: '"Dancing Script", cursive', fontSize: '3.5rem', color: '#000', transform: 'rotate(-15deg)', textShadow: '0 2px 10px rgba(0,0,0,0.05)', whiteSpace: 'nowrap', marginBottom: '-5px', marginLeft: '30px' }}>
+                 My clone
+              </div>
+              <svg width="140" height="150" viewBox="0 0 140 150" fill="none" style={{ overflow: 'visible', filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.2))', transform: 'translateY(10px) rotate(-10deg)' }}>
+                 {/* Main sweeping spine */}
+                 <path d="M 20 10 Q 30 90 120 115" stroke="#ed1c24" strokeWidth="5" strokeLinecap="round" fill="none" />
+                 {/* Top arrow stroke */}
+                 <path d="M 70 50 L 125 120" stroke="#ed1c24" strokeWidth="5" strokeLinecap="round" fill="none" />
+                 {/* Bottom arrow stroke */}
+                 <path d="M 55 135 Q 90 130 125 120" stroke="#ed1c24" strokeWidth="5" strokeLinecap="round" fill="none" />
+              </svg>
+           </div>
+           
+           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
+             {[
+               { title: "AI AVATAR — REALTOR", cat: "AI UGC", publicId: "Edited_wlnmjv" },
+               { title: "AI AVATAR — PROMO", cat: "AI UGC", publicId: "0404_itrkrs" },
+             ].map((v, idx) => (
+               <motion.div
+                 key={idx}
+                 whileHover={{ y: -10 }}
+                 style={{ position: 'relative', paddingTop: '177.78%', borderRadius: '24px', overflow: 'hidden', background: '#111', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}
+               >
+                 <iframe
+                   src={`https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=${v.publicId}&player[showLogo]=false&player[controls]=true`}
+                   title={v.title}
+                   allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                   allowFullScreen
+                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                 />
+                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.5rem', background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)', pointerEvents: 'none', zIndex: 2 }}>
                    <p style={{ fontSize: '0.6rem', color: '#fff', opacity: 0.7, textTransform: 'uppercase', fontWeight: 800 }}>{v.cat}</p>
                    <h4 style={{ color: '#fff', fontSize: '1.1rem', marginTop: '0.2rem', fontWeight: 700 }}>{v.title}</h4>
-                </div>
-                <div className="play-button" style={{ background: '#fff', position: 'absolute', top: '1.5rem', right: '1.5rem', transform: 'scale(0.8)' }}>
-                   <Play size={18} fill="#000" color="#000" />
-                </div>
-             </motion.div>
-           ))}
+                 </div>
+               </motion.div>
+             ))}
+           </div>
         </div>
-        <div style={{ textAlign: 'center' }}>
-           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#000', color: '#fff', border: 'none' }}>
+        <div style={{ textAlign: 'center', position: 'relative', maxWidth: '800px', margin: '0 auto' }}>
+           <a href="#contact" className="big-rect-btn" style={{ width: '100%', background: '#000', color: '#fff', border: 'none' }}>
               SCALE YOUR CONTENT NOW <ArrowRight size={20} />
            </a>
+           
+           {/* Responsive Styling for Annotations */}
+           <style>
+             {`
+               .robot-annotation {
+                 position: absolute; right: -180px; bottom: 15px;
+                 z-index: 10; pointer-events: none; display: flex; flex-direction: column; alignItems: center;
+               }
+               @media (max-width: 768px) {
+                 .robot-annotation {
+                   right: -10px; bottom: 65px; transform: scale(0.55); transform-origin: center bottom;
+                 }
+               }
+             `}
+           </style>
+
+           {/* Custom Floating Robot Guide */}
+           <motion.div 
+             className="robot-annotation"
+             animate={{ y: [0, -10, 0] }}
+             transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+           >
+              <div style={{ fontFamily: '"Dancing Script", cursive', fontSize: '2.5rem', color: '#000', transform: 'rotate(10deg)', textShadow: '0 2px 10px rgba(0,0,0,0.05)', whiteSpace: 'nowrap', marginBottom: '5px', marginLeft: '50px' }}>
+                 Click here!
+              </div>
+
+              <div style={{ position: 'relative' }}>
+                 {/* Complete Black Robot Silhouette */}
+                 <svg width="90" height="120" viewBox="0 0 90 120" fill="none" style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.15))', position: 'relative', zIndex: 2 }}>
+                    {/* Antenna */}
+                    <line x1="45" y1="20" x2="45" y2="0" stroke="#000" strokeWidth="4" strokeLinecap="round"/>
+                    <circle cx="45" cy="0" r="5" fill="#000"/>
+                    {/* Head */}
+                    <rect x="25" y="20" width="40" height="30" rx="10" fill="#000" />
+                    {/* Eyes */}
+                    <ellipse cx="35" cy="35" rx="3" ry="5" fill="#fff" />
+                    <ellipse cx="55" cy="35" rx="3" ry="5" fill="#fff" />
+                    {/* Body */}
+                    <path d="M 20 55 C 20 55, 70 55, 70 55 C 80 90, 65 115, 45 115 C 25 115, 10 90, 20 55 Z" fill="#000" />
+                    {/* Holding point for arrow */}
+                    <circle cx="20" cy="75" r="6" fill="#000" />
+                 </svg>
+
+                 {/* The Guiding Arrow (pointing left-down toward the button) */}
+                 <svg width="140" height="80" viewBox="0 0 140 80" fill="none" style={{ position: 'absolute', right: '70px', bottom: '0px', zIndex: 1 }}>
+                    <path d="M 140 25 Q 70 40 10 60" stroke="#000" strokeWidth="4" strokeLinecap="round" strokeDasharray="8 6" fill="none" />
+                    <path d="M 10 60 L 25 50 M 10 60 L 20 70" stroke="#000" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                 </svg>
+              </div>
+           </motion.div>
         </div>
       </section>
 
@@ -371,7 +458,7 @@ const Home = () => {
              <span style={{ width: '40px', height: '1px', background: '#000' }} className="hide-on-mobile"></span>
           </h2>
           <h1 style={{ fontSize: 'clamp(2.1rem, 10vw, 6rem)', lineHeight: 0.85, fontWeight: 900, letterSpacing: '-0.04em' }}>
-             20+ <span className="serif-italic">LIVE</span> <br/>SOLUTIONS.
+             20+ <span className="serif-italic highlight-purple">LIVE</span> <br/>SOLUTIONS.
           </h1>
           <p style={{ marginTop: '2rem', color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '450px', lineHeight: 1.5, marginLeft: 'auto', marginRight: 'auto' }} className="mobile-center">Systems that work while you sleep, ensuring no lead <br/>goes unqualified and no opportunity is missed.</p>
         </div>
@@ -406,7 +493,7 @@ const Home = () => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#00ff78', color: '#000', border: 'none' }}>
+           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#c084fc', color: '#000', border: 'none' }}>
               DEPLOY YOUR ARCHITECTURE <ArrowRight size={20} />
            </a>
         </div>
@@ -444,7 +531,7 @@ const Home = () => {
       <section className="section container performance-section" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
         <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE CONTENT SYSTEMS</p>
         <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 54px)', fontWeight: 700, margin: '20px auto 40px', lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px' }}>
-          Video Content That <br className="hide-on-mobile" /><span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>Drives Results.</span>
+          Video Content That <br className="hide-on-mobile" /><span className="serif-italic highlight-purple">Drives Results.</span>
         </h1>
         <p style={{ color: '#aaa', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 4rem', lineHeight: 1.6 }}>
           We don’t just create videos — we build a <strong style={{color: '#fff'}}>content system designed to attract, engage, and convert your audience.</strong>
@@ -457,13 +544,13 @@ const Home = () => {
           <div style={{ background: '#161616', padding: '3rem 2.5rem', borderRadius: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
             <h2 style={{ fontSize: '1.8rem', fontWeight: 800, borderBottom: '1px solid #333', paddingBottom: '1rem', marginBottom: '0' }}>💼 Packages</h2>
             
-            <div style={{ background: 'rgba(0, 255, 156, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0, 255, 156, 0.1)' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#00ff9c' }}>Starter Package</h3>
+            <div style={{ background: 'rgba(192, 132, 252, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(192, 132, 252, 0.1)' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#c084fc' }}>Starter Package</h3>
               <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', marginBottom: '1.2rem', opacity: 0.9 }}>2 Videos — ₹8,000</p>
               <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Strategy</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Scriptwriting</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Editing</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Strategy</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Scriptwriting</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Editing</li>
               </ul>
             </div>
 
@@ -471,9 +558,9 @@ const Home = () => {
               <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Growth Package</h3>
               <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', marginBottom: '1.2rem', opacity: 0.9 }}>3 Videos — ₹9,000</p>
               <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Strategy</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Scriptwriting</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#00ff9c'}}>✔</span> Editing</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Strategy</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Scriptwriting</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Editing</li>
               </ul>
             </div>
           </div>
@@ -484,17 +571,17 @@ const Home = () => {
             
             <div style={{ padding: '0.5rem 0' }}>
               <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>AI UGC Content</h3>
-              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#00ff9c', marginBottom: '0.8rem' }}>₹3,000 / video</p>
+              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#c084fc', marginBottom: '0.8rem' }}>₹3,000 / video</p>
               <p style={{ color: '#aaa', lineHeight: 1.5, fontSize: '0.95rem' }}>High-converting AI-generated content tailored to your brand voice.</p>
             </div>
 
             <div style={{ padding: '0.5rem 0' }}>
               <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Shoot-Based Content</h3>
-              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#00ff9c', marginBottom: '0.8rem' }}>₹4,000 / video</p>
+              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#c084fc', marginBottom: '0.8rem' }}>₹4,000 / video</p>
               <p style={{ color: '#aaa', lineHeight: 1.5, fontSize: '0.95rem', marginBottom: '1.2rem' }}>We guide you step-by-step for shooting.</p>
               <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#00ff9c', marginTop: '2px'}}>✔</span> Direction by us</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#00ff9c', marginTop: '2px'}}>✔</span> Scripting + Editing handled completely</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#c084fc', marginTop: '2px'}}>✔</span> Direction by us</li>
+                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#c084fc', marginTop: '2px'}}>✔</span> Scripting + Editing handled completely</li>
               </ul>
             </div>
           </div>
@@ -508,7 +595,7 @@ const Home = () => {
             
             {/* Step 1 */}
             <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-               <div style={{ background: 'rgba(0, 255, 156, 0.08)', color: '#00ff9c', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>01</div>
+               <div style={{ background: 'rgba(192, 132, 252, 0.08)', color: '#c084fc', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 900, flexShrink: 0 }}>01</div>
                <div style={{ flex: 1, paddingTop: '0.2rem' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.8rem' }}>Strategy Call</h4>
                   <p style={{ color: '#ddd', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
@@ -520,31 +607,31 @@ const Home = () => {
                     <p style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800, marginBottom: '1rem' }}>On this call, we understand <br/><span style={{ fontWeight: 400, opacity: 0.5, fontStyle: 'italic', fontSize: '0.85rem' }}>Is call mein hum samajhte hain:</span></p>
                     <div className="flow-features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.2rem' }}>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Type of videos needed</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Type of videos needed</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Aap kis type ke videos chahte ho</div>
                       </div>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Number of videos & timeline</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Number of videos & timeline</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Kitne videos chahiye aur kab</div>
                       </div>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Target audience</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Target audience</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Aapka target audience kaun hai</div>
                       </div>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Goal of the content</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Goal of the content</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Sales / branding / engagement</div>
                       </div>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Style & references</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Style & references</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Kis type ka content chahiye</div>
                       </div>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Current content performance</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Current content performance</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>Abhi kya perform kar raha hai</div>
                       </div>
                       <div>
-                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#00ff9c', marginRight: '6px'}}>•</span> Best approach</div>
+                        <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}><span style={{color: '#c084fc', marginRight: '6px'}}>•</span> Best approach</div>
                         <div style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', paddingLeft: '18px' }}>AI UGC ya real shoot better rahega</div>
                       </div>
                     </div>
@@ -552,7 +639,7 @@ const Home = () => {
                </div>
             </div>
 
-            <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #00ff9c, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.5 }} className="hide-on-mobile"></div>
+            <div style={{ width: '2px', height: '40px', background: 'linear-gradient(to bottom, #c084fc, transparent)', marginLeft: '29px', marginTop: '-1rem', marginBottom: '-1rem', opacity: 0.5 }} className="hide-on-mobile"></div>
 
             {/* Step 2 */}
             <div className="flow-step" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
@@ -561,9 +648,9 @@ const Home = () => {
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Trial Video</h4>
                   <p style={{ color: '#aaa', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1.2rem' }}>We start with 1 paid trial video. This allows you to evaluate:</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
-                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#00ff9c', marginRight: '8px'}}>✔</span> Content quality</span>
-                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#00ff9c', marginRight: '8px'}}>✔</span> Editing style</span>
-                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#00ff9c', marginRight: '8px'}}>✔</span> Overall direction</span>
+                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#c084fc', marginRight: '8px'}}>✔</span> Content quality</span>
+                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#c084fc', marginRight: '8px'}}>✔</span> Editing style</span>
+                    <span style={{ background: 'rgba(255,255,255,0.03)', padding: '0.6rem 1.2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 700, color: '#ddd' }}><span style={{color: '#c084fc', marginRight: '8px'}}>✔</span> Overall direction</span>
                   </div>
                </div>
             </div>
@@ -588,8 +675,8 @@ const Home = () => {
                   <h4 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>Scale or Exit</h4>
                   <p style={{ color: '#aaa', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '1rem' }}>If you’re satisfied with the results:</p>
                   <ul style={{ listStyle: 'none', padding: 0, color: '#ddd', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem', marginBottom: '1.2rem' }}>
-                    <li style={{display: 'flex', gap: '0.6rem'}}><span style={{color: '#00ff9c'}}>•</span> We move forward with a 6-video package (2-week cycle)</li>
-                    <li style={{display: 'flex', gap: '0.6rem'}}><span style={{color: '#00ff9c'}}>•</span> A formal agreement is signed</li>
+                    <li style={{display: 'flex', gap: '0.6rem'}}><span style={{color: '#c084fc'}}>•</span> We move forward with a 6-video package (2-week cycle)</li>
+                    <li style={{display: 'flex', gap: '0.6rem'}}><span style={{color: '#c084fc'}}>•</span> A formal agreement is signed</li>
                   </ul>
                   <p style={{ color: '#777', fontStyle: 'italic', fontSize: '0.95rem' }}>If not, no obligation — we part ways professionally.</p>
                </div>
@@ -611,10 +698,10 @@ const Home = () => {
 
         <div style={{ borderTop: '1px solid #333', margin: '4rem auto 0', maxWidth: '900px', paddingTop: '4rem', paddingBottom: '1rem' }}>
            <h3 style={{ color: '#fff', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '1.5rem', lineHeight: 1.1 }}>
-              <span style={{ color: '#00ff9c', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontWeight: 400 }}>You only commit</span> <br/> after seeing real results.
+              <span className="serif-italic highlight-purple">You only commit</span> <br/> after seeing real results.
            </h3>
 
-           <a href="#contact" className="btn pill-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#00ff9c', color: 'black', fontWeight: 900, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.95rem' }}>
+           <a href="#contact" className="btn pill-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#c084fc', color: 'black', fontWeight: 900, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.95rem' }}>
               RESERVE YOUR TRIAL <ArrowRight size={18} />
            </a>
         </div>
@@ -623,7 +710,7 @@ const Home = () => {
       {/* Contact Section */}
       <section className="section container" id="contact">
          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-            <h2 style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: 900 }}>Meet your <br /> <span className="serif-italic">success.</span></h2>
+            <h2 style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: 900 }}>Meet your <br /> <span className="serif-italic highlight-purple">success.</span></h2>
          </div>
          <div className="contact-form-container">
             {submitted ? (

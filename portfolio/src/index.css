@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
 
 :root {
-  --bg-color: #f2efed;
-  --bg-gradient: linear-gradient(135deg, #f2efed 0%, #e8e2ff 50%, #dfd5ff 100%);
+  --bg-color: #f5f3ff;
+  --bg-gradient: linear-gradient(135deg, #f5f3ff 0%, #e9d5ff 50%, #d8b4fe 100%);
   --bg-secondary: #e9e5e2;
   --bg-panel: #ffffff;
   --text-primary: #000000;
@@ -68,6 +68,14 @@ h4 {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
+}
+
+.highlight-purple {
+  background-image: linear-gradient(90deg, #e9d5ff, #c084fc);
+  background-size: 100% 35%;
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  display: inline;
 }
 
 /* Layout Utilities */
@@ -433,14 +441,14 @@ h4 {
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
 }
 
-.big-rect-btn.btn-green {
-  background: #00ff78;
+.big-rect-btn.btn-purple {
+  background: #c084fc;
   color: #000;
-  border-color: #00ff78;
+  border-color: #c084fc;
 }
 
-.big-rect-btn.btn-green:hover {
-  background: #00e66d;
+.big-rect-btn.btn-purple:hover {
+  background: #a855f7;
 }
 
 /* Form Styles */

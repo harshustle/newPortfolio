@@ -117,7 +117,7 @@ const Navbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                background: '#00ff78',
+                background: '#c084fc',
                 color: '#000',
                 padding: '0.45rem 1.1rem',
                 borderRadius: '99px',
@@ -125,7 +125,7 @@ const Navbar = () => {
                 fontWeight: 900,
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
-                boxShadow: '0 2px 12px rgba(0,255,120,0.3)',
+                boxShadow: '0 2px 12px rgba(192, 132, 252, 0.4)',
                 transition: 'transform 0.2s ease',
               }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; }}
@@ -191,7 +191,7 @@ const Navbar = () => {
                     onClick={() => setMenuOpen(false)}
                     style={({ isActive }) => ({
                       display: 'block',
-                      color: isActive ? '#00ff78' : '#fff',
+                      color: isActive ? '#c084fc' : '#fff',
                       textDecoration: 'none',
                       fontSize: 'clamp(2.5rem, 10vw, 4.5rem)',
                       fontWeight: 900,
@@ -212,7 +212,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}
+              style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}
             >
               <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.8rem' }}>Get in touch</p>
               <a href="mailto:harshustle@gmail.com" style={{ color: '#fff', fontSize: '0.95rem', textDecoration: 'none', opacity: 0.7 }}>harshustle@gmail.com</a>
