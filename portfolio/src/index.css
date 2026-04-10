@@ -1082,3 +1082,109 @@ h4 {
     border-radius: 20px !important;
   }
 }
+
+/* ══════════════════════════════════════
+   VIDEO MARQUEE COMPONENT
+══════════════════════════════════════ */
+.video-marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: 1rem 0;
+  display: flex;
+  background: transparent;
+}
+
+/* Mask edges for smooth fade effect */
+.video-marquee-container::before,
+.video-marquee-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.video-marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color), transparent);
+}
+.video-marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color), transparent);
+}
+
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee-scroll 45s linear infinite;
+  padding-left: 1.5rem; /* Match gap */
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  width: 240px;
+  height: 426px; /* exactly 9:16 aspect ratio relative to 240px */
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #111;
+  transition: transform 0.3s ease;
+}
+
+.marquee-item:hover {
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Translating exactly half the track width (the duplicated content) */
+    transform: translateX(calc(-50% - 0.75rem));
+  }
+}
+
+@media (max-width: 768px) {
+  .marquee-item {
+    width: 180px;
+    height: 320px;
+  }
+  .marquee-track {
+    animation-duration: 30s;
+    gap: 1rem;
+  }
+  .video-marquee-container::before,
+  .video-marquee-container::after {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-item {
+    width: 150px;
+    height: 266px;
+  }
+  .marquee-track {
+    animation-duration: 25s;
+    gap: 0.8rem;
+  }
+  .video-marquee-container {
+    padding: 0;
+  }
+  .hero-marquee-wrapper {
+    margin-top: 1rem !important;
+    margin-bottom: 3rem !important;
+  }
+}

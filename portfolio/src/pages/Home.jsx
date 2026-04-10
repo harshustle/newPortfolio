@@ -3,6 +3,8 @@ import { motion, useAnimation } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import { Play, ArrowRight, MonitorPlay, Bot, Video, Globe, Instagram, Facebook, Twitter, Ghost, Workflow, MessageSquare } from 'lucide-react';
 import _CountUp from 'react-countup';
+import VideoMarquee from '../components/VideoMarquee';
+import PricingCard from '../components/PricingCard';
 
 const CountUp = _CountUp.default || _CountUp;
 
@@ -194,15 +196,20 @@ const Home = () => {
                {' '}form <br />
                done <span className="serif-italic highlight-purple">right.</span>
            </h1>
-           <p className="editorial-subtext">
-              We combine technical engineering, creative management, and 
-              specialized media to help brands grow and convert on the 
-              platforms that matter most to your audience.
+           <p className="editorial-subtext" style={{ fontSize: '1.15rem', lineHeight: 1.6, marginTop: '1.5rem' }}>
+              Stop leaving money on the table. We build <strong style={{ color: '#fff' }}>high-converting video assets</strong> and automated sales funnels that turn views into qualified appointments.
            </p>
-           <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
-              <a href="#contact" className="btn btn-primary pill-cta">
-                 Get in touch
+           <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <a href="#contact" className="btn btn-primary pill-cta" style={{ padding: '1.2rem 2.5rem', fontSize: '1rem', fontWeight: 800, background: '#c084fc', color: '#000', border: 'none', boxShadow: '0 0 40px rgba(192, 132, 252, 0.4)', letterSpacing: '0.05em' }}>
+                 BOOK A STRATEGY CALL <ArrowRight size={18} style={{ marginLeft: '8px' }} />
               </a>
+              <a href="#pricing" className="btn btn-primary pill-cta" style={{ padding: '1.1rem 2rem', fontSize: '0.9rem', fontWeight: 800, background: 'transparent', color: '#000', border: '1.5px solid #000', textDecoration: 'none', letterSpacing: '0.05em', transition: 'all 0.3s' }} onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000'; }}>
+                 VIEW PRICING
+              </a>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                 <div className="status-dot" style={{ position: 'static', width: '8px', height: '8px' }}></div>
+                 <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.8 }}>Taking 3 new clients</span>
+              </div>
            </div>
         </div>
 
@@ -222,6 +229,11 @@ const Home = () => {
            </div>
         </div>
       </section>
+
+      {/* Marquee instantly proving scale underneath Hero */}
+      <div className="hero-marquee-wrapper" style={{ position: 'relative', width: '100%', marginBottom: '6rem', marginTop: '3rem' }}>
+         <VideoMarquee />
+      </div>
 
       {/* Services Overview Section (Bento Grid) */}
       <section className="section container" style={{ textAlign: 'center' }}>
@@ -320,8 +332,8 @@ const Home = () => {
            ))}
         </div>
         <div style={{ textAlign: 'center' }}>
-           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#c084fc', color: '#000', border: 'none' }}>
-              RESERVE YOUR PRODUCTION <ArrowRight size={20} />
+           <a href="#contact" className="big-rect-btn" style={{ maxWidth: '800px', margin: '0 auto', background: '#c084fc', color: '#000', border: 'none', boxShadow: '0 10px 40px rgba(192, 132, 252, 0.3)' }}>
+              BOOK YOUR STRATEGY CALL <ArrowRight size={20} />
            </a>
         </div>
       </section>
@@ -449,6 +461,47 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Detailed AI Product Shoot Section - HIGH IMPACT */}
+      <section className="section container" id="ai-product-shoot" style={{ margin: '6rem auto', position: 'relative' }}>
+        <div className="bg-watermark hide-on-mobile" style={{ position: 'absolute', top: '0', left: '-2rem', fontSize: '12rem', fontWeight: 950, opacity: 0.02, pointerEvents: 'none' }}>SHOOT</div>
+        <div style={{ marginBottom: '5rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', opacity: 0.4 }} className="mobile-pretitle">Next-Gen Visuals</h2>
+          <h1 style={{ fontSize: 'clamp(2rem, 9vw, 5rem)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 0.9 }}>
+             AI PRODUCT <br /><span className="serif-italic highlight-purple">SHOOTS.</span>
+          </h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '500px', margin: '2rem auto 0' }}>Stunning, high-conversion product videography powered by AI. No studios, no limits.</p>
+        </div>
+
+        <div style={{ position: 'relative', maxWidth: '900px', margin: '0 auto 6rem' }}>
+           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
+             {[
+               { title: "PRODUCT CINEMATICS", cat: "AI PRODUCT", publicId: "IMG_5939_erscc8" },
+               { title: "BRAND SHOWCASE", cat: "AI PRODUCT", publicId: "IMG_5906_ic8t1k" },
+               { title: "DYNAMIC VISUALS", cat: "AI PRODUCT", publicId: "download_cmsezt" },
+               { title: "CREATIVE RENDERS", cat: "AI PRODUCT", publicId: "IMG_5920_hs89uq" },
+             ].map((v, idx) => (
+               <motion.div
+                 key={idx}
+                 whileHover={{ y: -10 }}
+                 style={{ position: 'relative', paddingTop: '177.78%', borderRadius: '24px', overflow: 'hidden', background: '#111', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}
+               >
+                 <iframe
+                   src={`https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=${v.publicId}&player[showLogo]=false&player[controls]=true`}
+                   title={v.title}
+                   allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                   allowFullScreen
+                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                 />
+                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.5rem', background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)', pointerEvents: 'none', zIndex: 2 }}>
+                   <p style={{ fontSize: '0.6rem', color: '#fff', opacity: 0.7, textTransform: 'uppercase', fontWeight: 800 }}>{v.cat}</p>
+                   <h4 style={{ color: '#fff', fontSize: '1.1rem', marginTop: '0.2rem', fontWeight: 700 }}>{v.title}</h4>
+                 </div>
+               </motion.div>
+             ))}
+           </div>
+        </div>
+      </section>
+
       {/* Detailed Automation Section - HIGH IMPACT */}
       <section className="section container" id="chatbot" style={{ background: '#f9f6f4', borderRadius: '40px', margin: '4rem auto', position: 'relative', overflow: 'hidden', padding: '6rem 3rem' }}>
         <div className="bg-watermark hide-on-mobile" style={{ position: 'absolute', bottom: '2rem', left: '-5rem', fontSize: '15rem', fontWeight: 950, opacity: 0.03, pointerEvents: 'none', transform: 'rotate(-5deg)' }}>SYSTEM</div>
@@ -528,7 +581,7 @@ const Home = () => {
       </section>
 
       {/* Performance Package Section / Conversion Details */}
-      <section className="section container performance-section" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
+      <section id="pricing" className="section container performance-section" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
         <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE CONTENT SYSTEMS</p>
         <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 54px)', fontWeight: 700, margin: '20px auto 40px', lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px' }}>
           Video Content That <br className="hide-on-mobile" /><span className="serif-italic highlight-purple">Drives Results.</span>
@@ -538,53 +591,50 @@ const Home = () => {
         </p>
 
         {/* Bento Grid layout for Pricing */}
-        <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+        <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
           
-          {/* Packages */}
-          <div style={{ background: '#161616', padding: '3rem 2.5rem', borderRadius: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, borderBottom: '1px solid #333', paddingBottom: '1rem', marginBottom: '0' }}>💼 Packages</h2>
-            
-            <div style={{ background: 'rgba(192, 132, 252, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(192, 132, 252, 0.1)' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#c084fc' }}>Starter Package</h3>
-              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', marginBottom: '1.2rem', opacity: 0.9 }}>2 Videos — ₹8,000</p>
-              <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Strategy</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Scriptwriting</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Editing</li>
-              </ul>
-            </div>
+          <PricingCard 
+             title="Starter"
+             subtitle="Perfect for A/B Testing"
+             price="$130"
+             volume="3 videos"
+             buttonText="GET STARTED"
+             features={[
+               "Strategy & Planning",
+               "Scriptwriting",
+               "Comprehensive Editing",
+               "Hook Variations"
+             ]}
+          />
 
-            <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '1.5rem', borderRadius: '16px' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Growth Package</h3>
-              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', marginBottom: '1.2rem', opacity: 0.9 }}>3 Videos — ₹9,000</p>
-              <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Strategy</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Scriptwriting</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}><span style={{color: '#c084fc'}}>✔</span> Editing</li>
-              </ul>
-            </div>
-          </div>
+          <PricingCard 
+             title="Growth"
+             subtitle="Scale with more variations"
+             price="$250"
+             volume="6 videos"
+             buttonText="GET STARTED"
+             special={true}
+             features={[
+               "Strategy & Planning",
+               "Scriptwriting",
+               "Comprehensive Editing",
+               "Hook Variations"
+             ]}
+          />
 
-          {/* Production Options */}
-          <div style={{ background: '#161616', padding: '3rem 2.5rem', borderRadius: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, borderBottom: '1px solid #333', paddingBottom: '1rem', marginBottom: '0' }}>🎥 Production Options</h2>
-            
-            <div style={{ padding: '0.5rem 0' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>AI UGC Content</h3>
-              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#c084fc', marginBottom: '0.8rem' }}>₹3,000 / video</p>
-              <p style={{ color: '#aaa', lineHeight: 1.5, fontSize: '0.95rem' }}>High-converting AI-generated content tailored to your brand voice.</p>
-            </div>
-
-            <div style={{ padding: '0.5rem 0' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Shoot-Based Content</h3>
-              <p style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', color: '#c084fc', marginBottom: '0.8rem' }}>₹4,000 / video</p>
-              <p style={{ color: '#aaa', lineHeight: 1.5, fontSize: '0.95rem', marginBottom: '1.2rem' }}>We guide you step-by-step for shooting.</p>
-              <ul style={{ listStyle: 'none', padding: 0, color: '#aaa', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.95rem' }}>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#c084fc', marginTop: '2px'}}>✔</span> Direction by us</li>
-                <li style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-start'}}><span style={{color: '#c084fc', marginTop: '2px'}}>✔</span> Scripting + Editing handled completely</li>
-              </ul>
-            </div>
-          </div>
+          <PricingCard 
+             title="Pro Domination"
+             subtitle="Full content domination"
+             price="$400"
+             volume="10 videos"
+             buttonText="GET STARTED"
+             features={[
+               "Strategy & Planning",
+               "Scriptwriting",
+               "Comprehensive Editing",
+               "Hook Variations"
+             ]}
+          />
         </div>
 
         {/* Visual 5-Step Process Flow */}
@@ -708,9 +758,11 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="section container" id="contact">
-         <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-            <h2 style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: 900 }}>Meet your <br /> <span className="serif-italic highlight-purple">success.</span></h2>
+      <section className="section container" id="contact" style={{ padding: '8rem 20px', background: '#050505', borderRadius: '40px', margin: '4rem auto', color: '#fff' }}>
+         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <span style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(192, 132, 252, 0.1)', color: '#c084fc', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem' }}>Limited Availability</span>
+            <h2 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: '1.5rem' }}>Ready to <span className="serif-italic highlight-purple">Scale?</span></h2>
+            <p style={{ color: '#aaa', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Book a free discovery call. We'll map out a custom content and conversion strategy for your brand, completely free of charge.</p>
          </div>
          <div className="contact-form-container">
             {submitted ? (
@@ -731,11 +783,11 @@ const Home = () => {
                     </div>
                  </div>
                  <div className="form-group" style={{ marginTop: '3rem' }}>
-                    <span className="form-label">TELL US ABOUT YOUR PROJECT</span>
-                    <textarea name="message" required placeholder="How can we help you grow?" rows="4" className="form-input textarea" style={{ width: '100%', padding: '1rem 0' }}></textarea>
+                    <span className="form-label" style={{ color: '#bbb' }}>TELL US ABOUT YOUR CURRENT ROADBLOCKS</span>
+                    <textarea name="message" required placeholder="What's your main bottleneck right now? (e.g. need more leads, better video content...)" rows="4" className="form-input textarea" style={{ width: '100%', padding: '1rem 0', background: 'transparent', color: '#fff', borderColor: '#333' }}></textarea>
                  </div>
-                 <button type="submit" disabled={isSubmitting} className="btn btn-primary pill-cta" style={{ marginTop: '4rem', padding: '1.5rem 4rem', width: '100%', opacity: isSubmitting ? 0.7 : 1 }}>
-                    {isSubmitting ? "SENDING..." : "SEND MESSAGE NOW"}
+                 <button type="submit" disabled={isSubmitting} className="btn btn-primary pill-cta" style={{ marginTop: '3rem', padding: '1.5rem 4rem', width: '100%', opacity: isSubmitting ? 0.7 : 1, background: '#c084fc', color: '#000', fontWeight: 900, border: 'none', fontSize: '1.1rem', boxShadow: '0 0 30px rgba(192, 132, 252, 0.3)' }}>
+                    {isSubmitting ? "BOOKING..." : "CLAIM YOUR FREE STRATEGY CALL"}
                  </button>
               </form>
             )}

@@ -17,6 +17,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Harsh from './pages/Harsh';
 import Edit from './pages/Edit';
+import AIProductShoot from './pages/AIProductShoot';
 
 import './App.css';
 
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/harsh" element={<Harsh />} />
         <Route path="/edit" element={<Edit />} />
+        <Route path="/ai-product-shoot" element={<AIProductShoot />} />
       </Routes>
     </AnimatePresence>
   );
@@ -42,7 +44,7 @@ function AnimatedRoutes() {
 
 function LayoutWrapper() {
   const location = useLocation();
-  const isStandalone = location.pathname === '/harsh' || location.pathname === '/edit';
+  const isStandalone = location.pathname === '/harsh' || location.pathname === '/edit' || location.pathname === '/ai-product-shoot';
 
   return (
     <div className="app-container" style={isStandalone ? { backgroundColor: location.pathname === '/edit' ? '#f8f7f5' : '#0a0a0c', minHeight: '100vh' } : {}}>
