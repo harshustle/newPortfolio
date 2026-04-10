@@ -9,20 +9,7 @@ const CheckIcon = () => (
 
 const PricingCard = ({ title, subtitle, price, volume, features, special, buttonText = "GET STARTED" }) => {
   return (
-    <div style={{
-      background: '#fff',
-      color: '#000',
-      borderRadius: '20px',
-      padding: '2.5rem 2rem',
-      display: 'flex',
-      flexDirection: 'column',
-      textAlign: 'left',
-      boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
-      position: 'relative',
-      border: special ? '2px solid #4f46e5' : '1px solid rgba(0,0,0,0.05)',
-      transform: special ? 'scale(1.02)' : 'none',
-      zIndex: special ? 10 : 1,
-    }}>
+    <div className={`pricing-card-wrapper ${special ? 'special' : 'normal'}`}>
       {special && (
          <div style={{
            position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)',
@@ -37,7 +24,7 @@ const PricingCard = ({ title, subtitle, price, volume, features, special, button
       <p style={{ color: '#555', fontSize: '0.95rem', margin: '0.5rem 0 1.5rem', lineHeight: 1.4 }}>{subtitle}</p>
 
       <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.3rem', marginBottom: '1rem' }}>
-        <span style={{ fontSize: '3.5rem', fontWeight: 800, lineHeight: 1, letterSpacing: '-0.04em', color: '#000' }}>{price}</span>
+        <span className="pricing-price-text">{price}</span>
       </div>
       
       <p style={{ color: '#333', fontSize: '1rem', fontWeight: 600, margin: '0 0 2rem' }}>

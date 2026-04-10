@@ -1188,3 +1188,54 @@ h4 {
     margin-bottom: 3rem !important;
   }
 }
+
+/* Pricing Card Component Styles */
+.pricing-card-wrapper {
+  background: #fff;
+  color: #000;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  position: relative;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+  z-index: 1;
+}
+
+.pricing-card-wrapper.special {
+  border: 2px solid #4f46e5;
+  transform: scale(1.04);
+  z-index: 10;
+}
+
+.pricing-price-text {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #000;
+}
+
+/* Mobile optimizations for pricing cards */
+@media (max-width: 900px) {
+  .pricing-bento {
+    grid-template-columns: 1fr !important;
+    max-width: 400px !important;
+  }
+  .pricing-card-wrapper.special {
+    transform: scale(1); /* Disable scale on mobile stacking */
+    z-index: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-card-wrapper {
+    padding: 2rem 1.5rem;
+  }
+  .pricing-price-text {
+    font-size: 3rem;
+  }
+}
