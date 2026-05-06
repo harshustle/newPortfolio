@@ -60,17 +60,17 @@ const AIProductShoot = () => {
            </div>
         </div>
 
-        {/* Pricing Section */}
-        <div id="pricing" style={{ marginTop: '8rem', marginBottom: '6rem', textAlign: 'left' }}>
-           <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '3rem', textAlign: 'center' }}>Transparent <span className="serif-italic highlight-purple">Pricing.</span></h2>
+          {/* Pricing Section */}
+          <div id="pricing" style={{ marginTop: '8rem', marginBottom: '6rem', textAlign: 'left', background: '#f8f7f5', color: '#111', padding: '3.5rem 1.5rem', borderRadius: '28px', maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '3rem', textAlign: 'center' }}>Transparent <span className="serif-italic highlight-purple">Pricing.</span></h2>
            
-           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
              
              <PricingCard 
                 title="Starter"
                 subtitle="Perfect for A/B Testing"
-                price="$130"
-                volume="3 videos"
+                price="₹9,999"
+                volume="4 videos"
                 buttonText="GET STARTED"
                 features={[
                   "Strategy & Planning",
@@ -83,8 +83,8 @@ const AIProductShoot = () => {
              <PricingCard 
                 title="Growth"
                 subtitle="Scale with more variations"
-                price="$250"
-                volume="6 videos"
+                price="₹14,999"
+                volume="8 videos"
                 buttonText="GET STARTED"
                 special={true}
                 features={[
@@ -98,7 +98,7 @@ const AIProductShoot = () => {
              <PricingCard 
                 title="Pro Domination"
                 subtitle="Full content domination"
-                price="$400"
+                price="₹16,000"
                 volume="10 videos"
                 buttonText="GET STARTED"
                 features={[

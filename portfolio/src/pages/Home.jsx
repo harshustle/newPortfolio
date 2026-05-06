@@ -581,60 +581,60 @@ const Home = () => {
       </section>
 
       {/* Performance Package Section / Conversion Details */}
-      <section id="pricing" className="section container performance-section" style={{ background: '#0b0b0b', color: 'white', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
+      <section id="pricing" className="section container performance-section" style={{ background: '#f8f7f5', color: '#111', padding: '6rem 20px', textAlign: 'center', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', borderRadius: '40px', margin: '4rem auto' }}>
         <p style={{ color: '#777', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE CONTENT SYSTEMS</p>
-        <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 54px)', fontWeight: 700, margin: '20px auto 40px', lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px' }}>
+            <h1 style={{ color: '#111', fontSize: 'clamp(2.5rem, 8vw, 54px)', fontWeight: 700, margin: '20px auto 40px', lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px' }}>
           Video Content That <br className="hide-on-mobile" /><span className="serif-italic highlight-purple">Drives Results.</span>
         </h1>
-        <p style={{ color: '#aaa', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 4rem', lineHeight: 1.6 }}>
-          We don’t just create videos — we build a <strong style={{color: '#fff'}}>content system designed to attract, engage, and convert your audience.</strong>
-        </p>
+            <p style={{ color: '#333', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 4rem', lineHeight: 1.6 }}>
+               We don’t just create videos — we build a <strong style={{color: '#111'}}>content system designed to attract, engage, and convert your audience.</strong>
+            </p>
 
         {/* Bento Grid layout for Pricing */}
         <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
           
-          <PricingCard 
-             title="Starter"
-             subtitle="Perfect for A/B Testing"
-             price="$130"
-             volume="3 videos"
-             buttonText="GET STARTED"
-             features={[
-               "Strategy & Planning",
-               "Scriptwriting",
-               "Comprehensive Editing",
-               "Hook Variations"
-             ]}
-          />
+               <PricingCard 
+                   title="Starter"
+                   subtitle="Perfect for A/B Testing"
+                   price="₹9,999"
+                   volume="4 videos"
+                   buttonText="GET STARTED"
+                   features={[
+                      "Strategy & Planning",
+                      "Scriptwriting",
+                      "Comprehensive Editing",
+                      "Hook Variations"
+                   ]}
+               />
 
-          <PricingCard 
-             title="Growth"
-             subtitle="Scale with more variations"
-             price="$250"
-             volume="6 videos"
-             buttonText="GET STARTED"
-             special={true}
-             features={[
-               "Strategy & Planning",
-               "Scriptwriting",
-               "Comprehensive Editing",
-               "Hook Variations"
-             ]}
-          />
+               <PricingCard 
+                   title="Growth"
+                   subtitle="Scale with more variations"
+                   price="₹14,999"
+                   volume="8 videos"
+                   buttonText="GET STARTED"
+                   special={true}
+                   features={[
+                      "Strategy & Planning",
+                      "Scriptwriting",
+                      "Comprehensive Editing",
+                      "Hook Variations"
+                   ]}
+               />
 
-          <PricingCard 
-             title="Pro Domination"
-             subtitle="Full content domination"
-             price="$400"
-             volume="10 videos"
-             buttonText="GET STARTED"
-             features={[
-               "Strategy & Planning",
-               "Scriptwriting",
-               "Comprehensive Editing",
-               "Hook Variations"
-             ]}
-          />
+               <PricingCard 
+                   title="Pro Domination"
+                   subtitle="Full content domination"
+                   price="₹16,000"
+                   volume="10 videos"
+                   buttonText="GET STARTED"
+                   features={[
+                      "Strategy & Planning",
+                      "Scriptwriting",
+                      "Comprehensive Editing",
+                      "Hook Variations"
+                   ]}
+               />
         </div>
 
         {/* Visual 5-Step Process Flow */}
@@ -746,8 +746,8 @@ const Home = () => {
 
         </div>
 
-        <div style={{ borderTop: '1px solid #333', margin: '4rem auto 0', maxWidth: '900px', paddingTop: '4rem', paddingBottom: '1rem' }}>
-           <h3 style={{ color: '#fff', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+        <div style={{ borderTop: '1px solid #e6e2de', margin: '4rem auto 0', maxWidth: '900px', paddingTop: '4rem', paddingBottom: '1rem' }}>
+           <h3 style={{ color: '#111', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '1.5rem', lineHeight: 1.1 }}>
               <span className="serif-italic highlight-purple">You only commit</span> <br/> after seeing real results.
            </h3>
 
