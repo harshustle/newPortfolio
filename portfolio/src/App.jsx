@@ -18,6 +18,7 @@ import Contact from './pages/Contact';
 import Harsh from './pages/Harsh';
 import Edit from './pages/Edit';
 import AIProductShoot from './pages/AIProductShoot';
+import Offer from './pages/Offer';
 
 import './App.css';
 
@@ -37,6 +38,7 @@ function AnimatedRoutes() {
         <Route path="/harsh" element={<Harsh />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/ai-product-shoot" element={<AIProductShoot />} />
+        <Route path="/offer" element={<Offer />} />
       </Routes>
     </AnimatePresence>
   );
@@ -44,12 +46,13 @@ function AnimatedRoutes() {
 
 function LayoutWrapper() {
   const location = useLocation();
-  const isStandalone = location.pathname === '/harsh' || location.pathname === '/edit' || location.pathname === '/ai-product-shoot';
+  const isStandalone = location.pathname === '/harsh' || location.pathname === '/edit' || location.pathname === '/ai-product-shoot' || location.pathname === '/offer';
+  const isOffer = location.pathname === '/offer';
 
   return (
-    <div className="app-container" style={isStandalone ? { backgroundColor: location.pathname === '/edit' ? '#f8f7f5' : '#0a0a0c', minHeight: '100vh' } : {}}>
+    <div className="app-container" style={isStandalone ? { backgroundColor: location.pathname === '/edit' ? '#f8f7f5' : '#06060f', minHeight: '100vh' } : {}}>
       {!isStandalone && <BackgroundWrapper />}
-      <Navbar /> {/* Keep the Navbar so you can navigate */}
+      {!isOffer && <Navbar />}
       <main className="main-content" style={isStandalone ? { padding: 0 } : {}}>
         <AnimatedRoutes />
       </main>
