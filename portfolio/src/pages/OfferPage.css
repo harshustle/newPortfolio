@@ -1656,4 +1656,109 @@
     font-size:62px;
   }
 
+  /* CALCULATOR — MOBILE */
+  .offer-page .calc-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  /* Make the estimate card non-sticky on mobile so it doesn't obscure content */
+  .offer-page .calc-card{
+    position:static;
+    order:2; /* show estimate card below the service list */
+  }
+
+  .offer-page .calc-services{
+    order:1;
+  }
+
+  /* Shrink the big total number so it doesn't overflow */
+  .offer-page .calc-total{
+    font-size:44px;
+    letter-spacing:-2px;
+  }
+
+  /* Reduce pricing-box heading on mobile */
+  .offer-page .pricing-box h2{
+    font-size:38px;
+    letter-spacing:-2px;
+  }
+
+  /* Let service rows wrap so qty/subtotal drop below the label */
+  .offer-page .calc-row{
+    flex-wrap:wrap;
+    gap:10px 12px;
+    padding:14px 14px;
+  }
+
+  /* Info section takes remaining width next to checkbox */
+  .offer-page .calc-info{
+    flex:1;
+    min-width:0; /* prevent overflow */
+  }
+
+  .offer-page .calc-label{
+    font-size:14px;
+    white-space:normal;
+    word-break:break-word;
+  }
+
+  /* Push qty/subtotal to a new line spanning full width */
+  .offer-page .calc-qty,
+  .offer-page .calc-subtotal{
+    margin-left:38px; /* align under label (checkbox width + gap) */
+  }
+
+  /* Reduce padding inside pricing section */
+  .offer-page .pricing-section{
+    padding:60px 0;
+  }
+
+  .offer-page .pricing-sub{
+    font-size:16px;
+    margin-bottom:36px;
+  }
+
+  /* Reduce bundle banner font on mobile */
+  .offer-page .calc-bundle-banner{
+    font-size:13px;
+    padding:12px 16px;
+  }
+
+}
+
+/* EXTRA SMALL — phones under 480px */
+@media(max-width:480px){
+
+  .offer-page .pricing-box{
+    padding:28px 16px;
+  }
+
+  .offer-page .pricing-box h2{
+    font-size:30px;
+    letter-spacing:-1px;
+  }
+
+  .offer-page .calc-total{
+    font-size:36px;
+    letter-spacing:-1px;
+  }
+
+  .offer-page .calc-card{
+    padding:20px 16px;
+  }
+
+  .offer-page .calc-row{
+    padding:12px 10px;
+  }
+
+  .offer-page .calc-qty,
+  .offer-page .calc-subtotal{
+    margin-left:34px;
+  }
+
+  .offer-page .pricing-sub{
+    font-size:14px;
+  }
+
 }
