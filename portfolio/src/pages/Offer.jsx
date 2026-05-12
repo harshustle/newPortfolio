@@ -1,342 +1,840 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check, X, ArrowRight, Flame, Lock, Star, Zap, Clock, Shield } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import "./OfferPage.css";
 
-/* ─── Countdown hook ─── */
-function useTimer() {
-  const [s, setS] = useState(86399);
-  useEffect(() => {
-    const id = setInterval(() => setS(p => (p > 0 ? p - 1 : 86399)), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const h = String(Math.floor(s / 3600)).padStart(2, '0');
-  const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-  const sc = String(s % 60).padStart(2, '0');
-  return { h, m, sc };
+const faqs = [
+  {
+    q: "Do you also run ads?",
+    a: "Yes. We manage Meta and Google ad campaigns optimized specifically for real estate lead generation.",
+  },
+  {
+    q: "Can you build the funnel too?",
+    a: "Absolutely. We create complete high-converting acquisition funnels.",
+  },
+  {
+    q: "Do you provide AI automation?",
+    a: "Yes. We integrate WhatsApp automation and AI buyer qualification systems.",
+  },
+  {
+    q: "Who is this for?",
+    a: "Builders, brokers, developers, luxury consultants, and real estate agencies.",
+  },
+];
+
+const stack = [
+  {
+    title: "Real Shoot Ads",
+    desc: "Premium cinematic property videos designed to stop scrolling instantly.",
+    videos: [
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=__%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80_%E0%A4%97%E0%A5%80%E0%A4%A4%E0%A4%BE_%E0%A4%95%E0%A5%81%E0%A4%82%E0%A4%9C_%E0%A4%87%E0%A4%A8%E0%A5%8D%E0%A4%AB%E0%A5%8D%E0%A4%B0%E0%A4%BE_%E0%A4%AC%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%A1_%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%87%E0%A4%B5%E0%A5%87%E0%A4%9F_%E0%A4%B2%E0%A4%BF%E0%A4%AE%E0%A4%BF%E0%A4%9F%E0%A5%87%E0%A4%A1_%E0%A4%95%E0%A5%80_%E0%A4%A4%E0%A4%B0%E0%A4%AB%E0%A4%BC_%E0%A4%B8%E0%A5%87_%E0%A4%9C%E0%A4%BC%E0%A4%AC%E0%A4%B0%E0%A4%A6%E0%A4%B8%E0%A5%8D%E0%A4%A4_%E0%A4%85%E0%A4%A8%E0%A4%BE%E0%A4%89%E0%A4%82%E0%A4%B8%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F__%E0%A4%B2%E0%A4%96%E0%A4%A8%E0%A4%8A_SCR_%E0%A4%AE%E0%A5%87%E0%A4%82_xkttqd",
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=SanjeevniEnclavePhase2_isj6lw",
+    ],
+    cta: "GET STARTED",
+    reverse: false,
+  },
+  {
+    title: "AI UGC Videos",
+    desc: "Authentic AI-generated ads optimized specifically for Meta and YouTube campaigns.",
+    videos: [
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=0404_itrkrs",
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Edited_wlnmjv",
+    ],
+    cta: "BOOK CALL",
+    reverse: true,
+  },
+  {
+    title: "High-Converting Funnels",
+    desc: "Funnels engineered using direct-response psychology to maximize inquiries.",
+    type: "funnel",
+    cta: "BUILD MY FUNNEL",
+    reverse: false,
+  },
+  {
+    title: "WhatsApp Automation",
+    desc: "Automated lead follow-up systems that respond and qualify buyers instantly.",
+    type: "whatsapp",
+    cta: "AUTOMATE MY LEADS",
+    reverse: true,
+  },
+  {
+    title: "AI Real Estate Chatbot",
+    desc: "AI assistants trained specifically for real estate buyer conversations.",
+    type: "chatbot",
+    cta: "ADD AI CHATBOT",
+    reverse: false,
+  },
+  {
+    title: "Paid Ads Management",
+    desc: "Meta and Google campaigns optimized aggressively for lower CPL and more site visits.",
+    type: "ads",
+    cta: "SCALE MY ADS",
+    reverse: true,
+  },
+];
+
+const funnelStages = [
+  { icon: "📢", label: "META & GOOGLE ADS", stat: "10,000 Impressions", color: "#ff6b35", width: "100%" },
+  { icon: "🏠", label: "LANDING PAGE",       stat: "1,200 Visitors",    color: "#e55625", width: "80%"  },
+  { icon: "📋", label: "LEAD FORM",           stat: "240 Inquiries",     color: "#c9471d", width: "58%"  },
+  { icon: "✅", label: "QUALIFIED BUYER",     stat: "90 Hot Leads",      color: "#14b86a", width: "36%"  },
+];
+
+function FunnelDiagram() {
+  return (
+    <div className="funnel-diagram">
+      {funnelStages.map((s, i) => (
+        <div key={i} className="funnel-row">
+          <div className="funnel-bar" style={{ width: s.width, background: s.color }}>
+            <span className="funnel-icon">{s.icon}</span>
+            <span className="funnel-label">{s.label}</span>
+          </div>
+          <div className="funnel-stat">{s.stat}</div>
+          {i < funnelStages.length - 1 && <div className="funnel-arrow">▼</div>}
+        </div>
+      ))}
+    </div>
+  );
 }
 
-/* ─── Tick / Cross row ─── */
-const Row = ({ ok, children }) => (
-  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.85rem' }}>
-    {ok
-      ? <Check size={18} style={{ color: '#a855f7', flexShrink: 0, marginTop: 2 }} />
-      : <X size={18} style={{ color: '#ef4444', flexShrink: 0, marginTop: 2 }} />}
-    <span style={{ fontSize: '0.97rem', lineHeight: 1.55, color: ok ? '#e2e8f0' : '#94a3b8' }}>{children}</span>
-  </div>
-);
 
-/* ─── Digit block for timer ─── */
-const Digit = ({ val, label }) => (
-  <div style={{ textAlign: 'center' }}>
-    <div style={{
-      background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.4)',
-      borderRadius: 12, padding: '0.6rem 1.1rem', minWidth: 64,
-      fontSize: '2.4rem', fontWeight: 900, fontVariantNumeric: 'tabular-nums',
-      color: '#e9d5ff', letterSpacing: '-0.02em', lineHeight: 1,
-    }}>{val}</div>
-    <div style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#94a3b8', marginTop: 6 }}>{label}</div>
-  </div>
-);
-
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
-
-export default function Offer() {
-  const { h, m, sc } = useTimer();
-  const [pkg, setPkg] = useState(1);
-  const [done, setDone] = useState(false);
-  const [busy, setBusy] = useState(false);
-
-  const packages = [
-    { name: 'Starter', price: '₹9,999', videos: 4, badge: null },
-    { name: 'Growth', price: '₹14,999', videos: 8, badge: 'MOST POPULAR' },
-    { name: 'Pro', price: '₹16,000', videos: 10, badge: 'BEST VALUE' },
+function WhatsAppMock() {
+  const messages = [
+    { from: "bot",  text: "🏠 Hi! Thank you for your interest in Shree Geeta Kunj. Are you looking to buy or invest?", time: "10:02 AM" },
+    { from: "lead", text: "Buy. 2BHK or 3BHK.", time: "10:03 AM" },
+    { from: "bot",  text: "Great! What's your budget range? (e.g. 50L–80L)", time: "10:03 AM" },
+    { from: "lead", text: "Around 70–90 lakhs.", time: "10:04 AM" },
+    { from: "bot",  text: "✅ Perfect match! We have a 3BHK at ₹82L with ready possession. Can I schedule a site visit for you?", time: "10:04 AM" },
+    { from: "lead", text: "Yes, this Saturday works.", time: "10:05 AM" },
+    { from: "bot",  text: "📅 Booked! Our team will call you by Friday to confirm. See you Saturday! 🙌", time: "10:05 AM" },
   ];
+  return (
+    <div className="wa-mock">
+      <div className="wa-header">
+        <div className="wa-avatar">ES</div>
+        <div className="wa-header-info">
+          <div className="wa-name">eadsscales AI Bot</div>
+          <div className="wa-status">● Online — Responding instantly</div>
+        </div>
+      </div>
+      <div className="wa-body">
+        {messages.map((m, i) => (
+          <div key={i} className={`wa-msg wa-msg--${m.from}`}>
+            <div className="wa-bubble">{m.text}</div>
+            <div className="wa-time">{m.time} {m.from === "bot" ? "✓✓" : ""}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-  async function submit(e) {
+
+function AIChatbotMock() {
+  const msgs = [
+    { from: "bot",  text: "👋 Welcome to eadsscales Properties! Looking to buy, rent, or invest?" },
+    { from: "user", text: "Looking to buy a flat in Lucknow." },
+    { from: "bot",  text: "Great choice! What's your preferred area — Gomti Nagar, Hazratganj, or Shaheed Path?" },
+    { from: "user", text: "Shaheed Path." },
+    { from: "bot",  text: "🏠 We have 3 ready-possession projects there. Budget under ₹1Cr?" },
+    { from: "user", text: "Yes, around 80–90L." },
+    { from: "bot",  text: "✅ Perfect! I'll connect you with our property expert. Can I get your WhatsApp number?" },
+  ];
+  return (
+    <div className="chatbot-mock">
+      <div className="chatbot-topbar">
+        <div className="chatbot-dot" />
+        <span className="chatbot-title">🤖 eadsscales AI</span>
+        <span className="chatbot-badge">AI Powered</span>
+      </div>
+      <div className="chatbot-body">
+        {msgs.map((m, i) => (
+          <div key={i} className={`chatbot-msg chatbot-msg--${m.from}`}>
+            {m.from === "bot" && <div className="chatbot-avatar">AI</div>}
+            <div className="chatbot-bubble">{m.text}</div>
+          </div>
+        ))}
+      </div>
+      <div className="chatbot-input">
+        <span className="chatbot-placeholder">Type your message...</span>
+        <button className="chatbot-send">➤</button>
+      </div>
+    </div>
+  );
+}
+
+function PaidAdsMock() {
+  const metrics = [
+    { label: "Impressions", value: "2,40,000", change: "+38%", up: true },
+    { label: "Clicks",       value: "8,420",    change: "+52%", up: true },
+    { label: "CPL",          value: "₹186",     change: "-41%", up: false },
+    { label: "ROAS",         value: "4.8x",     change: "+60%", up: true },
+  ];
+  const bars = [
+    { day: "Mon", h: 40 },
+    { day: "Tue", h: 65 },
+    { day: "Wed", h: 50 },
+    { day: "Thu", h: 80 },
+    { day: "Fri", h: 70 },
+    { day: "Sat", h: 95 },
+    { day: "Sun", h: 55 },
+  ];
+  return (
+    <div className="ads-mock">
+      <div className="ads-topbar">
+        <div className="ads-platform">
+          <span className="ads-logo ads-logo--meta">Meta</span>
+          <span className="ads-logo ads-logo--google">Google</span>
+        </div>
+        <span className="ads-live"><span className="ads-live-dot" />LIVE</span>
+      </div>
+      <div className="ads-metrics">
+        {metrics.map((m, i) => (
+          <div className="ads-metric" key={i}>
+            <div className="ads-metric-label">{m.label}</div>
+            <div className="ads-metric-value">{m.value}</div>
+            <div className={`ads-metric-change ${m.up ? "ads-up" : "ads-down"}`}>
+              {m.up ? "▲" : "▼"} {m.change}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="ads-chart">
+        <div className="ads-chart-label">Lead Volume — This Week</div>
+        <div className="ads-bars">
+          {bars.map((b, i) => (
+            <div className="ads-bar-wrap" key={i}>
+              <div className="ads-bar" style={{ height: `${b.h}%` }} />
+              <div className="ads-bar-day">{b.day}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="ads-footer">
+        <span>🎯 Targeting: Real Estate Buyers · Lucknow · 25–55 yrs</span>
+      </div>
+    </div>
+  );
+}
+
+const calcServices = [
+  { id: "shoot",   label: "Cinematic Real Estate Ad Shoot", unitPrice: 5000,  unit: "shoot", hasQty: true,  max: 10, defaultQty: 1 },
+  { id: "ugc",     label: "AI UGC Ad Videos",               unitPrice: 2500,  unit: "video", hasQty: true,  max: 10, defaultQty: 1 },
+  { id: "funnel",  label: "High-Converting Funnel",          unitPrice: 5000,  unit: null,    hasQty: false },
+  { id: "chatbot", label: "AI Real Estate Chatbot",          unitPrice: 6000,  unit: null,    hasQty: false },
+  { id: "wa",      label: "WhatsApp Automation",             unitPrice: 10000, unit: null,    hasQty: false },
+  { id: "meta",    label: "Meta Ads Management",             unitPrice: 15000, unit: "/mo",   hasQty: false },
+];
+
+const CALC_SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
+
+function PricingCalculator() {
+  const [selected, setSelected] = useState({});
+  const [qty, setQty] = useState({ shoot: 1, ugc: 1 });
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const toggle = (id) => {
+    setSelected(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const changeQty = (id, delta) => {
+    setQty(prev => {
+      const svc = calcServices.find(s => s.id === id);
+      const next = Math.min(svc.max, Math.max(1, (prev[id] || 1) + delta));
+      return { ...prev, [id]: next };
+    });
+  };
+
+  const total = calcServices.reduce((sum, s) => {
+    if (!selected[s.id]) return sum;
+    const q = s.hasQty ? (qty[s.id] || 1) : 1;
+    return sum + s.unitPrice * q;
+  }, 0);
+
+  const count = Object.values(selected).filter(Boolean).length;
+  const discount = count >= 4 ? 0.20 : count >= 2 ? 0.10 : 0;
+  const discounted = Math.round(total * (1 - discount));
+  const saved = total - discounted;
+
+  const fmt = (n) => "₹" + n.toLocaleString("en-IN");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setBusy(true);
-    const fd = new FormData(e.target);
-    const p = new URLSearchParams({
-      name: fd.get('name') || '',
-      email: fd.get('email') || '',
-      service: `AI Product Shoot — ${packages[pkg].name}`,
-      budget: packages[pkg].price,
-      timeline: 'ASAP',
-      message: fd.get('msg') || 'Offer page inquiry',
+    if (count === 0 || !name.trim() || !phone.trim()) return;
+    setSubmitting(true);
+    const selectedList = calcServices
+      .filter(s => selected[s.id])
+      .map(s => `${s.label}${s.hasQty ? ` ×${qty[s.id] || 1}` : ""}`);
+    const payload = new URLSearchParams({
+      name:    name,
+      phone:   phone,
+      service: selectedList.join(", "),
+      budget:  fmt(discounted),
+      message: `Offer Page Calculator — ${count} service(s) selected`,
+      source:  "Offer Page Calculator",
     });
     try {
-      await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: p.toString() });
-      setDone(true);
-    } catch { alert('Something went wrong — please email harshustle@gmail.com directly.'); }
-    finally { setBusy(false); }
-  }
+      await fetch(CALC_SHEET_URL, {
+        method:  "POST",
+        mode:    "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body:    payload.toString(),
+      });
+    } catch (_) {}
+    setSubmitting(false);
+    setSubmitted(true);
+  };
 
   return (
-    <div style={{ background: '#06060f', color: '#f1f5f9', minHeight: '100vh', fontFamily: 'inherit', overflowX: 'hidden' }}>
+    <section className="pricing-section">
+      <div className="container">
+        <div className="pricing-box">
 
-      {/* ══ STICKY SCARCITY BAR ══ */}
-      <div style={{
-        position: 'sticky', top: 0, zIndex: 200,
-        background: 'linear-gradient(90deg,#4f1d96,#7c3aed,#4f1d96)',
-        padding: '0.65rem 1rem', textAlign: 'center',
-        fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.06em',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap',
-      }}>
-        <Flame size={14} style={{ color: '#fbbf24' }} />
-        <span>⚡ OFFER EXPIRES IN&nbsp;
-          <span style={{ fontVariantNumeric: 'tabular-nums', color: '#fde68a' }}>{h}:{m}:{sc}</span>
-        </span>
-        <span style={{ opacity: 0.4 }}>|</span>
-        <span style={{ color: '#fde68a' }}>Only 3 spots left this month</span>
-        <Flame size={14} style={{ color: '#fbbf24' }} />
+          <div className="pricing-tag">BUILD YOUR PACKAGE</div>
+          <h2>Pick What You Need</h2>
+          <p className="pricing-sub">
+            Select only the services you want — the price updates instantly.
+            {count >= 2 && <span className="calc-discount-note"> Bundle discount applied 🎉</span>}
+          </p>
+
+          <div className="calc-grid">
+
+            {/* LEFT — service toggles */}
+            <div className="calc-services">
+              {calcServices.map((svc) => (
+                <div
+                  key={svc.id}
+                  className={`calc-row${selected[svc.id] ? " calc-row--active" : ""}`}
+                  onClick={() => toggle(svc.id)}
+                >
+                  <div className="calc-check">
+                    {selected[svc.id] ? "✓" : ""}
+                  </div>
+                  <div className="calc-info">
+                    <div className="calc-label">{svc.label}</div>
+                    <div className="calc-price-tag">
+                      {fmt(svc.unitPrice)}{svc.unit ? ` / ${svc.unit}` : ""}
+                    </div>
+                  </div>
+                  {svc.hasQty && selected[svc.id] && (
+                    <div className="calc-qty" onClick={e => e.stopPropagation()}>
+                      <button onClick={() => changeQty(svc.id, -1)}>−</button>
+                      <span>{qty[svc.id] || 1}</span>
+                      <button onClick={() => changeQty(svc.id, +1)}>+</button>
+                    </div>
+                  )}
+                  {!svc.hasQty && selected[svc.id] && (
+                    <div className="calc-subtotal">{fmt(svc.unitPrice)}</div>
+                  )}
+                  {svc.hasQty && selected[svc.id] && (
+                    <div className="calc-subtotal">{fmt(svc.unitPrice * (qty[svc.id] || 1))}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* RIGHT — live total card */}
+            <div className="calc-card">
+              <div className="calc-card-title">YOUR ESTIMATE</div>
+
+              {count === 0 ? (
+                <div className="calc-empty">← Select services to see price</div>
+              ) : (
+                <>
+                  {discount > 0 && (
+                    <div className="calc-original">{fmt(total)}</div>
+                  )}
+                  <div className="calc-total">{fmt(discounted)}</div>
+                  {discount > 0 && (
+                    <div className="calc-saved">You save {fmt(saved)} ({Math.round(discount * 100)}% bundle discount)</div>
+                  )}
+                  <div className="calc-breakdown">
+                    {calcServices.filter(s => selected[s.id]).map(s => (
+                      <div className="calc-line" key={s.id}>
+                        <span>{s.label}{s.hasQty ? ` ×${qty[s.id] || 1}` : ""}</span>
+                        <span>{fmt(s.unitPrice * (s.hasQty ? (qty[s.id] || 1) : 1))}</span>
+                      </div>
+                    ))}
+                    {discount > 0 && (
+                      <div className="calc-line calc-line--discount">
+                        <span>Bundle Discount ({Math.round(discount * 100)}%)</span>
+                        <span>−{fmt(saved)}</span>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {submitted ? (
+                <div className="calc-success">
+                  ✅ Received! We'll WhatsApp you within 24 hours.
+                </div>
+              ) : (
+                <form className="calc-form" onSubmit={handleSubmit}>
+                  <input
+                    className="calc-input"
+                    type="text"
+                    placeholder="Your Name *"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    required
+                  />
+                  <input
+                    className="calc-input"
+                    type="tel"
+                    placeholder="WhatsApp Number *"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className={`pricing-btn${(count === 0 || submitting) ? " pricing-btn--disabled" : ""}`}
+                    disabled={count === 0 || submitting}
+                  >
+                    {submitting ? "SENDING..." : count === 0 ? "SELECT SERVICES ABOVE" : "BOOK FREE STRATEGY CALL"}
+                  </button>
+                </form>
+              )}
+              <div className="secure-line">No upfront payment • Strategy call first</div>
+            </div>
+
+          </div>
+
+          {count >= 2 && (
+            <div className="calc-bundle-banner">
+              🎯 {count >= 4 ? "20% bundle discount applied!" : "10% bundle discount applied!"} Add {count < 4 ? `${4 - count} more service${4 - count > 1 ? "s" : ""} for 20% off` : "You're getting our best rate."}
+            </div>
+          )}
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function OfferPage() {
+
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [showVideo, setShowVideo] = useState(false);
+
+
+  useEffect(() => {
+    // Open fullscreen video modal on page load
+    const timer = setTimeout(() => setShowVideo(true), 300);
+    // Allow closing with Escape key
+    const handleKey = (e) => { if (e.key === "Escape") setShowVideo(false); };
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, []);
+
+  const toggleFaq = (i) => {
+    setActiveIndex(activeIndex === i ? null : i);
+  };
+
+  return (
+    <div className="offer-page">
+
+      {/* FULLSCREEN VIDEO MODAL */}
+      {showVideo && (
+        <div className="vsl-modal-backdrop" onClick={() => setShowVideo(false)}>
+          <div className="vsl-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="vsl-close" onClick={() => setShowVideo(false)}>✕</button>
+            <iframe
+              src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Compiled_bboouj&autoplay=true&muted=true&controls=true&poster=https%3A%2F%2Fres.cloudinary.com%2Fdobulag2p%2Fimage%2Fupload%2Fv1778540902%2F__I_know_Your_Problem_202605120355_srntis.jpg"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+              allowFullScreen
+              title="VSL Video"
+              style={{ display: "block", border: 0 }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* TOP BAR */}
+      <div className="top-bar">
+        <span>LIMITED</span>
+        <p>ATTENTION REALTORS &amp; BUILDERS: THIS IS A LIMITED TIME OFFER</p>
       </div>
 
-      {/* ══ HERO ══ */}
-      <section style={{ maxWidth: 820, margin: '0 auto', padding: '5rem 1.5rem 3rem', textAlign: 'center' }}>
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(168,85,247,0.12)', border: '1px solid rgba(168,85,247,0.3)', borderRadius: 99, padding: '0.4rem 1rem', fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#c084fc', marginBottom: '2rem' }}>
-            <Zap size={12} /> AI Product Shoot
-          </div>
+      {/* HERO */}
+      <section className="hero">
+        <div className="container">
 
-          <h1 style={{ fontSize: 'clamp(2.6rem,8vw,5.8rem)', fontWeight: 900, letterSpacing: '-0.045em', lineHeight: 0.92, marginBottom: '1.8rem', color: '#f1f5f9' }}>
-            Your Competitors Are<br />
-            <span style={{ WebkitTextStroke: '2px #a855f7', WebkitTextFillColor: 'transparent' }}>Already Using This.</span>
+          <div className="label">AI REAL ESTATE GROWTH SYSTEM</div>
+
+          <h1>
+            Generate Qualified Property Buyers
+            <br />
+            <span className="highlight">Using AI-Powered Funnels</span>
           </h1>
 
-          <p style={{ fontSize: 'clamp(1rem,2.5vw,1.25rem)', color: '#94a3b8', maxWidth: 580, margin: '0 auto 2.5rem', lineHeight: 1.7 }}>
-            We produce <strong style={{ color: '#e2e8f0' }}>photorealistic AI product videos</strong> — cinematic physics, studio-grade lighting, scroll-stopping hooks — delivered in <strong style={{ color: '#e2e8f0' }}>48 hours</strong>, not 2 weeks.
+          <p className="subheadline">
+            Real shoot ads. <strong>AI UGC videos.</strong> Funnels. WhatsApp automation.
+            AI chatbots. Built to generate high-intent buyers automatically.
           </p>
 
-          {/* Timer */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.75rem', marginBottom: '2.5rem' }}>
-            <Digit val={h} label="Hours" />
-            <span style={{ fontSize: '2rem', fontWeight: 900, color: '#a855f7', lineHeight: 1, marginBottom: 24 }}>:</span>
-            <Digit val={m} label="Minutes" />
-            <span style={{ fontSize: '2rem', fontWeight: 900, color: '#a855f7', lineHeight: 1, marginBottom: 24 }}>:</span>
-            <Digit val={sc} label="Seconds" />
+          <div className="benefits">
+            <div className="benefit">Real Shoot Ads</div>
+            <div className="benefit">AI Lead Automation</div>
+            <div className="benefit">High-Converting Funnels</div>
           </div>
 
-          <a href="#claim" style={{
-            display: 'inline-flex', alignItems: 'center', gap: '0.7rem',
-            padding: '1.1rem 2.8rem', borderRadius: 99,
-            background: 'linear-gradient(135deg,#a855f7,#7c3aed)',
-            color: '#fff', fontWeight: 900, fontSize: '1rem', letterSpacing: '0.06em',
-            textDecoration: 'none', boxShadow: '0 0 60px rgba(168,85,247,0.4)',
-            transition: 'transform 0.2s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
-            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            GET MY VIDEOS NOW <ArrowRight size={18} />
-          </a>
-          <p style={{ marginTop: '0.8rem', fontSize: '0.75rem', color: '#64748b' }}>No upfront payment · 100% satisfaction or redo</p>
-        </motion.div>
-      </section>
-
-      {/* ══ PROBLEM vs SOLUTION ══ */}
-      <section style={{ maxWidth: 820, margin: '0 auto', padding: '3rem 1.5rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: '1.5rem' }}>
-
-          {/* Problem */}
-          <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: 24, padding: '2.2rem' }}>
-            <p style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#ef4444', marginBottom: '1.2rem' }}>What you're doing now</p>
-            <Row ok={false}>Paying ₹30–80k for studio shoots that take 3 weeks</Row>
-            <Row ok={false}>Uploading the same static image every competitor has</Row>
-            <Row ok={false}>Running ads with low-quality creatives & watching ROAS tank</Row>
-            <Row ok={false}>Waiting weeks for an agency to send you one revision</Row>
+          <div className="vsl-wrapper vsl-thumbnail" onClick={() => setShowVideo(true)}>
+            <img
+              src="https://res.cloudinary.com/dobulag2p/image/upload/v1778540902/__I_know_Your_Problem_202605120355_srntis.jpg"
+              alt="Watch VSL"
+              className="vsl-cover"
+            />
+            <div className="vsl-play-btn">
+              <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+                <circle cx="34" cy="34" r="34" fill="rgba(255,107,53,0.92)"/>
+                <polygon points="27,20 54,34 27,48" fill="white"/>
+              </svg>
+            </div>
           </div>
 
-          {/* Solution */}
-          <div style={{ background: 'rgba(168,85,247,0.06)', border: '1px solid rgba(168,85,247,0.2)', borderRadius: 24, padding: '2.2rem' }}>
-            <p style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#a855f7', marginBottom: '1.2rem' }}>What you get with us</p>
-            <Row ok={true}>Cinematic AI renders delivered in 48 hours, not 3 weeks</Row>
-            <Row ok={true}>Unique physics, lighting & motion that stops the scroll</Row>
-            <Row ok={true}>Hook-engineered scripts built for Meta, Reels & TikTok ads</Row>
-            <Row ok={true}>Unlimited revisions until you love every single frame</Row>
+          <div className="cta-wrap">
+            <a href="#cta" className="cta-btn">YES! I WANT MORE PROPERTY BUYERS</a>
+            <div className="secure">
+              Free Strategy Session • Instant WhatsApp Access • No Obligation
+            </div>
           </div>
+
         </div>
       </section>
 
-      {/* ══ VALUE STACK ══ */}
-      <section style={{ maxWidth: 820, margin: '0 auto', padding: '3rem 1.5rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <p style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.25em', color: '#a855f7', marginBottom: '0.6rem' }}>Everything Included</p>
-          <h2 style={{ fontSize: 'clamp(1.9rem,5vw,3.2rem)', fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1.05, color: '#f1f5f9' }}>
-            What You're Actually Getting
-          </h2>
-        </div>
+      {/* PROBLEMS */}
+      <section className="section">
+        <div className="container">
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1rem' }}>
-          {[
-            { icon: <Zap size={20} />, title: 'Cinematic AI Renders', sub: 'Physics, lighting, particle FX — zero studio needed', val: '₹15,000' },
-            { icon: <Star size={20} />, title: 'Hook-First Scripts', sub: 'Every video engineered to stop the scroll in 2 seconds', val: '₹5,000' },
-            { icon: <Shield size={20} />, title: 'Platform Exports', sub: '9:16 Reels, TikTok, Meta Ads — all formats, ready to post', val: '₹3,000' },
-            { icon: <Clock size={20} />, title: '48-Hour Delivery', sub: 'First batch in your inbox in two days. No waiting around', val: '₹8,000' },
-            { icon: <Check size={20} />, title: 'Unlimited Revisions', sub: 'We iterate until you love it. No extra charge, ever', val: '₹4,000' },
-            { icon: <ArrowRight size={20} />, title: 'Strategy Brief', sub: 'Competitor audit + angle positioning for your market', val: '₹6,000' },
-          ].map((f, i) => (
-            <motion.div key={i}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.06 }}
-              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 18, padding: '1.5rem' }}
-            >
-              <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(168,85,247,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a855f7', marginBottom: '0.9rem' }}>{f.icon}</div>
-              <p style={{ fontWeight: 800, fontSize: '0.95rem', marginBottom: '0.35rem', color: '#f1f5f9' }}>{f.title}</p>
-              <p style={{ fontSize: '0.8rem', color: '#94a3b8', lineHeight: 1.55, marginBottom: '0.8rem' }}>{f.sub}</p>
-              <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#a855f7', background: 'rgba(168,85,247,0.1)', padding: '0.2rem 0.65rem', borderRadius: 99 }}>{f.val} value</span>
-            </motion.div>
-          ))}
-        </div>
+          <div className="section-title">
+            <h2>Why Most Real Estate Ads Fail</h2>
+            <p>
+              Most real estate businesses waste money on ads because they don't have the
+              right creatives, funnels, or automation systems.
+            </p>
+          </div>
 
-        {/* Value callout */}
-        <div style={{ marginTop: '2rem', background: 'rgba(168,85,247,0.07)', border: '1px solid rgba(168,85,247,0.2)', borderRadius: 18, padding: '1.8rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-          <div>
-            <p style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.3rem' }}>Total value</p>
-            <p style={{ fontSize: '2rem', fontWeight: 900, textDecoration: 'line-through', color: '#64748b', lineHeight: 1 }}>₹41,000</p>
+          <div className="problem-grid">
+            <div className="problem">
+              <h3>Bad Creatives</h3>
+              <p>Most property ads fail to grab attention and create emotional buying intent.</p>
+            </div>
+            <div className="problem">
+              <h3>No Funnel</h3>
+              <p>Traffic gets wasted because visitors are never guided through a conversion journey.</p>
+            </div>
+            <div className="problem">
+              <h3>Slow Follow-Up</h3>
+              <p>Leads go cold because nobody replies instantly after inquiry submission.</p>
+            </div>
+            <div className="problem">
+              <h3>Low Quality Leads</h3>
+              <p>Sales teams waste time talking to people with no buying intent.</p>
+            </div>
           </div>
-          <ArrowRight size={28} style={{ color: '#a855f7', opacity: 0.6 }} />
-          <div style={{ textAlign: 'right' }}>
-            <p style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.3rem' }}>You pay today</p>
-            <p style={{ fontSize: '2rem', fontWeight: 900, color: '#c084fc', lineHeight: 1 }}>From ₹9,999</p>
+
+          <div className="cta-wrap">
+            <a href="#cta" className="cta-btn">FIX MY LEAD SYSTEM</a>
           </div>
+
         </div>
       </section>
 
-      {/* ══ PRICING ══ */}
-      <section style={{ maxWidth: 820, margin: '0 auto', padding: '3rem 1.5rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <p style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.25em', color: '#a855f7', marginBottom: '0.6rem' }}>Transparent Pricing</p>
-          <h2 style={{ fontSize: 'clamp(1.9rem,5vw,3.2rem)', fontWeight: 900, letterSpacing: '-0.04em', color: '#f1f5f9' }}>Choose Your Package</h2>
-        </div>
+      {/* SYSTEM */}
+      <section>
+        <div className="container">
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1rem' }}>
-          {packages.map((p, i) => {
-            const active = pkg === i;
-            return (
-              <motion.div key={i} whileHover={{ y: -6 }} onClick={() => setPkg(i)}
-                style={{
-                  position: 'relative', borderRadius: 22, padding: '2rem', cursor: 'pointer',
-                  background: active ? 'linear-gradient(160deg,rgba(168,85,247,0.2),rgba(124,58,237,0.1))' : 'rgba(255,255,255,0.03)',
-                  border: `2px solid ${active ? '#a855f7' : 'rgba(255,255,255,0.07)'}`,
-                  boxShadow: active ? '0 0 50px rgba(168,85,247,0.25)' : 'none',
-                  transition: 'all 0.25s ease',
-                }}
-              >
-                {p.badge && (
-                  <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(90deg,#a855f7,#7c3aed)', borderRadius: 99, padding: '0.2rem 0.85rem', fontSize: '0.62rem', fontWeight: 900, letterSpacing: '0.15em', whiteSpace: 'nowrap' }}>
-                    {p.badge}
-                  </div>
+          <div className="big-copy">
+            <h2>The AI Real Estate Acquisition Machine</h2>
+            <p>
+              We combine real shoot ads, AI UGC videos, funnels, WhatsApp automation,
+              AI chatbots, and paid ads into one integrated growth system.
+            </p>
+          </div>
+
+          <div className="stack">
+            {stack.map((item, i) => (
+              <div className="stack-box" key={i}>
+                {item.reverse ? (
+                  <>
+                    {item.videos ? (
+                      <div className="stack-videos">
+                        {item.videos.map((src, vi) => (
+                          <div className="stack-video-wrap" key={vi}>
+                            <iframe src={src} width="100%" height="100%" frameBorder="0"
+                              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                              allowFullScreen style={{ display: "block", border: 0 }} />
+                          </div>
+                        ))}
+                      </div>
+                    ) : item.type === "funnel" ? (
+                      <FunnelDiagram />
+                    ) : item.type === "whatsapp" ? (
+                      <WhatsAppMock />
+                    ) : item.type === "chatbot" ? (
+                      <AIChatbotMock />
+                    ) : item.type === "ads" ? (
+                      <PaidAdsMock />
+                    ) : (
+                      <div className="stack-image">{item.image}</div>
+                    )}
+                    <div className="stack-content">
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                      <a href="#cta" className="small-btn">{item.cta}</a>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="stack-content">
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                      <a href="#cta" className="small-btn">{item.cta}</a>
+                    </div>
+                    {item.videos ? (
+                      <div className="stack-videos">
+                        {item.videos.map((src, vi) => (
+                          <div className="stack-video-wrap" key={vi}>
+                            <iframe src={src} width="100%" height="100%" frameBorder="0"
+                              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                              allowFullScreen style={{ display: "block", border: 0 }} />
+                          </div>
+                        ))}
+                      </div>
+                    ) : item.type === "funnel" ? (
+                      <FunnelDiagram />
+                    ) : item.type === "whatsapp" ? (
+                      <WhatsAppMock />
+                    ) : item.type === "chatbot" ? (
+                      <AIChatbotMock />
+                    ) : item.type === "ads" ? (
+                      <PaidAdsMock />
+                    ) : (
+                      <div className="stack-image">{item.image}</div>
+                    )}
+                  </>
                 )}
-                <p style={{ fontSize: '0.68rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#94a3b8', marginBottom: '0.5rem' }}>{p.name}</p>
-                <p style={{ fontSize: '2.4rem', fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: '0.2rem', color: '#f1f5f9' }}>{p.price}</p>
-                <p style={{ fontSize: '0.88rem', color: '#a855f7', fontWeight: 700, marginBottom: '1.5rem' }}>{p.videos} AI Videos</p>
-                {['Strategy & Brief', 'Hook Scriptwriting', 'Cinematic Editing', 'Platform Exports', 'Unlimited Revisions'].map((f, j) => (
-                  <div key={j} style={{ display: 'flex', gap: '0.6rem', marginBottom: '0.55rem', alignItems: 'center' }}>
-                    <Check size={13} style={{ color: '#a855f7', flexShrink: 0 }} />
-                    <span style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>{f}</span>
-                  </div>
-                ))}
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ══ SOCIAL PROOF ══ */}
-      <section style={{ maxWidth: 820, margin: '0 auto', padding: '3rem 1.5rem' }}>
-        <h2 style={{ fontSize: 'clamp(1.6rem,4vw,2.6rem)', fontWeight: 900, letterSpacing: '-0.04em', textAlign: 'center', marginBottom: '2rem', color: '#f1f5f9' }}>
-          What Clients Say
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '1rem' }}>
-          {[
-            { who: 'D2C Skincare Brand', loc: 'Dubai, UAE', q: 'The AI product videos doubled our Reels engagement in the first week. Absolute game-changer.' },
-            { who: 'Real Estate Client', loc: 'Lucknow, India', q: 'Harsh delivered 8 videos in 36 hours. The quality matched agencies charging 10x more.' },
-            { who: 'EuroDigital', loc: 'Europe', q: 'Professional, fast, genuinely understands performance marketing. Our Meta ROAS improved 40%.' },
-          ].map((t, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 20, padding: '1.6rem' }}
-            >
-              <div style={{ display: 'flex', gap: 3, marginBottom: '1rem' }}>
-                {Array(5).fill(0).map((_, j) => <Star key={j} size={13} fill="#f59e0b" color="#f59e0b" />)}
               </div>
-              <p style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: 1.65, marginBottom: '1.1rem', fontStyle: 'italic' }}>"{t.q}"</p>
-              <p style={{ fontWeight: 800, fontSize: '0.85rem', color: '#f1f5f9' }}>{t.who}</p>
-              <p style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 2 }}>{t.loc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ CLAIM FORM ══ */}
-      <section id="claim" style={{ maxWidth: 580, margin: '0 auto', padding: '3rem 1.5rem 8rem' }}>
-        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(168,85,247,0.2)', borderRadius: 28, padding: 'clamp(2rem,5vw,3rem)', boxShadow: '0 0 80px rgba(168,85,247,0.12)' }}>
-
-          {/* Selected package display */}
-          <div style={{ background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.25)', borderRadius: 12, padding: '0.9rem 1.2rem', marginBottom: '1.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Selected Package</span>
-            <span style={{ fontSize: '0.9rem', fontWeight: 900, color: '#c084fc' }}>
-              {packages[pkg].name} — {packages[pkg].price}
-            </span>
+            ))}
           </div>
 
-          <h2 style={{ fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 900, letterSpacing: '-0.04em', marginBottom: '0.4rem', lineHeight: 1.1, color: '#f1f5f9' }}>
-            Claim Your Spot
-          </h2>
-          <p style={{ color: '#94a3b8', fontSize: '0.88rem', marginBottom: '2rem', lineHeight: 1.55 }}>
-            Fill out below. I'll personally reach out within 24 hours with next steps — no sales calls, no fluff.
-          </p>
-
-          <AnimatePresence mode="wait">
-            {done ? (
-              <motion.div key="ok" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '3rem 0' }}>
-                <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(34,197,94,0.15)', border: '2px solid #22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                  <Check size={28} color="#22c55e" />
-                </div>
-                <h3 style={{ fontSize: '1.6rem', fontWeight: 900, marginBottom: '0.6rem', color: '#f1f5f9' }}>You're In! 🎉</h3>
-                <p style={{ color: '#94a3b8', lineHeight: 1.65, fontSize: '0.9rem' }}>Check your inbox within 24 hours. I'll send you a tailored creative brief and next steps.</p>
-              </motion.div>
-            ) : (
-              <motion.form key="form" onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-                {[
-                  { name: 'name', label: 'Full Name', type: 'text', placeholder: 'Your name' },
-                  { name: 'email', label: 'Email Address', type: 'email', placeholder: 'you@brand.com' },
-                ].map(f => (
-                  <div key={f.name}>
-                    <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#94a3b8', marginBottom: '0.45rem' }}>{f.label}</label>
-                    <input name={f.name} type={f.type} placeholder={f.placeholder} required
-                      style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1.5px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: '0.9rem 1.1rem', color: '#f1f5f9', fontSize: '0.93rem', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', transition: 'border 0.2s' }}
-                      onFocus={e => e.target.style.borderColor = '#a855f7'}
-                      onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
-                    />
-                  </div>
-                ))}
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#94a3b8', marginBottom: '0.45rem' }}>Tell Me About Your Product</label>
-                  <textarea name="msg" placeholder="Product type, goal, any specific requirements..." rows={3}
-                    style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1.5px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: '0.9rem 1.1rem', color: '#f1f5f9', fontSize: '0.93rem', fontFamily: 'inherit', outline: 'none', resize: 'none', boxSizing: 'border-box', transition: 'border 0.2s' }}
-                    onFocus={e => e.target.style.borderColor = '#a855f7'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
-                  />
-                </div>
-
-                <button type="submit" disabled={busy}
-                  style={{ padding: '1.15rem', background: busy ? '#374151' : 'linear-gradient(135deg,#a855f7,#7c3aed)', border: 'none', borderRadius: 14, color: '#fff', fontWeight: 900, fontSize: '0.97rem', letterSpacing: '0.06em', fontFamily: 'inherit', cursor: busy ? 'not-allowed' : 'pointer', boxShadow: busy ? 'none' : '0 0 40px rgba(168,85,247,0.35)', transition: 'all 0.2s' }}
-                  onMouseEnter={e => !busy && (e.currentTarget.style.transform = 'scale(1.02)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-                >
-                  {busy ? 'SENDING...' : 'SECURE MY SPOT →'}
-                </button>
-
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap', paddingTop: '0.3rem' }}>
-                  {[<><Lock size={12} /> No Payment Now</>, <><Clock size={12} /> 24hr Reply</>, <><Shield size={12} /> 100% Satisfaction</>].map((b, i) => (
-                    <span key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.7rem', color: '#94a3b8', fontWeight: 700 }}>{b}</span>
-                  ))}
-                </div>
-              </motion.form>
-            )}
-          </AnimatePresence>
         </div>
       </section>
+
+      {/* RESULTS */}
+      <section className="section">
+        <div className="container">
+
+          <div className="section-title">
+            <h2>Real Results</h2>
+            <p>Designed to generate more inquiries, faster follow-up, and better buyer quality.</p>
+          </div>
+
+          <div className="results">
+            <div className="result">
+              <h3>312%</h3>
+              <p>Increase in qualified lead flow.</p>
+            </div>
+            <div className="result">
+              <h3>92%</h3>
+              <p>WhatsApp response rate using automation.</p>
+            </div>
+            <div className="result">
+              <h3>4X</h3>
+              <p>Better lead quality than traditional campaigns.</p>
+            </div>
+          </div>
+
+          <div className="cta-wrap">
+            <a href="#cta" className="cta-btn">I WANT RESULTS LIKE THIS</a>
+          </div>
+
+        </div>
+      </section>
+
+      {/* OFFER BOX */}
+      <section>
+        <div className="container">
+          <div className="offer-box">
+
+            <h2>Everything You Need To Scale</h2>
+            <p>
+              Instead of hiring multiple agencies, funnel builders, creators, chatbot
+              developers, and ad managers — get one integrated growth system.
+            </p>
+
+            <div className="offer-list">
+              {[
+                "Real Estate Video Ads",
+                "AI UGC Ads",
+                "Funnels",
+                "WhatsApp Automation",
+                "AI Chatbot",
+                "Meta Ads Management",
+                "Lead Qualification",
+                "Conversion Optimization",
+              ].map((item, i) => (
+                <div className="offer-item" key={i}>{item}</div>
+              ))}
+            </div>
+
+            <div className="cta-wrap">
+              <a href="#cta" className="cta-btn">BOOK FREE STRATEGY CALL</a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      {/* PRICING CALCULATOR */}
+      <PricingCalculator />
+
+      {/* FAQ */}
+      <section>
+        <div className="container">
+
+          <div className="section-title">
+            <h2>Frequently Asked Questions</h2>
+          </div>
+
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className={`faq${activeIndex === i ? " active" : ""}`}
+              onClick={() => toggleFaq(i)}
+            >
+              <div className="faq-question">
+                <h3>{faq.q}</h3>
+                <h3>{activeIndex === i ? "−" : "+"}</h3>
+              </div>
+              <div className="faq-answer">
+                <p>{faq.a}</p>
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="final" id="cta">
+        <div className="container">
+
+          <h2>
+            Stop Posting.
+            <br />
+            Start Converting.
+          </h2>
+
+          <p>
+            If you want premium real estate ads, AI automation, and a funnel system that
+            consistently generates qualified buyers — let's build your acquisition machine.
+          </p>
+
+          {/* CALENDAR EMBED */}
+          <div className="calendar-embed-wrap">
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3H-j3jh-gg_corpJF9ZbqXk0g6yeARI_EpydxQZJWNaPY4geJuV2preRDvmmeuRt0eRXwgfCl8?gv=true"
+              width="100%"
+              height="600"
+              frameBorder="0"
+              title="Book a Free Strategy Call"
+              style={{ border: 0 }}
+            />
+          </div>
+
+          <div className="cta-wrap">
+            <a
+              href="https://calendar.app.google/MP6asBV3dhxwN5a87"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-btn"
+            >
+              BOOK MY FREE STRATEGY CALL
+            </a>
+            <div className="secure">
+              Free Consultation • No Obligation • Instant Confirmation
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <footer className="offer-footer">
+        <div className="container">
+
+          <div className="offer-footer-grid">
+
+            {/* Brand */}
+            <div className="offer-footer-brand">
+              <div className="offer-footer-logo">eadsscales</div>
+              <p className="offer-footer-tagline">
+                AI-powered real estate growth system.<br />
+                Creatives. Funnels. Automation. Ads.
+              </p>
+              <div className="offer-footer-socials">
+                <a href="https://instagram.com/harshustler" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="https://wa.me/917839661372" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Services */}
+            <div className="offer-footer-col">
+              <div className="offer-footer-heading">Services</div>
+              <ul className="offer-footer-links">
+                <li>Cinematic Real Estate Ads</li>
+                <li>AI UGC Videos</li>
+                <li>High-Converting Funnels</li>
+                <li>WhatsApp Automation</li>
+                <li>AI Real Estate Chatbot</li>
+                <li>Meta Ads Management</li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="offer-footer-col">
+              <div className="offer-footer-heading">Contact</div>
+              <ul className="offer-footer-links">
+                <li>
+                  <a href="https://wa.me/917839661372" target="_blank" rel="noopener noreferrer">
+                    📱 +91 78396 61372
+                  </a>
+                </li>
+                <li>
+                  <a href="https://calendar.app.google/MP6asBV3dhxwN5a87" target="_blank" rel="noopener noreferrer">
+                    📅 Book a Free Call
+                  </a>
+                </li>
+                <li>
+                  <a href="https://instagram.com/harshustler" target="_blank" rel="noopener noreferrer">
+                    📸 @harshustler
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div className="offer-footer-bottom">
+            <span>© 2026 eadsscales. All rights reserved.</span>
+            <span>Built by <a href="/" style={{ color: "#ff6b35", textDecoration: "none" }}>Harsh Srivastava</a></span>
+          </div>
+
+        </div>
+      </footer>
+
     </div>
   );
 }
