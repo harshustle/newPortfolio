@@ -60,6 +60,41 @@ const AIProductShoot = () => {
            </div>
         </div>
 
+        {/* Real Shoot Section */}
+        <div style={{ maxWidth: '900px', margin: '0 auto 2rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1rem', color: '#aaa' }}>On-Location</h2>
+          <h3 style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, marginBottom: '1rem' }}>
+            REAL <span className="serif-italic highlight-purple">SHOOTS.</span>
+          </h3>
+          <p style={{ color: '#aaa', fontSize: '1.1rem', maxWidth: '520px', margin: '0 auto 3rem', lineHeight: 1.6 }}>
+            Premium on-location videography that captures your property's true essence — cinematic, compelling, and conversion-ready.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
+            {[
+              { title: 'INTERIOR SHOWCASE', cat: 'REAL SHOOT', publicId: 'prakhar_properties_1778305436_3892698647800481401_73535257018_ybkmvq' },
+              { title: 'CINEMATIC WALKTHROUGH', cat: 'REAL SHOOT', publicId: 'prakhar_properties_1778047823_3890849699595157209_73535257018_yo65rr' },
+            ].map((v, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -10 }}
+                style={{ position: 'relative', paddingTop: '177.78%', borderRadius: '24px', overflow: 'hidden', background: '#111', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}
+              >
+                <iframe
+                  src={`https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=${v.publicId}&player[showLogo]=false&player[controls]=true`}
+                  title={v.title}
+                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.5rem', background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)', pointerEvents: 'none', zIndex: 2 }}>
+                  <p style={{ fontSize: '0.6rem', color: '#c084fc', opacity: 0.9, textTransform: 'uppercase', fontWeight: 800 }}>{v.cat}</p>
+                  <h4 style={{ color: '#fff', fontSize: '1.1rem', marginTop: '0.2rem', fontWeight: 700 }}>{v.title}</h4>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
           {/* Pricing Section */}
           <div id="pricing" style={{ marginTop: '8rem', marginBottom: '6rem', textAlign: 'left', background: '#f8f7f5', color: '#111', padding: '3.5rem 1.5rem', borderRadius: '28px', maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
             <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '3rem', textAlign: 'center' }}>Transparent <span className="serif-italic highlight-purple">Pricing.</span></h2>
