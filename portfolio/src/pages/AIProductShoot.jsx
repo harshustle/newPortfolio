@@ -71,6 +71,8 @@ const AIProductShoot = () => {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
             {[
+              { title: 'PREMIUM REAL SHOOT 1', cat: 'REAL SHOOT', publicId: '7_lpgoxu' },
+              { title: 'PREMIUM REAL SHOOT 2', cat: 'REAL SHOOT', publicId: '8_l0wsbr' },
               { title: 'INTERIOR SHOWCASE', cat: 'REAL SHOOT', publicId: 'prakhar_properties_1778305436_3892698647800481401_73535257018_ybkmvq' },
               { title: 'CINEMATIC WALKTHROUGH', cat: 'REAL SHOOT', publicId: 'prakhar_properties_1778047823_3890849699595157209_73535257018_yo65rr' },
             ].map((v, idx) => (

@@ -25,6 +25,8 @@ const stack = [
     title: "Real Shoot Ads",
     desc: "Premium cinematic property videos designed to stop scrolling instantly.",
     videos: [
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=7_lpgoxu",
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=8_l0wsbr",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=prakhar_properties_1778384102_3893172810243885227_73535257018_zi9osj",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=prakhar_properties_1778305436_3892698647800481401_73535257018_ybkmvq",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=prakhar_properties_1778047823_3890849699595157209_73535257018_yo65rr",
@@ -37,6 +39,8 @@ const stack = [
     title: "AI UGC Videos",
     desc: "Authentic AI-generated ads optimized specifically for Meta and YouTube campaigns.",
     videos: [
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Ai_ugc_10_ygvpdh",
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=ai_ugc_9_ovpev5",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=0404_itrkrs",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Edited_wlnmjv",
     ],
@@ -75,9 +79,9 @@ const stack = [
 
 const funnelStages = [
   { icon: "📢", label: "META & GOOGLE ADS", stat: "10,000 Impressions", color: "#ff6b35", width: "100%" },
-  { icon: "🏠", label: "LANDING PAGE",       stat: "1,200 Visitors",    color: "#e55625", width: "80%"  },
-  { icon: "📋", label: "LEAD FORM",           stat: "240 Inquiries",     color: "#c9471d", width: "58%"  },
-  { icon: "✅", label: "QUALIFIED BUYER",     stat: "90 Hot Leads",      color: "#14b86a", width: "36%"  },
+  { icon: "🏠", label: "LANDING PAGE", stat: "1,200 Visitors", color: "#e55625", width: "80%" },
+  { icon: "📋", label: "LEAD FORM", stat: "240 Inquiries", color: "#c9471d", width: "58%" },
+  { icon: "✅", label: "QUALIFIED BUYER", stat: "90 Hot Leads", color: "#14b86a", width: "36%" },
 ];
 
 function FunnelDiagram() {
@@ -100,13 +104,13 @@ function FunnelDiagram() {
 
 function WhatsAppMock() {
   const messages = [
-    { from: "bot",  text: "🏠 Hi! Thank you for your interest in Shree Geeta Kunj. Are you looking to buy or invest?", time: "10:02 AM" },
+    { from: "bot", text: "🏠 Hi! Thank you for your interest in Shree Geeta Kunj. Are you looking to buy or invest?", time: "10:02 AM" },
     { from: "lead", text: "Buy. 2BHK or 3BHK.", time: "10:03 AM" },
-    { from: "bot",  text: "Great! What's your budget range? (e.g. 50L–80L)", time: "10:03 AM" },
+    { from: "bot", text: "Great! What's your budget range? (e.g. 50L–80L)", time: "10:03 AM" },
     { from: "lead", text: "Around 70–90 lakhs.", time: "10:04 AM" },
-    { from: "bot",  text: "✅ Perfect match! We have a 3BHK at ₹82L with ready possession. Can I schedule a site visit for you?", time: "10:04 AM" },
+    { from: "bot", text: "✅ Perfect match! We have a 3BHK at ₹82L with ready possession. Can I schedule a site visit for you?", time: "10:04 AM" },
     { from: "lead", text: "Yes, this Saturday works.", time: "10:05 AM" },
-    { from: "bot",  text: "📅 Booked! Our team will call you by Friday to confirm. See you Saturday! 🙌", time: "10:05 AM" },
+    { from: "bot", text: "📅 Booked! Our team will call you by Friday to confirm. See you Saturday! 🙌", time: "10:05 AM" },
   ];
   return (
     <div className="wa-mock">
@@ -132,13 +136,13 @@ function WhatsAppMock() {
 
 function AIChatbotMock() {
   const msgs = [
-    { from: "bot",  text: "👋 Welcome to eadsscales Properties! Looking to buy, rent, or invest?" },
+    { from: "bot", text: "👋 Welcome to eadsscales Properties! Looking to buy, rent, or invest?" },
     { from: "user", text: "Looking to buy a flat in Lucknow." },
-    { from: "bot",  text: "Great choice! What's your preferred area — Gomti Nagar, Hazratganj, or Shaheed Path?" },
+    { from: "bot", text: "Great choice! What's your preferred area — Gomti Nagar, Hazratganj, or Shaheed Path?" },
     { from: "user", text: "Shaheed Path." },
-    { from: "bot",  text: "🏠 We have 3 ready-possession projects there. Budget under ₹1Cr?" },
+    { from: "bot", text: "🏠 We have 3 ready-possession projects there. Budget under ₹1Cr?" },
     { from: "user", text: "Yes, around 80–90L." },
-    { from: "bot",  text: "✅ Perfect! I'll connect you with our property expert. Can I get your WhatsApp number?" },
+    { from: "bot", text: "✅ Perfect! I'll connect you with our property expert. Can I get your WhatsApp number?" },
   ];
   return (
     <div className="chatbot-mock">
@@ -166,9 +170,9 @@ function AIChatbotMock() {
 function PaidAdsMock() {
   const metrics = [
     { label: "Impressions", value: "2,40,000", change: "+38%", up: true },
-    { label: "Clicks",       value: "8,420",    change: "+52%", up: true },
-    { label: "CPL",          value: "₹186",     change: "-41%", up: false },
-    { label: "ROAS",         value: "4.8x",     change: "+60%", up: true },
+    { label: "Clicks", value: "8,420", change: "+52%", up: true },
+    { label: "CPL", value: "₹186", change: "-41%", up: false },
+    { label: "ROAS", value: "4.8x", change: "+60%", up: true },
   ];
   const bars = [
     { day: "Mon", h: 40 },
@@ -218,12 +222,12 @@ function PaidAdsMock() {
 }
 
 const calcServices = [
-  { id: "shoot",   label: "Cinematic Real Estate Ad Shoot", unitPrice: 5000,  unit: "shoot", hasQty: true,  max: 10, defaultQty: 1 },
-  { id: "ugc",     label: "AI UGC Ad Videos",               unitPrice: 2500,  unit: "video", hasQty: true,  max: 10, defaultQty: 1 },
-  { id: "funnel",  label: "High-Converting Funnel",          unitPrice: 5000,  unit: null,    hasQty: false },
-  { id: "chatbot", label: "AI Real Estate Chatbot",          unitPrice: 6000,  unit: null,    hasQty: false },
-  { id: "wa",      label: "WhatsApp Automation",             unitPrice: 10000, unit: null,    hasQty: false },
-  { id: "meta",    label: "Meta Ads Management",             unitPrice: 15000, unit: "/mo",   hasQty: false },
+  { id: "shoot", label: "Cinematic Real Estate Ad Shoot", unitPrice: 5000, unit: "shoot", hasQty: true, max: 10, defaultQty: 1 },
+  { id: "ugc", label: "AI UGC Ad Videos", unitPrice: 2500, unit: "video", hasQty: true, max: 10, defaultQty: 1 },
+  { id: "funnel", label: "High-Converting Funnel", unitPrice: 5000, unit: null, hasQty: false },
+  { id: "chatbot", label: "AI Real Estate Chatbot", unitPrice: 6000, unit: null, hasQty: false },
+  { id: "wa", label: "WhatsApp Automation", unitPrice: 10000, unit: null, hasQty: false },
+  { id: "meta", label: "Meta Ads Management", unitPrice: 15000, unit: "/mo", hasQty: false },
 ];
 
 const CALC_SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
@@ -269,21 +273,21 @@ function PricingCalculator() {
       .filter(s => selected[s.id])
       .map(s => `${s.label}${s.hasQty ? ` ×${qty[s.id] || 1}` : ""}`);
     const payload = new URLSearchParams({
-      name:    name,
-      phone:   phone,
+      name: name,
+      phone: phone,
       service: selectedList.join(", "),
-      budget:  fmt(discounted),
+      budget: fmt(discounted),
       message: `Offer Page Calculator — ${count} service(s) selected`,
-      source:  "Offer Page Calculator",
+      source: "Offer Page Calculator",
     });
     try {
       await fetch(CALC_SHEET_URL, {
-        method:  "POST",
-        mode:    "no-cors",
+        method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body:    payload.toString(),
+        body: payload.toString(),
       });
-    } catch (_) {}
+    } catch (_) { }
     setSubmitting(false);
     setSubmitted(true);
   };
@@ -434,6 +438,48 @@ export default function OfferPage() {
     };
   }, []);
 
+  useEffect(() => {
+    // Cal inline embed initialization
+    (function (C, A, L) { 
+      let p = function (a, ar) { a.q.push(ar); }; 
+      let d = C.document; 
+      C.Cal = C.Cal || function () { 
+        let cal = C.Cal; 
+        let ar = arguments; 
+        if (!cal.loaded) { 
+          cal.ns = {}; 
+          cal.q = cal.q || []; 
+          const s = d.createElement("script");
+          s.src = A;
+          d.head.appendChild(s); 
+          cal.loaded = true; 
+        } 
+        if (ar[0] === L) { 
+          const api = function () { p(api, arguments); }; 
+          const namespace = ar[1]; 
+          api.q = api.q || []; 
+          if(typeof namespace === "string"){
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar); 
+          return;
+        } 
+        p(cal, ar); 
+      }; 
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    window.Cal("init", "30min", {origin:"https://app.cal.com"});
+
+    window.Cal.ns["30min"]("inline", {
+      elementOrSelector:"#my-cal-inline-30min",
+      config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"dark"},
+      calLink: "harshustle/30min",
+    });
+
+    window.Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","theme":"dark"});
+  }, []);
+
   const toggleFaq = (i) => {
     setActiveIndex(activeIndex === i ? null : i);
   };
@@ -497,8 +543,8 @@ export default function OfferPage() {
             />
             <div className="vsl-play-btn">
               <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-                <circle cx="34" cy="34" r="34" fill="rgba(255,107,53,0.92)"/>
-                <polygon points="27,20 54,34 27,48" fill="white"/>
+                <circle cx="34" cy="34" r="34" fill="rgba(255,107,53,0.92)" />
+                <polygon points="27,20 54,34 27,48" fill="white" />
               </svg>
             </div>
           </div>
@@ -743,19 +789,12 @@ export default function OfferPage() {
 
           {/* CALENDAR EMBED */}
           <div className="calendar-embed-wrap">
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3H-j3jh-gg_corpJF9ZbqXk0g6yeARI_EpydxQZJWNaPY4geJuV2preRDvmmeuRt0eRXwgfCl8?gv=true"
-              width="100%"
-              height="600"
-              frameBorder="0"
-              title="Book a Free Strategy Call"
-              style={{ border: 0 }}
-            />
+            <div style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "scroll" }} id="my-cal-inline-30min"></div>
           </div>
 
           <div className="cta-wrap">
             <a
-              href="https://calendar.app.google/MP6asBV3dhxwN5a87"
+              href="https://cal.com/harshustle/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-btn"
@@ -784,10 +823,10 @@ export default function OfferPage() {
               </p>
               <div className="offer-footer-socials">
                 <a href="https://instagram.com/harshustler" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" /></svg>
                 </a>
                 <a href="https://wa.me/917839661372" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
                 </a>
               </div>
             </div>
@@ -815,7 +854,7 @@ export default function OfferPage() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://calendar.app.google/MP6asBV3dhxwN5a87" target="_blank" rel="noopener noreferrer">
+                  <a href="https://cal.com/harshustle/30min" target="_blank" rel="noopener noreferrer">
                     📅 Book a Free Call
                   </a>
                 </li>

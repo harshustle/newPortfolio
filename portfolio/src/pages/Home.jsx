@@ -304,6 +304,8 @@ const Home = () => {
 
         <div className="video-grid" style={{ maxWidth: '1000px', margin: '0 auto 6rem' }}>
                 {[
+                   { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=7_lpgoxu&player[showLogo]=false" },
+                   { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=8_l0wsbr&player[showLogo]=false" },
                    { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=prakhar_properties_1778384102_3893172810243885227_73535257018_zi9osj" },
                    { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=prakhar_properties_1778305436_3892698647800481401_73535257018_ybkmvq" },
                    { videoEmbed: "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=prakhar_properties_1778047823_3890849699595157209_73535257018_yo65rr" },
@@ -384,6 +386,8 @@ const Home = () => {
            
            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
              {[
+               { title: "AI UGC — 1", cat: "AI UGC", publicId: "Ai_ugc_10_ygvpdh" },
+               { title: "AI UGC — 2", cat: "AI UGC", publicId: "ai_ugc_9_ovpev5" },
                { title: "AI AVATAR — REALTOR", cat: "AI UGC", publicId: "Edited_wlnmjv" },
                { title: "AI AVATAR — PROMO", cat: "AI UGC", publicId: "0404_itrkrs" },
              ].map((v, idx) => (
