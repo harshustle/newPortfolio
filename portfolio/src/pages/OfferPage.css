@@ -1762,3 +1762,146 @@
   }
 
 }
+
+/* MINI PRICING SECTION (Offer Page Specific) */
+.offer-page .mini-pricing-wrap{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  max-width:960px;
+  margin:0 auto;
+}
+
+.offer-page .mini-pricing-card{
+  background:#fff;
+  border:2px solid var(--line);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+.offer-page .mini-pricing-card.special{
+  border-color:var(--primary);
+  box-shadow:4px 4px 0 var(--primary);
+}
+
+.offer-page .mini-pricing-popular{
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--primary);
+  color:#fff;
+  padding:4px 10px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  border:2px solid #161616;
+}
+
+.offer-page .mini-pricing-title{
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:6px;
+  line-height:1.2;
+}
+
+.offer-page .mini-pricing-sub{
+  font-size:13px;
+  color:var(--soft);
+  margin-bottom:16px;
+  line-height:1.4;
+}
+
+.offer-page .mini-pricing-price{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:-1px;
+  line-height:1;
+  margin-bottom:4px;
+}
+
+.offer-page .mini-pricing-vol{
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:24px;
+}
+
+.offer-page .mini-pricing-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#161616;
+  color:#fff;
+  padding:12px;
+  font-size:13px;
+  font-weight:800;
+  border:2px solid #161616;
+  margin-bottom:20px;
+  transition:.2s;
+}
+
+.offer-page .mini-pricing-btn:hover{
+  background:var(--primary);
+  border-color:var(--primary);
+}
+
+.offer-page .mini-pricing-features{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:auto;
+}
+
+.offer-page .mini-pricing-features li{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:13px;
+  font-weight:600;
+  color:#333;
+}
+
+.offer-page .mini-pricing-check{
+  color:var(--green);
+  font-weight:900;
+}
+
+/* Region Toggle */
+.offer-page .region-toggle-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-bottom:40px;
+}
+
+.offer-page .region-toggle-label{
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+
+.offer-page .region-toggle-select{
+  padding:8px 16px;
+  font-size:14px;
+  font-weight:700;
+  font-family:inherit;
+  border:2px solid #161616;
+  background:#fff;
+  outline:none;
+  cursor:pointer;
+  border-radius:0;
+}
+
+@media(max-width:900px){
+  .offer-page .mini-pricing-wrap{
+    grid-template-columns:1fr;
+    max-width:400px;
+    gap:24px;
+  }
+}

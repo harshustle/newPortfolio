@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import PricingCard from '../components/PricingCard';
 
 const AIProductShoot = () => {
+  const [country, setCountry] = useState('India');
   const pageVariants = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
@@ -101,50 +102,63 @@ const AIProductShoot = () => {
           <div id="pricing" style={{ marginTop: '8rem', marginBottom: '6rem', textAlign: 'left', background: '#f8f7f5', color: '#111', padding: '3.5rem 1.5rem', borderRadius: '28px', maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
             <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '3rem', textAlign: 'center' }}>Transparent <span className="serif-italic highlight-purple">Pricing.</span></h2>
            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            <div style={{ marginBottom: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
+              <label style={{ fontSize: '1.2rem', fontWeight: 600 }}>Select Region:</label>
+              <select 
+                value={country} 
+                onChange={(e) => setCountry(e.target.value)}
+                style={{ padding: '0.8rem 1.5rem', fontSize: '1rem', borderRadius: '12px', border: '2px solid #ccc', outline: 'none', cursor: 'pointer', background: '#fff', color: '#000', fontWeight: '600' }}
+              >
+                <option value="India">India</option>
+                <option value="Global">Global (USA/UK/etc.)</option>
+              </select>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
              
-             <PricingCard 
-                title="Starter"
-                subtitle="Perfect for A/B Testing"
-                price="₹9,999"
-                volume="4 videos"
-                buttonText="GET STARTED"
-                features={[
-                  "Strategy & Planning",
-                  "Scriptwriting",
-                  "Comprehensive Editing",
-                  "Hook Variations"
-                ]}
-             />
+               <PricingCard 
+                   title="Real Shoot"
+                   subtitle="Premium on-location videography"
+                   price={country === 'India' ? "₹24,000" : "-"}
+                   disabled={country === 'Global'}
+                   volume="3 videos minimum"
+                   buttonText="GET STARTED"
+                   features={[
+                      "Strategy & Planning",
+                      "Scriptwriting",
+                      "On-Location Shoot",
+                      "Cinematic Editing"
+                   ]}
+               />
 
-             <PricingCard 
-                title="Growth"
-                subtitle="Scale with more variations"
-                price="₹14,999"
-                volume="8 videos"
-                buttonText="GET STARTED"
-                special={true}
-                features={[
-                  "Strategy & Planning",
-                  "Scriptwriting",
-                  "Comprehensive Editing",
-                  "Hook Variations"
-                ]}
-             />
+               <PricingCard 
+                   title="Real Estate UGC"
+                   subtitle="High-conversion AI/UGC content"
+                   price={country === 'India' ? "₹12,000" : "$150"}
+                   volume="3 videos minimum"
+                   buttonText="GET STARTED"
+                   special={true}
+                   features={[
+                      "Strategy & Planning",
+                      "Scriptwriting",
+                      "UGC / AI Generation",
+                      "Dynamic Editing"
+                   ]}
+               />
 
-             <PricingCard 
-                title="Pro Domination"
-                subtitle="Full content domination"
-                price="₹16,000"
-                volume="10 videos"
-                buttonText="GET STARTED"
-                features={[
-                  "Strategy & Planning",
-                  "Scriptwriting",
-                  "Comprehensive Editing",
-                  "Hook Variations"
-                ]}
-             />
+               <PricingCard 
+                   title="3 Minute Package"
+                   subtitle="Extended cinematic narrative"
+                   price={country === 'India' ? "₹18,000" : "$220"}
+                   volume="1 video (3 min)"
+                   buttonText="GET STARTED"
+                   features={[
+                      "Advanced Storyboarding",
+                      "Extended Shoot Time",
+                      "Premium Editing & Grade",
+                      "Full Narrative Arc"
+                   ]}
+               />
            </div>
         </div>
 

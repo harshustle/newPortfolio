@@ -7,9 +7,15 @@ const CheckIcon = () => (
   </svg>
 );
 
-const PricingCard = ({ title, subtitle, price, volume, features, special, buttonText = "GET STARTED" }) => {
+const PricingCard = ({ title, subtitle, price, volume, features, special, disabled, buttonText = "GET STARTED" }) => {
   return (
-    <div className={`pricing-card-wrapper ${special ? 'special' : 'normal'}`}>
+    <div 
+      className={`pricing-card-wrapper ${special ? 'special' : 'normal'}`}
+      style={{
+        ...(special ? { padding: '3.5rem 2rem 2.5rem 2rem' } : {}),
+        ...(disabled ? { opacity: 0.5, pointerEvents: 'none' } : {})
+      }}
+    >
       {special && (
          <div style={{
            position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)',
@@ -31,14 +37,25 @@ const PricingCard = ({ title, subtitle, price, volume, features, special, button
         {volume}
       </p>
 
-      <a href="#contact" className="btn" style={{
-        width: '100%', padding: '1.1rem', background: '#000', color: '#fff', 
-        borderRadius: '8px', fontWeight: 800, fontSize: '0.95rem', letterSpacing: '0.05em',
-        textTransform: 'uppercase', marginBottom: '2.5rem',
-        display: 'flex', justifyContent: 'center', transition: 'background 0.3s'
-      }} onMouseEnter={e => e.currentTarget.style.background = '#333'} onMouseLeave={e => e.currentTarget.style.background = '#000'}>
-        {buttonText}
-      </a>
+      {disabled ? (
+        <div style={{
+          width: '100%', padding: '1.1rem', background: '#ccc', color: '#666', 
+          borderRadius: '8px', fontWeight: 800, fontSize: '0.95rem', letterSpacing: '0.05em',
+          textTransform: 'uppercase', marginBottom: '2.5rem',
+          display: 'flex', justifyContent: 'center'
+        }}>
+          NOT AVAILABLE
+        </div>
+      ) : (
+        <a href="#contact" className="btn" style={{
+          width: '100%', padding: '1.1rem', background: '#000', color: '#fff', 
+          borderRadius: '8px', fontWeight: 800, fontSize: '0.95rem', letterSpacing: '0.05em',
+          textTransform: 'uppercase', marginBottom: '2.5rem',
+          display: 'flex', justifyContent: 'center', transition: 'background 0.3s'
+        }} onMouseEnter={e => e.currentTarget.style.background = '#333'} onMouseLeave={e => e.currentTarget.style.background = '#000'}>
+          {buttonText}
+        </a>
+      )}
 
       <p style={{ margin: '0 0 1rem', fontSize: '0.95rem', fontWeight: 600, color: '#111' }}>Includes:</p>
       

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./OfferPage.css";
+import PricingCard from "../components/PricingCard";
 
 const faqs = [
   {
@@ -39,10 +40,10 @@ const stack = [
     title: "AI UGC Videos",
     desc: "Authentic AI-generated ads optimized specifically for Meta and YouTube campaigns.",
     videos: [
+      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Edited_wlnmjv",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Ai_ugc_10_ygvpdh",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=ai_ugc_9_ovpev5",
       "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=0404_itrkrs",
-      "https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Edited_wlnmjv",
     ],
     cta: "BOOK CALL",
     reverse: true,
@@ -222,8 +223,8 @@ function PaidAdsMock() {
 }
 
 const calcServices = [
-  { id: "shoot", label: "Cinematic Real Estate Ad Shoot", unitPrice: 5000, unit: "shoot", hasQty: true, max: 10, defaultQty: 1 },
-  { id: "ugc", label: "AI UGC Ad Videos", unitPrice: 2500, unit: "video", hasQty: true, max: 10, defaultQty: 1 },
+  { id: "shoot", label: "Cinematic Real Estate Ad Shoot", unitPrice: 8000, unit: "shoot", hasQty: true, max: 20, min: 3, defaultQty: 3 },
+  { id: "ugc", label: "AI UGC Ad Videos", unitPrice: 4000, unit: "video", hasQty: true, max: 20, min: 3, defaultQty: 3 },
   { id: "funnel", label: "High-Converting Funnel", unitPrice: 5000, unit: null, hasQty: false },
   { id: "chatbot", label: "AI Real Estate Chatbot", unitPrice: 6000, unit: null, hasQty: false },
   { id: "wa", label: "WhatsApp Automation", unitPrice: 10000, unit: null, hasQty: false },
@@ -234,7 +235,7 @@ const CALC_SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLR
 
 function PricingCalculator() {
   const [selected, setSelected] = useState({});
-  const [qty, setQty] = useState({ shoot: 1, ugc: 1 });
+  const [qty, setQty] = useState({ shoot: 3, ugc: 3 });
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -247,7 +248,9 @@ function PricingCalculator() {
   const changeQty = (id, delta) => {
     setQty(prev => {
       const svc = calcServices.find(s => s.id === id);
-      const next = Math.min(svc.max, Math.max(1, (prev[id] || 1) + delta));
+      const minQty = svc.min || 1;
+      const currentQty = prev[id] || svc.defaultQty || 1;
+      const next = Math.min(svc.max, Math.max(minQty, currentQty + delta));
       return { ...prev, [id]: next };
     });
   };
@@ -424,6 +427,7 @@ export default function OfferPage() {
 
   const [activeIndex, setActiveIndex] = useState(null);
   const [showVideo, setShowVideo] = useState(false);
+  const [country, setCountry] = useState('India');
 
 
   useEffect(() => {
@@ -742,6 +746,80 @@ export default function OfferPage() {
           </div>
         </div>
       </section>
+
+      {/* FIXED PRICING PACKAGES */}
+      <section className="section" id="pricing" style={{ background: '#f7f4ee', borderTop: 'none', borderBottom: 'none' }}>
+        <div className="container">
+          
+          <div className="section-title" style={{ marginBottom: '40px' }}>
+            <h2>Transparent Pricing</h2>
+          </div>
+
+          <div className="region-toggle-wrap">
+            <span className="region-toggle-label">Select Region:</span>
+            <select 
+              value={country} 
+              onChange={(e) => setCountry(e.target.value)}
+              className="region-toggle-select"
+            >
+              <option value="India">India</option>
+              <option value="Global">Global (USA/UK)</option>
+            </select>
+          </div>
+
+          <div className="mini-pricing-wrap">
+            
+            <div className="mini-pricing-card" style={country === 'Global' ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
+              <div className="mini-pricing-title">Real Shoot</div>
+              <div className="mini-pricing-sub">Premium on-location videography</div>
+              <div className="mini-pricing-price">{country === 'India' ? "₹24,000" : "-"}</div>
+              <div className="mini-pricing-vol">3 videos minimum</div>
+              {country === 'Global' ? (
+                <div className="mini-pricing-btn" style={{ background: '#ccc', color: '#666', borderColor: '#ccc' }}>NOT AVAILABLE</div>
+              ) : (
+                <a href="#cta" className="mini-pricing-btn">GET STARTED</a>
+              )}
+              <ul className="mini-pricing-features">
+                <li><span className="mini-pricing-check">✓</span> Strategy &amp; Planning</li>
+                <li><span className="mini-pricing-check">✓</span> Scriptwriting</li>
+                <li><span className="mini-pricing-check">✓</span> On-Location Shoot</li>
+                <li><span className="mini-pricing-check">✓</span> Cinematic Editing</li>
+              </ul>
+            </div>
+
+            <div className="mini-pricing-card special">
+              <div className="mini-pricing-popular">MOST POPULAR</div>
+              <div className="mini-pricing-title">Real Estate UGC</div>
+              <div className="mini-pricing-sub">High-conversion AI/UGC content</div>
+              <div className="mini-pricing-price">{country === 'India' ? "₹12,000" : "$150"}</div>
+              <div className="mini-pricing-vol">3 videos minimum</div>
+              <a href="#cta" className="mini-pricing-btn">GET STARTED</a>
+              <ul className="mini-pricing-features">
+                <li><span className="mini-pricing-check">✓</span> Strategy &amp; Planning</li>
+                <li><span className="mini-pricing-check">✓</span> Scriptwriting</li>
+                <li><span className="mini-pricing-check">✓</span> UGC / AI Generation</li>
+                <li><span className="mini-pricing-check">✓</span> Dynamic Editing</li>
+              </ul>
+            </div>
+
+            <div className="mini-pricing-card">
+              <div className="mini-pricing-title">3 Minute Package</div>
+              <div className="mini-pricing-sub">Extended cinematic narrative</div>
+              <div className="mini-pricing-price">{country === 'India' ? "₹18,000" : "$220"}</div>
+              <div className="mini-pricing-vol">1 video (3 min)</div>
+              <a href="#cta" className="mini-pricing-btn">GET STARTED</a>
+              <ul className="mini-pricing-features">
+                <li><span className="mini-pricing-check">✓</span> Advanced Storyboarding</li>
+                <li><span className="mini-pricing-check">✓</span> Extended Shoot Time</li>
+                <li><span className="mini-pricing-check">✓</span> Premium Editing &amp; Grade</li>
+                <li><span className="mini-pricing-check">✓</span> Full Narrative Arc</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* PRICING CALCULATOR */}
       <PricingCalculator />
 
