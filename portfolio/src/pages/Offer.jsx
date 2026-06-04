@@ -223,7 +223,7 @@ function PaidAdsMock() {
 }
 
 const calcServices = [
-  { id: "shoot", label: "Cinematic Real Estate Ad Shoot", unitPrice: 8000, unit: "shoot", hasQty: true, max: 20, min: 3, defaultQty: 3 },
+  { id: "shoot", label: "Cinematic Real Estate Ad Shoot", unitPrice: 5000, unit: "shoot", hasQty: true, max: 20, min: 3, defaultQty: 3 },
   { id: "ugc", label: "AI UGC Ad Videos", unitPrice: 4000, unit: "video", hasQty: true, max: 20, min: 3, defaultQty: 3 },
   { id: "funnel", label: "High-Converting Funnel", unitPrice: 5000, unit: null, hasQty: false },
   { id: "chatbot", label: "AI Real Estate Chatbot", unitPrice: 6000, unit: null, hasQty: false },
@@ -772,7 +772,7 @@ export default function OfferPage() {
             <div className="mini-pricing-card" style={country === 'Global' ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
               <div className="mini-pricing-title">Real Shoot</div>
               <div className="mini-pricing-sub">Premium on-location videography</div>
-              <div className="mini-pricing-price">{country === 'India' ? "₹24,000" : "-"}</div>
+              <div className="mini-pricing-price">{country === 'India' ? "₹15,000" : "-"}</div>
               <div className="mini-pricing-vol">3 videos minimum</div>
               {country === 'Global' ? (
                 <div className="mini-pricing-btn" style={{ background: '#ccc', color: '#666', borderColor: '#ccc' }}>NOT AVAILABLE</div>
