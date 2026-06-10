@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 
@@ -38,7 +38,7 @@ function AnimatedRoutes() {
         <Route path="/harsh" element={<Harsh />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/ai-product-shoot" element={<AIProductShoot />} />
-        <Route path="/offer" element={<Offer />} />
+        <Route path="/offer" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   );
