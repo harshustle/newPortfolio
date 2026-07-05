@@ -1,17 +1,253 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
-import { Play, ArrowRight, MonitorPlay, Bot, Video, Globe, Instagram, Facebook, Twitter, Ghost, Workflow, MessageSquare } from 'lucide-react';
+import { Play, ArrowRight, MonitorPlay, Bot, Video, Globe, Instagram, Facebook, Twitter, Ghost, Workflow, MessageSquare, Heart, MessageCircle, Send, Bookmark, Music } from 'lucide-react';
 import _CountUp from 'react-countup';
 import VideoMarquee from '../components/VideoMarquee';
 import PricingCard from '../components/PricingCard';
 
 const CountUp = _CountUp.default || _CountUp;
 
+const InstagramReelCard = ({ v, idx }) => {
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(parseInt(v.likes) || 1200);
+
+  const handleLike = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (liked) {
+      setLikeCount(prev => prev - 1);
+    } else {
+      setLikeCount(prev => prev + 1);
+    }
+    setLiked(!liked);
+  };
+
+  const formatLikes = (num) => {
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'K';
+    }
+    return num;
+  };
+
+  return (
+    <motion.div
+      key={idx}
+      whileHover={{ y: -10 }}
+      style={{ position: 'relative', paddingTop: '177.78%', borderRadius: '24px', overflow: 'hidden', background: '#111', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}
+    >
+      <iframe
+        src={v.reelId 
+          ? `https://www.instagram.com/reel/${v.reelId}/embed/` 
+          : `https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=${v.publicId}&player[showLogo]=false&player[controls]=false`
+        }
+        title={v.title}
+        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        allowFullScreen
+        scrolling="no"
+        style={v.reelId ? {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          transform: 'scale(1.45)',
+          transformOrigin: 'center center',
+          border: 'none',
+          background: '#000',
+        } : {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          border: 'none',
+        }}
+      />
+      
+      {/* Instagram Reels UI Overlay */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 3,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: '1.2rem',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.3) 100%)'
+      }}>
+        {/* Top: Header */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <span style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            color: '#fff',
+            fontSize: '0.65rem',
+            fontWeight: 700,
+            padding: '0.25rem 0.6rem',
+            borderRadius: '6px',
+            backdropFilter: 'blur(4px)',
+            letterSpacing: '0.05em',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.25rem'
+          }}>
+            <Instagram size={10} color="#fff" /> Reels
+          </span>
+        </div>
+
+        {/* Bottom / Right Section */}
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', width: '100%', marginTop: 'auto' }}>
+          {/* Left Info */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: '75%', color: '#fff', textAlign: 'left' }}>
+            {/* User */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <img 
+                src="https://res.cloudinary.com/dobulag2p/image/upload/v1774819007/HarshPng_fynfd0.png" 
+                alt="harshustler" 
+                style={{ width: '26px', height: '26px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #fff' }} 
+              />
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>harshustler</span>
+              <span style={{
+                fontSize: '0.6rem',
+                fontWeight: 700,
+                border: '1px solid #fff',
+                borderRadius: '4px',
+                padding: '0.1rem 0.3rem',
+                lineHeight: 1,
+                cursor: 'pointer',
+                pointerEvents: 'auto',
+                textShadow: '0 1px 4px rgba(0,0,0,0.6)'
+              }}>Follow</span>
+            </div>
+            
+            {/* Title / Caption */}
+            <p style={{ fontSize: '0.72rem', lineHeight: 1.3, fontWeight: 500, textShadow: '0 1px 4px rgba(0,0,0,0.6)', margin: 0 }}>
+              {v.title}
+            </p>
+            
+            {/* Audio */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', opacity: 0.85 }}>
+              <Music size={9} color="#fff" />
+              <span style={{ fontSize: '0.6rem', fontWeight: 600, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>Original Audio - @harshustler</span>
+            </div>
+          </div>
+
+          {/* Right Actions */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.8rem',
+            pointerEvents: 'auto',
+            color: '#fff',
+            marginBottom: '0.2rem'
+          }}>
+            {/* Heart / Like */}
+            <button 
+              onClick={handleLike}
+              style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem', padding: 0, outline: 'none' }}
+            >
+              <motion.div 
+                whileTap={{ scale: 0.8 }}
+                style={{
+                  background: liked ? 'rgba(237, 28, 36, 0.9)' : 'rgba(0, 0, 0, 0.4)',
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backdropFilter: 'blur(4px)',
+                  transition: 'background 0.3s'
+                }}
+              >
+                <Heart size={16} fill={liked ? '#fff' : 'none'} color={liked ? '#fff' : '#fff'} />
+              </motion.div>
+              <span style={{ fontSize: '0.62rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>{formatLikes(likeCount)}</span>
+            </button>
+
+            {/* Comment */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem' }}>
+              <div style={{
+                background: 'rgba(0, 0, 0, 0.4)',
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(4px)',
+              }}>
+                <MessageSquare size={16} />
+              </div>
+              <span style={{ fontSize: '0.62rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>{v.comments}</span>
+            </div>
+
+            {/* Send / Share */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem' }}>
+              <div style={{
+                background: 'rgba(0, 0, 0, 0.4)',
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(4px)',
+              }}>
+                <Send size={14} style={{ transform: 'rotate(-20deg) translate(1px, -1px)' }} />
+              </div>
+              <span style={{ fontSize: '0.62rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>Share</span>
+            </div>
+
+            {/* Bookmark */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem' }}>
+              <div style={{
+                background: 'rgba(0, 0, 0, 0.4)',
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backdropFilter: 'blur(4px)',
+              }}>
+                <Bookmark size={16} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [country, setCountry] = useState('India');
+  const [isMuted, setIsMuted] = useState(true);
+  const [reelsCount, setReelsCount] = useState(12);
+  const [avgViews, setAvgViews] = useState(8000);
+  const [tickerIndex, setTickerIndex] = useState(0);
+
+  const tickerItems = [
+     "🔥 28 qualified leads routed in 48 hours for Real Estate partner",
+     "📈 Property Reel crossed 1.2M organic views in 14 days",
+     "⚡ Outbound funnel automated 100% of lead routing",
+     "💰 $14.5K in new pipeline value generated last week"
+  ];
+
+  useEffect(() => {
+     const timer = setInterval(() => {
+        setTickerIndex(prev => (prev + 1) % tickerItems.length);
+     }, 3500);
+     return () => clearInterval(timer);
+  }, []);
 
   const armControls = useAnimation();
   const textControls = useAnimation();
@@ -115,19 +351,38 @@ const Home = () => {
   return (
     <motion.div 
       className="page-container"
-      initial="initial" animate="animate" exit="exit" variants={pageVariants}
+    initial="initial" animate="animate" exit="exit" variants={pageVariants}
       style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}
     >
       {/* Editorial Hero Section */}
       <section className="hero-editorial container">
         <div className="editorial-left">
-           <div className="editorial-social-strip">
-              <a href="https://instagram.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram"><Instagram size={18} /></a>
-              <a href="https://facebook.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook"><Facebook size={18} /></a>
-              <a href="https://twitter.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Twitter"><Twitter size={18} /></a>
-              <a href="https://snapchat.com/add/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Snapchat"><Ghost size={18} /></a>
-           </div>
-           <h1 className="editorial-headline" style={{ position: 'relative', cursor: 'default' }} onMouseEnter={runSequence}>
+            <div className="editorial-social-strip" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+               <div style={{ display: 'flex', gap: '1.5rem' }}>
+                  <a href="https://instagram.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram"><Instagram size={18} /></a>
+                  <a href="https://facebook.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Facebook"><Facebook size={18} /></a>
+                  <a href="https://twitter.com/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Twitter"><Twitter size={18} /></a>
+                  <a href="https://snapchat.com/add/harshustle" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Snapchat"><Ghost size={18} /></a>
+               </div>
+               
+               {/* Prominent Floating Alert Ticker Banner */}
+               <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  background: 'rgba(123, 77, 255, 0.08)', 
+                  border: '1px solid rgba(123, 77, 255, 0.15)',
+                  padding: '0.4rem 1rem', 
+                  borderRadius: '99px',
+                  boxShadow: '0 4px 15px rgba(123, 77, 255, 0.05)',
+               }}>
+                  <div className="status-dot animate-pulse" style={{ width: '6px', height: '6px', background: '#00b354', borderRadius: '50%', boxShadow: '0 0 8px #00b354', flexShrink: 0 }}></div>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#7b4dff', textTransform: 'uppercase', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
+                     {tickerItems[tickerIndex]}
+                  </span>
+               </div>
+            </div>
+            <h1 className="editorial-headline" style={{ position: 'relative', cursor: 'default', marginTop: '1rem' }} onMouseEnter={runSequence}>
               <motion.span 
                  animate={textControls}
                  style={{ display: 'inline-block', position: 'relative' }}
@@ -197,41 +452,285 @@ const Home = () => {
                {' '}form <br />
                done <span className="serif-italic highlight-purple">right.</span>
            </h1>
-           <p className="editorial-subtext" style={{ fontSize: '1.15rem', lineHeight: 1.6, marginTop: '1.5rem' }}>
+           
+           <p className="editorial-subtext" style={{ fontSize: '1.02rem', lineHeight: 1.5, marginTop: '1rem' }}>
               Stop leaving money on the table. We build <strong style={{ color: '#fff' }}>high-converting video assets</strong> and automated sales funnels that turn views into qualified appointments.
            </p>
-           <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-              <a href="#contact" className="btn btn-primary pill-cta" style={{ padding: '1.2rem 2.5rem', fontSize: '1rem', fontWeight: 800, background: '#c084fc', color: '#000', border: 'none', boxShadow: '0 0 40px rgba(192, 132, 252, 0.4)', letterSpacing: '0.05em' }}>
-                 BOOK A STRATEGY CALL <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-              </a>
-              <a href="#pricing" className="btn btn-primary pill-cta" style={{ padding: '1.1rem 2rem', fontSize: '0.9rem', fontWeight: 800, background: 'transparent', color: '#000', border: '1.5px solid #000', textDecoration: 'none', letterSpacing: '0.05em', transition: 'all 0.3s' }} onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000'; }}>
-                 VIEW PRICING
-              </a>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                 <div className="status-dot" style={{ position: 'static', width: '8px', height: '8px' }}></div>
-                 <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.8 }}>Taking 3 new clients</span>
+           
+           {/* ── INTERACTIVE REACH & LEAD ESTIMATOR ── */}
+           <div style={{
+              background: 'rgba(255, 255, 255, 0.45)',
+              border: '1.5px solid rgba(255, 255, 255, 0.6)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '20px',
+              padding: '1.2rem',
+              marginTop: '1.5rem',
+              boxShadow: '0 8px 32px rgba(123, 77, 255, 0.04)',
+              maxWidth: '480px',
+              textAlign: 'left'
+           }}>
+              <p style={{ fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.5, marginBottom: '1rem' }}>
+                 📈 Revenue & Attention Estimator
+              </p>
+              
+              {/* Slider 1: Reels count */}
+              <div style={{ marginBottom: '1.2rem' }}>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.85rem', fontWeight: 700 }}>
+                    <span>Reels Published Per Month</span>
+                    <span style={{ color: '#7b4dff' }}>{reelsCount} videos</span>
+                 </div>
+                 <input 
+                    type="range" min="4" max="30" value={reelsCount} 
+                    onChange={e => setReelsCount(parseInt(e.target.value))}
+                    style={{ width: '100%', accentColor: '#7b4dff', cursor: 'pointer' }}
+                 />
+              </div>
+
+              {/* Slider 2: Average Views */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.85rem', fontWeight: 700 }}>
+                    <span>Target Average Views Per Reel</span>
+                    <span style={{ color: '#7b4dff' }}>{(avgViews / 1000).toFixed(0)}K views</span>
+                 </div>
+                 <input 
+                    type="range" min="2000" max="50000" step="1000" value={avgViews} 
+                    onChange={e => setAvgViews(parseInt(e.target.value))}
+                    style={{ width: '100%', accentColor: '#7b4dff', cursor: 'pointer' }}
+                 />
+              </div>
+
+              {/* Estimator outputs row */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '1.2rem' }}>
+                 <div>
+                    <p style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', opacity: 0.5, margin: 0 }}>Total Reach</p>
+                    <p style={{ fontSize: '1.3rem', fontWeight: 950, color: '#000', margin: '0.2rem 0 0 0' }}>
+                       {((reelsCount * avgViews) / 1000).toFixed(0)}K
+                    </p>
+                 </div>
+                 <div>
+                    <p style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', opacity: 0.5, margin: 0 }}>Est. Leads (0.6%)</p>
+                    <p style={{ fontSize: '1.3rem', fontWeight: 950, color: '#00aa55', margin: '0.2rem 0 0 0' }}>
+                       {Math.round(reelsCount * avgViews * 0.006)}
+                    </p>
+                 </div>
+                 <div>
+                    <p style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', opacity: 0.5, margin: 0 }}>Est. Pipeline</p>
+                    <p style={{ fontSize: '1.3rem', fontWeight: 950, color: '#7b4dff', margin: '0.2rem 0 0 0' }}>
+                       ${(Math.round(reelsCount * avgViews * 0.006) * 1200 / 1000).toFixed(1)}K
+                    </p>
+                 </div>
               </div>
            </div>
+
+            <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+               <a href="#contact" className="btn btn-primary pill-cta" style={{ padding: '1.2rem 2.5rem', fontSize: '1rem', fontWeight: 800, background: '#7b4dff', color: '#fff', border: 'none', boxShadow: '0 8px 30px rgba(123, 77, 255, 0.3)', letterSpacing: '0.05em' }}>
+                  BOOK A STRATEGY CALL <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+               </a>
+               <a href="#pricing" className="btn btn-primary pill-cta" style={{ padding: '1.1rem 2rem', fontSize: '0.9rem', fontWeight: 800, background: 'transparent', color: '#000', border: '1.5px solid #000', textDecoration: 'none', letterSpacing: '0.05em', transition: 'all 0.3s' }} onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#fff'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#000'; }}>
+                  VIEW PRICING
+               </a>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className="status-dot animate-pulse" style={{ position: 'static', width: '8px', height: '8px', background: '#00b354', borderRadius: '50%', boxShadow: '0 0 10px #00b354' }}></div>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 850, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.85, color: '#000' }}>Taking 3 new clients</span>
+               </div>
+            </div>
         </div>
 
         <div className="editorial-right">
-           <div className="editorial-image-container">
+           <div style={{
+             position: 'relative',
+             width: '320px',
+             height: '570px',
+             border: '10px solid #1a1a1a',
+             borderRadius: '36px',
+             boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
+             overflow: 'hidden',
+             background: '#000',
+             margin: '0 auto',
+           }}>
               <iframe
-                src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=7_lpgoxu&player[showLogo]=false&player[autoplay]=true&player[loop]=true&player[muted]=true"
-                className="editorial-img"
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                allowFullScreen
+                 src={`https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=7_lpgoxu&player[showLogo]=false&player[autoplay]=true&player[loop]=true&player[muted]=${isMuted}`}
+                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                 allowFullScreen
               />
-              <div className="status-badge">
-                 <div className="status-dot"></div>
-                 live now
+              
+              <div style={{
+                 position: 'absolute',
+                 top: 0,
+                 left: 0,
+                 width: '100%',
+                 height: '100%',
+                 pointerEvents: 'none',
+                 zIndex: 3,
+                 display: 'flex',
+                 flexDirection: 'column',
+                 justifyContent: 'space-between',
+                 padding: '1.2rem',
+                 background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 35%, transparent 65%, rgba(0,0,0,0.3) 100%)'
+              }}>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                    <span style={{
+                       background: 'rgba(0, 0, 0, 0.4)',
+                       color: '#fff',
+                       fontSize: '0.65rem',
+                       fontWeight: 700,
+                       padding: '0.25rem 0.6rem',
+                       borderRadius: '6px',
+                       backdropFilter: 'blur(4px)',
+                       letterSpacing: '0.05em',
+                       display: 'flex',
+                       alignItems: 'center',
+                       gap: '0.25rem'
+                    }}>
+                       <Instagram size={10} color="#fff" /> Reels
+                    </span>
+                    
+                    <div style={{
+                       background: 'rgba(237, 28, 36, 0.9)',
+                       color: '#fff',
+                       fontSize: '0.62rem',
+                       fontWeight: 800,
+                       padding: '0.25rem 0.6rem',
+                       borderRadius: '6px',
+                       textTransform: 'uppercase',
+                       letterSpacing: '0.05em'
+                    }}>
+                       LIVE NOW
+                    </div>
+                 </div>
+
+                 <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    pointerEvents: 'auto',
+                    zIndex: 4
+                 }}>
+                    <button 
+                       onClick={() => setIsMuted(!isMuted)}
+                       style={{
+                          background: 'rgba(0,0,0,0.6)',
+                          border: '1.5px solid rgba(255,255,255,0.4)',
+                          color: '#fff',
+                          width: '64px',
+                          height: '64px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                          outline: 'none',
+                          transition: 'transform 0.2s',
+                          pointerEvents: 'auto'
+                       }}
+                       onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                       onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    >
+                       {isMuted ? (
+                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                             <Play size={20} fill="#fff" style={{ marginLeft: '4px' }} />
+                             <span style={{ fontSize: '0.5rem', fontWeight: 800, marginTop: '2px', textTransform: 'uppercase' }}>UNMUTE</span>
+                          </div>
+                       ) : (
+                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                             <span style={{ fontSize: '0.5rem', fontWeight: 800, marginTop: '2px', textTransform: 'uppercase' }}>MUTED</span>
+                          </div>
+                       )}
+                    </button>
+                 </div>
+
+                 <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', width: '100%', marginTop: 'auto' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxWidth: '75%', color: '#fff', textAlign: 'left' }}>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <img 
+                            src="https://res.cloudinary.com/dobulag2p/image/upload/v1774819007/HarshPng_fynfd0.png" 
+                            alt="harshustler" 
+                            style={{ width: '26px', height: '26px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #fff' }} 
+                          />
+                          <span style={{ fontSize: '0.75rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>harshustler</span>
+                          <span style={{
+                            fontSize: '0.6rem',
+                            fontWeight: 700,
+                            border: '1px solid #fff',
+                            borderRadius: '4px',
+                            padding: '0.1rem 0.3rem',
+                            lineHeight: 1,
+                            textShadow: '0 1px 4px rgba(0,0,0,0.6)'
+                          }}>Follow</span>
+                       </div>
+                       <p style={{ fontSize: '0.72rem', lineHeight: 1.3, fontWeight: 500, textShadow: '0 1px 4px rgba(0,0,0,0.6)', margin: 0 }}>
+                          Premium Real Estate Walkthrough tour demo video.
+                       </p>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', opacity: 0.85 }}>
+                          <Music size={9} color="#fff" />
+                          <span style={{ fontSize: '0.6rem', fontWeight: 600, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>Original Audio - @harshustler</span>
+                       </div>
+                    </div>
+
+                    <div style={{
+                       display: 'flex',
+                       flexDirection: 'column',
+                       alignItems: 'center',
+                       gap: '0.8rem',
+                       color: '#fff',
+                       marginBottom: '0.2rem'
+                    }}>
+                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem' }}>
+                          <div style={{
+                            background: 'rgba(0, 0, 0, 0.4)',
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backdropFilter: 'blur(4px)',
+                          }}>
+                            <Heart size={15} fill="#fff" color="#fff" />
+                          </div>
+                          <span style={{ fontSize: '0.6rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>4.8K</span>
+                       </div>
+                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem' }}>
+                          <div style={{
+                            background: 'rgba(0, 0, 0, 0.4)',
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backdropFilter: 'blur(4px)',
+                          }}>
+                            <MessageSquare size={15} />
+                          </div>
+                          <span style={{ fontSize: '0.6rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>112</span>
+                       </div>
+                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.1rem' }}>
+                          <div style={{
+                            background: 'rgba(0, 0, 0, 0.4)',
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backdropFilter: 'blur(4px)',
+                          }}>
+                            <Send size={13} style={{ transform: 'rotate(-20deg) translate(1px, -1px)' }} />
+                          </div>
+                          <span style={{ fontSize: '0.6rem', fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>Share</span>
+                       </div>
+                    </div>
+                 </div>
               </div>
            </div>
         </div>
       </section>
 
-      {/* Marquee instantly proving scale underneath Hero */}
       <div className="hero-marquee-wrapper" style={{ position: 'relative', width: '100%', marginBottom: '6rem', marginTop: '3rem' }}>
          <VideoMarquee />
       </div>
@@ -387,28 +886,14 @@ const Home = () => {
            
            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
              {[
-               { title: "AI AVATAR — REALTOR", cat: "AI UGC", publicId: "Edited_wlnmjv" },
-               { title: "AI UGC — 1", cat: "AI UGC", publicId: "Ai_ugc_10_ygvpdh" },
-               { title: "AI UGC — 2", cat: "AI UGC", publicId: "ai_ugc_9_ovpev5" },
-               { title: "AI AVATAR — PROMO", cat: "AI UGC", publicId: "0404_itrkrs" },
+               { title: "AI AVATAR — REALTOR", cat: "AI UGC", publicId: "Edited_wlnmjv", likes: "2400", comments: "182" },
+               { title: "REAL ESTATE AD — HOUSING", cat: "INSTAGRAM REEL", reelId: "DZgzkzuPDbj", likes: "5100", comments: "482" },
+               { title: "AI UGC — 1", cat: "AI UGC", publicId: "Ai_ugc_10_ygvpdh", likes: "1850", comments: "94" },
+               { title: "AI UGC — 2", cat: "AI UGC", publicId: "ai_ugc_9_ovpev5", likes: "3200", comments: "210" },
+               { title: "LUXURY TOUR — CLIENT", cat: "INSTAGRAM REEL", reelId: "DZ0q20kT9Yo", likes: "8900", comments: "614" },
+               { title: "AI AVATAR — PROMO", cat: "AI UGC", publicId: "0404_itrkrs", likes: "1500", comments: "72" },
              ].map((v, idx) => (
-               <motion.div
-                 key={idx}
-                 whileHover={{ y: -10 }}
-                 style={{ position: 'relative', paddingTop: '177.78%', borderRadius: '24px', overflow: 'hidden', background: '#111', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}
-               >
-                 <iframe
-                   src={`https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=${v.publicId}&player[showLogo]=false&player[controls]=true`}
-                   title={v.title}
-                   allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                   allowFullScreen
-                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                 />
-                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.5rem', background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)', pointerEvents: 'none', zIndex: 2 }}>
-                   <p style={{ fontSize: '0.6rem', color: '#fff', opacity: 0.7, textTransform: 'uppercase', fontWeight: 800 }}>{v.cat}</p>
-                   <h4 style={{ color: '#fff', fontSize: '1.1rem', marginTop: '0.2rem', fontWeight: 700 }}>{v.title}</h4>
-                 </div>
-               </motion.div>
+               <InstagramReelCard key={idx} v={v} idx={idx} />
              ))}
            </div>
         </div>

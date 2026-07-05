@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Linkedin, Github, ExternalLink } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, Github, ExternalLink, Code2, Instagram, Download } from 'lucide-react';
 
 const About = () => {
   const pageVariants = {
@@ -10,20 +10,31 @@ const About = () => {
   };
 
   const skills = {
-    "Languages": "JavaScript, Java, SQL",
-    "Frontend": "HTML, CSS, JavaScript, React",
-    "Backend": "Express.js, MVC",
+    "Languages": "Java, JavaScript, SQL, HTML5, CSS3",
+    "Frontend": "React.js, Next.js, Tailwind CSS, shadcn/ui, Redux, HTML, CSS",
+    "Backend": "Node.js, Express.js, REST APIs, JWT Authentication, MVC",
     "Databases": "MongoDB, MySQL",
-    "Tools": "Git, GitHub, Postman, VS Code",
-    "APIs": "REST APIs, JSON, JWT",
-    "AI Tools": "Runway ML, Pika Labs, Midjourney, HeyGen, D-ID",
-    "AI Voice": "ElevenLabs, PlayHT",
-    "AI Writing": "ChatGPT, Gemini",
-    "Automation": "Make (Integromat), Google Sheets",
+    "Tools": "Git, GitHub, VS Code, Postman, Cursor",
+    "Cloud/APIs": "REST APIs, JSON, Webhooks, Google Sheets API, Cloudinary API, JWT",
+    "AI & Automation": "OpenAI API, Gemini API, Make.com, n8n, ChatGPT, Runway ML, Pika Labs, Midjourney, HeyGen, D-ID, ElevenLabs, PlayHT",
+    "Computer Science": "OOP, DBMS, Operating Systems, Computer Networks",
+    "Operating Systems": "Windows, macOS",
+    "Soft Skills": "Communication, Leadership, Teamwork, Problem Solving",
     "Content": "AI UGC Videos, Script Writing, Short-form Video Editing",
   };
 
   const experience = [
+    {
+      role: "Frontend Developer",
+      company: "Ravan.ai",
+      period: "Mar 2026 – Present",
+      bullets: [
+        "Developed responsive and scalable web applications using React.js, Next.js, JavaScript, HTML5, CSS3, Tailwind CSS, and shadcn/ui.",
+        "Integrated REST APIs and collaborated with backend developers to build dynamic, data-driven user interfaces.",
+        "Worked with Git, GitHub, Postman, and Agile workflows to develop, review, test, and deploy production-ready features.",
+        "Collaborated closely with UI/UX designers to deliver pixel-perfect, responsive, and user-friendly interfaces."
+      ]
+    },
     {
       role: "AI UGC Creator & Automation Specialist",
       company: "Ravan.ai",
@@ -33,7 +44,18 @@ const About = () => {
         "Created AI video ads for international brands including Dambe Properties, eSanad, EuroDigital, and other global clients.",
         "Generated scripts, AI avatars, voiceovers, and video visuals using generative AI tools.",
         "Optimized short-form video creatives for Instagram Reels, TikTok Ads, and YouTube Shorts.",
-        "Automated content workflows using Make (Integromat) and API integrations.",
+        "Automated content workflows using Make (Integromat) and API integrations."
+      ]
+    },
+    {
+      role: "AI Automation Engineer",
+      company: "Ravan.ai",
+      period: "Jun 2025 – Mar 2026",
+      bullets: [
+        "Designed and deployed AI-powered automation workflows using Make.com, REST APIs, Webhooks, OpenAI API, and Gemini API.",
+        "Built automation solutions for lead qualification, CRM synchronization, WhatsApp automation, and social media publishing.",
+        "Integrated Google Sheets, Cloudinary, and third-party APIs to streamline business operations.",
+        "Reduced manual operational effort by over 80% through scalable automation workflows."
       ]
     },
     {
@@ -41,13 +63,59 @@ const About = () => {
       company: "Internship",
       period: "Mar 2024 – May 2024",
       bullets: [
-        "Developed a functional web application under the mentorship of Mr. Shivanshi Dwivedi.",
-        "Integrated real-time drone data visualizations into a web dashboard.",
+        "Developed responsive web applications using HTML, CSS, JavaScript, and React under the mentorship of Mr. Shivanshi Dwivedi.",
+        "Integrated real-time drone telemetry dashboards into web interfaces, improving user engagement by 20%.",
+        "Collaborated with the development team to build reusable UI components and improve application performance."
       ]
     }
   ];
 
   const projects = [
+    {
+      name: "Uber Clone (MERN)",
+      tag: "MERN Stack",
+      tagColor: "#7b4dff",
+      link: "https://github.com/harshustle/Uber-Website",
+      bullets: [
+        "Built a full-stack ride-booking platform using MongoDB, Express.js, React.js, and Node.js.",
+        "Implemented JWT authentication, protected routes, role-based access control, and profile management.",
+        "Developed RESTful APIs for ride booking, authentication, and user management.",
+        "Integrated Socket.io for real-time ride updates between riders and captains.",
+      ]
+    },
+    {
+      name: "User Registration System (MERN)",
+      tag: "MERN Stack",
+      tagColor: "#4361ee",
+      link: "https://github.com/harshustle/RegForm",
+      bullets: [
+        "Developed a secure authentication system using React.js, Express.js, MongoDB, JWT, and bcrypt.",
+        "Implemented login, signup, password encryption, protected routes, and authentication middleware.",
+        "Built responsive forms with real-time validation and error handling.",
+      ]
+    },
+    {
+      name: "Property Rental Platform (MVC)",
+      tag: "MVC Arch",
+      tagColor: "#2a9d8f",
+      link: "https://wanderlust-3ie7.onrender.com/listings",
+      bullets: [
+        "Developed a property rental platform using MVC architecture with CRUD operations and secure authentication.",
+        "Implemented property listings, booking workflow, image uploads, and responsive interfaces.",
+        "Improved engagement by approximately 60% through optimized user experience.",
+      ]
+    },
+    {
+      name: "AI Social Media Automation",
+      tag: "AI Workflows",
+      tagColor: "#f77f00",
+      bullets: [
+        "Built AI-powered automation workflows using Make.com, OpenAI API, Google Sheets API, and REST APIs.",
+        "Automated content generation, scheduling, and publishing across multiple social media platforms.",
+        "Integrated Webhooks and third-party APIs to reduce manual work by over 90%.",
+        "Designed reusable automation pipelines capable of handling high-volume business workflows.",
+      ]
+    },
     {
       name: "AI UGC Video Production",
       tag: "900+ Assets",
@@ -106,21 +174,53 @@ const About = () => {
             </h1>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'right' }}>
-            <a href="tel:7839661372" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Phone size={14} /> 7839661372
+            <a href="tel:9161955178" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
+              <Phone size={14} /> 9161955178
             </a>
+            
             <a href="mailto:harshustle@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
               <Mail size={14} /> harshustle@gmail.com
             </a>
             <a href="https://linkedin.com/in/harshustle" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
               <Linkedin size={14} /> linkedin.com/in/harshustle
             </a>
-            <a href="https://github.com/com/u/harshustle" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Github size={14} /> github.com/u/harshustle
+            <a href="https://leetcode.com/harshustle" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
+              <Code2 size={14} /> leetcode.com/harshustle
+            </a>
+            <a href="https://github.com/harshustler" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
+              <Github size={14} /> github.com/harshustler
+            </a>
+            <a href="https://instagram.com/harshustler" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
+              <Instagram size={14} /> instagram.com/harshustler
             </a>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', fontSize: '0.8rem', opacity: 0.6 }}>
               <MapPin size={14} /> Tilak Nagar, Delhi
             </span>
+            <a 
+              href="/Harsh_Srivastav_Resume.pdf" 
+              download="Harsh_Srivastav_Resume.pdf" 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                justifyContent: 'flex-end',
+                color: '#fff',
+                background: '#7b4dff',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontSize: '0.8rem',
+                fontWeight: 750,
+                marginTop: '0.6rem',
+                transition: 'opacity 0.2s',
+                width: 'fit-content',
+                marginLeft: 'auto'
+              }}
+              onMouseEnter={e => e.currentTarget.style.opacity = 0.85}
+              onMouseLeave={e => e.currentTarget.style.opacity = 1}
+            >
+              <Download size={14} /> Download Resume
+            </a>
           </div>
         </div>
 
@@ -144,7 +244,7 @@ const About = () => {
           </div>
 
           {/* Education Card */}
-          <div className="bento-card" style={{ padding: '2.5rem', background: '#f9f6f4', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div className="bento-card" style={{ padding: '2.5rem', background: 'var(--bg-secondary)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', opacity: 0.35, marginBottom: '2rem' }}>— Education</p>
             <div>
               <div style={{ fontSize: '3.5rem', fontWeight: 950, lineHeight: 1, letterSpacing: '-0.05em', opacity: 0.08, marginBottom: '-1.5rem' }}>IT</div>
@@ -164,10 +264,10 @@ const About = () => {
         <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Experience</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {experience.map((exp, i) => (
-            <div key={i} style={{ background: i === 0 ? '#fff' : '#f9f6f4', borderRadius: '24px', padding: '3rem', position: 'relative', overflow: 'hidden' }}>
+            <div key={i} style={{ background: i === 0 ? '#fff' : 'var(--bg-secondary)', borderRadius: '24px', padding: '3rem', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: '2rem', right: '2rem', fontSize: '0.7rem', fontWeight: 900, opacity: 0.25, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{exp.period}</div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '2rem' }}>
-                <div style={{ background: '#f2efed', width: '48px', height: '48px', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 900, flexShrink: 0 }}>
+                <div style={{ background: '#e5dfff', width: '48px', height: '48px', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 900, flexShrink: 0 }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <div>
@@ -203,28 +303,91 @@ const About = () => {
         </div>
       </section>
 
+      {/* ACHIEVEMENTS */}
+      <section className="container" style={{ marginBottom: '3rem' }}>
+        <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Achievements</p>
+        <div style={{ background: '#fff', borderRadius: '24px', padding: '3rem' }}>
+          <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {[
+              "Built 10+ full-stack web applications using the MERN stack.",
+              "Automated business workflows using AI and REST APIs, reducing manual effort by 80%+.",
+              "Developed production-ready frontend applications using React.js, Next.js, Tailwind CSS, and shadcn/ui.",
+              "Integrated OpenAI API, Gemini API, Webhooks, Cloudinary API, and Google Sheets API into automation solutions.",
+              "Continuously improving problem-solving skills through regular practice of Data Structures and Algorithms."
+            ].map((ach, i) => (
+              <li key={i} style={{ display: 'flex', gap: '0.8rem', fontSize: '0.9rem', opacity: 0.75, lineHeight: 1.5 }}>
+                <span style={{ color: 'var(--accent-color, #7b4dff)', fontWeight: 800, flexShrink: 0 }}>✓</span>
+                <span>{ach}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* PROJECTS */}
       <section className="container" style={{ marginBottom: '6rem' }}>
         <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Projects</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))', gap: '1.5rem' }}>
-          {projects.map((proj, i) => (
-            <div key={i} style={{ background: i % 2 === 0 ? '#f9f6f4' : '#fff', borderRadius: '24px', padding: '2.5rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.8rem' }}>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 900, maxWidth: '65%' }}>{proj.name}</h3>
-                <div style={{ background: proj.tagColor, color: proj.tagColor === '#000' ? '#fff' : (proj.tagColor === '#7b4dff' ? '#fff' : '#fff'), padding: '0.35rem 0.9rem', borderRadius: '99px', fontSize: '0.7rem', fontWeight: 900, flexShrink: 0 }}>
-                  {proj.tag}
+          {projects.map((proj, i) => {
+            const CardElement = proj.link ? 'a' : 'div';
+            const cardProps = proj.link ? {
+              href: proj.link,
+              target: "_blank",
+              rel: "noreferrer",
+              style: {
+                display: 'block',
+                textDecoration: 'none',
+                color: 'inherit',
+                background: i % 2 === 0 ? 'var(--bg-secondary)' : '#fff',
+                borderRadius: '24px',
+                padding: '2.5rem',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                cursor: 'pointer',
+              },
+              onMouseEnter: e => {
+                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.06)';
+              },
+              onMouseLeave: e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }
+            } : {
+              style: {
+                background: i % 2 === 0 ? 'var(--bg-secondary)' : '#fff',
+                borderRadius: '24px',
+                padding: '2.5rem',
+              }
+            };
+
+            return (
+              <CardElement key={i} {...cardProps}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.8rem' }}>
+                  <h3 style={{ 
+                    fontSize: '1.1rem', 
+                    fontWeight: 900, 
+                    maxWidth: '65%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                  }}>
+                    {proj.name} {proj.link && <ExternalLink size={14} style={{ opacity: 0.6 }} />}
+                  </h3>
+                  <div style={{ background: proj.tagColor, color: '#fff', padding: '0.35rem 0.9rem', borderRadius: '99px', fontSize: '0.7rem', fontWeight: 900, flexShrink: 0 }}>
+                    {proj.tag}
+                  </div>
                 </div>
-              </div>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                {proj.bullets.map((b, j) => (
-                  <li key={j} style={{ display: 'flex', gap: '0.8rem', fontSize: '0.85rem', opacity: 0.65, lineHeight: 1.5 }}>
-                    <span style={{ opacity: 0.4, flexShrink: 0 }}>—</span>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  {proj.bullets.map((b, j) => (
+                    <li key={j} style={{ display: 'flex', gap: '0.8rem', fontSize: '0.85rem', opacity: 0.65, lineHeight: 1.5 }}>
+                      <span style={{ opacity: 0.4, flexShrink: 0 }}>—</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardElement>
+            );
+          })}
         </div>
       </section>
 

@@ -348,7 +348,7 @@ const Contact = () => {
             </div>
 
             {/* Quick Stats */}
-            <div style={{ background: '#f9f6f4', borderRadius: '24px', padding: '2.5rem' }}>
+            <div style={{ background: 'var(--bg-secondary)', borderRadius: '24px', padding: '2.5rem' }}>
               <p style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.35, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem' }}>— Why Work With Me</p>
               {[
                 { n: "900+", l: "AI Assets Delivered" },

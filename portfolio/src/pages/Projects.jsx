@@ -144,7 +144,7 @@ const ProjectCard = ({ p, index }) => {
           <p style={{ fontSize: '0.62rem', fontWeight: 900, opacity: 0.3, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '0.6rem' }}>Clients</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
             {p.clients.map((c, j) => (
-              <span key={j} style={{ fontSize: '0.75rem', fontWeight: 600, background: '#f2efed', padding: '0.3rem 0.8rem', borderRadius: '99px', opacity: 0.8 }}>{c}</span>
+              <span key={j} style={{ fontSize: '0.75rem', fontWeight: 600, background: '#e5dfff', padding: '0.3rem 0.8rem', borderRadius: '99px', opacity: 0.8 }}>{c}</span>
             ))}
           </div>
         </div>
