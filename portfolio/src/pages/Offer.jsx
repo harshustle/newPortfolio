@@ -1038,30 +1038,32 @@ export default function OfferPage() {
           {/* MOBILE BENTO GRID */}
           <div className="pricing-summary-bento">
             {proposalData.pricingSummary.rows.map((row, idx) => (
-              <div
-                className={`pricing-bento-card${idx === 0 || idx === 3 || idx === 5 ? " pricing-bento-card--accent" : ""}`}
-                key={idx}
-              >
-                <div className="bento-card-header">
-                  <span className="bento-badge">SERVICE 0{idx + 1}</span>
+              <div className="pricing-bento-card" key={idx}>
+                {/* PART 1: HEADER */}
+                <div className="bento-header-part">
+                  <span className="bento-index-tag">0{idx + 1}</span>
                   <h3 className="bento-title">{row[0]}</h3>
                 </div>
 
-                <div className="bento-pricing-group">
-                  <div className="bento-price-item">
-                    <span className="bento-currency-tag">USD</span>
-                    <span className="price-tag--usd">{row[1]}</span>
+                {/* PART 2: PRICING COMPARTMENTS */}
+                <div className="bento-pricing-part">
+                  <div className="bento-rate-box bento-rate-box--usd">
+                    <span className="bento-currency-label">USD ($)</span>
+                    <span className="bento-rate-value">{row[1]}</span>
                   </div>
-                  <div className="bento-price-item">
-                    <span className="bento-currency-tag">INR</span>
-                    <span className="price-tag--inr">{row[2]}</span>
+                  <div className="bento-rate-box bento-rate-box--inr">
+                    <span className="bento-currency-label">INR (₹)</span>
+                    <span className="bento-rate-value">{row[2]}</span>
                   </div>
                 </div>
 
-                <div className="bento-usage-box">
-                  <span className="bento-usage-label">BILLING / SCOPE</span>
-                  <span className="bento-usage-value">{row[3]}</span>
-                </div>
+                {/* PART 3: SCOPE & TERMS */}
+                {row[3] && row[3] !== "—" && (
+                  <div className="bento-scope-part">
+                    <span className="bento-scope-badge">TERMS</span>
+                    <span className="bento-scope-text">{row[3]}</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>

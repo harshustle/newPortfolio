@@ -16,7 +16,7 @@
   --light-blue-bg: #f0f9ff;
   --light-blue-pill-bg: #e0f2fe;
   --light-blue-border: #bae6fd;
-  --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+  --card-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
 }
 
 html, body {
@@ -3289,7 +3289,7 @@ html, body {
     margin: 0 auto !important;
   }
 
-  /* Executive Pricing Summary Mobile Bento Grid */
+  /* Executive Pricing Summary Mobile Bento Grid (Minimal Defined Parts) */
   .pricing-summary-desktop {
     display: none !important;
   }
@@ -3297,109 +3297,145 @@ html, body {
   .pricing-summary-bento {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
-    margin-top: 20px !important;
+    gap: 12px !important;
+    margin-top: 18px !important;
     width: 100% !important;
   }
 
   .pricing-bento-card {
-    background: var(--white) !important;
-    border: 1px solid var(--border-grey) !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
     border-radius: 16px !important;
-    padding: 18px 16px !important;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04) !important;
+    padding: 16px !important;
+    box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04) !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 12px !important;
     position: relative !important;
-    overflow: hidden !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease !important;
   }
 
-  .pricing-bento-card--accent {
-    border-color: var(--light-blue-border) !important;
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%) !important;
+  .pricing-bento-card:hover {
+    transform: translateY(-2px) !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 18px 36px -4px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.06) !important;
   }
 
-  .pricing-bento-card::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 3px !important;
-    background: linear-gradient(90deg, var(--light-blue-dark), #38bdf8) !important;
-  }
-
-  .bento-card-header {
+  /* PART 1: HEADER SECTION */
+  .bento-header-part {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 4px !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
   }
 
-  .bento-badge {
-    font-size: 10px !important;
+  .bento-index-tag {
+    font-size: 11px !important;
     font-weight: 800 !important;
-    letter-spacing: 0.8px !important;
-    color: var(--light-blue-dark) !important;
-    text-transform: uppercase !important;
+    color: #0284c7 !important;
+    background: #f0f9ff !important;
+    border: 1px solid #bae6fd !important;
+    padding: 2px 8px !important;
+    border-radius: 6px !important;
+    font-variant-numeric: tabular-nums !important;
+    flex-shrink: 0 !important;
   }
 
   .bento-title {
-    font-size: 16px !important;
-    font-weight: 800 !important;
-    color: var(--black) !important;
-    line-height: 1.3 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    line-height: 1.35 !important;
     margin: 0 !important;
   }
 
-  .bento-pricing-group {
+  /* PART 2: DUAL PRICING COMPARTMENTS */
+  .bento-pricing-part {
     display: flex !important;
-    flex-wrap: wrap !important;
     gap: 8px !important;
-    padding-top: 2px !important;
+    width: 100% !important;
   }
 
-  .bento-price-item {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    background: var(--bg-light) !important;
-    padding: 6px 10px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--border-grey) !important;
-    flex: 1 1 calc(50% - 4px) !important;
-    justify-content: space-between !important;
-  }
-
-  .bento-currency-tag {
-    font-size: 10px !important;
-    font-weight: 800 !important;
-    color: var(--mid-grey) !important;
-    letter-spacing: 0.5px !important;
-  }
-
-  .bento-usage-box {
-    background: var(--bg-light) !important;
-    border-radius: 8px !important;
-    padding: 8px 12px !important;
+  .bento-rate-box {
+    flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 2px !important;
-    border-left: 3px solid var(--light-blue-dark) !important;
+    gap: 3px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
   }
 
-  .bento-usage-label {
+  .bento-rate-box--usd {
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
+  }
+
+  .bento-rate-box--inr {
+    background: #f0f9ff !important;
+    border: 1px solid #bae6fd !important;
+  }
+
+  .bento-currency-label {
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+  }
+
+  .bento-rate-box--usd .bento-currency-label {
+    color: #16a34a !important;
+  }
+
+  .bento-rate-box--inr .bento-currency-label {
+    color: #0284c7 !important;
+  }
+
+  .bento-rate-value {
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+  }
+
+  .bento-rate-box--usd .bento-rate-value {
+    color: #065f46 !important;
+  }
+
+  .bento-rate-box--inr .bento-rate-value {
+    color: #0369a1 !important;
+  }
+
+  /* PART 3: SCOPE & USAGE COMPARTMENT */
+  .bento-scope-part {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    padding: 7px 10px !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) !important;
+  }
+
+  .bento-scope-badge {
     font-size: 9px !important;
     font-weight: 800 !important;
-    color: var(--mid-grey) !important;
     letter-spacing: 0.6px !important;
+    color: #64748b !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 1px 5px !important;
+    border-radius: 4px !important;
+    flex-shrink: 0 !important;
+    margin-top: 2px !important;
   }
 
-  .bento-usage-value {
+  .bento-scope-text {
     font-size: 12px !important;
-    font-weight: 600 !important;
-    color: var(--black) !important;
+    font-weight: 500 !important;
     line-height: 1.4 !important;
+    color: #334155 !important;
   }
 
   /* Services Breakdown & Detailed Scope */
