@@ -38,7 +38,7 @@ function AnimatedRoutes() {
         <Route path="/harsh" element={<Harsh />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/ai-product-shoot" element={<AIProductShoot />} />
-        <Route path="/offer" element={<Navigate to="/" replace />} />
+        <Route path="/offer" element={<Offer />} />
       </Routes>
     </AnimatePresence>
   );
