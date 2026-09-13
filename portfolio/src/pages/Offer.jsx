@@ -28,83 +28,101 @@ const calcServices = [
   {
     id: "ai_calling",
     label: "AI Calling System Setup & Agent Creation",
-    unitPrice: 10000,
+    unitPriceINR: 10000,
+    unitPriceUSD: 120,
     unit: null,
     hasQty: false,
-    note: "Setup + Agent creation (₹10,000). Usage billed separately @ ₹7 / min."
+    noteINR: "Setup + Agent creation (₹10,000). Usage billed separately @ ₹7 / min.",
+    noteUSD: "Setup + Agent creation ($120). Usage billed separately @ $0.10 / min."
   },
   {
     id: "ai_videos",
     label: "AI Videos (UGC / Storytelling Ads)",
-    unitPrice: 3000,
+    unitPriceINR: 3000,
+    unitPriceUSD: 40,
     unit: "video",
     hasQty: true,
     min: 2,
     max: 30,
     defaultQty: 4,
-    note: "Creative concept, script, AI visuals/presenter, storytelling hooks, 9:16 vertical & captions."
+    noteINR: "Creative concept, script, AI visuals/presenter, storytelling hooks, 9:16 vertical & captions.",
+    noteUSD: "Creative concept, script, AI visuals/presenter, storytelling hooks, 9:16 vertical & captions."
   },
   {
     id: "ugc_videos",
     label: "Human Videos (UGC / Real Shoot)",
-    unitPrice: 3000,
+    unitPriceINR: 3000,
+    unitPriceUSD: 40,
     unit: "video",
     hasQty: true,
     min: 2,
     max: 20,
     defaultQty: 2,
-    note: "Real UGC creator on-ground shoot, script presentation, editing, branding & 9:16 format."
+    noteINR: "Real UGC creator on-ground shoot, script presentation, editing, branding & 9:16 format.",
+    noteUSD: "Real UGC creator on-ground shoot, script presentation, editing, branding & 9:16 format."
   },
   {
     id: "healthcare",
     label: "Healthcare Management System",
-    unitPrice: 40000,
+    unitPriceINR: 40000,
+    unitPriceUSD: 500,
     unit: null,
     hasQty: false,
-    note: "Clinic/hospital portal: doctor scheduling, patient records, WhatsApp/SMS alerts & billing system."
+    noteINR: "Clinic/hospital portal: doctor scheduling, patient records, WhatsApp/SMS alerts & billing system.",
+    noteUSD: "Clinic/hospital portal: doctor scheduling, patient records, WhatsApp/SMS alerts & billing system."
   },
   {
     id: "website_basic",
     label: "Website Setup — Basic",
-    unitPrice: 40000,
+    unitPriceINR: 40000,
+    unitPriceUSD: 500,
     unit: null,
     hasQty: false,
-    note: "Includes 3-Yr Hosting + 1-Yr Email, modern responsive design, listing/catalog & inquiry capture."
+    noteINR: "Includes 3-Yr Hosting + 1-Yr Email, modern responsive design, listing/catalog & inquiry capture.",
+    noteUSD: "Includes 3-Yr Hosting + 1-Yr Email, modern responsive design, listing/catalog & inquiry capture."
   },
   {
     id: "website_advance",
     label: "Website Setup — Advanced",
-    unitPrice: 90000,
+    unitPriceINR: 90000,
+    unitPriceUSD: 1100,
     unit: null,
     hasQty: false,
-    note: "High-end custom portal, advanced filters, dynamic CMS, CRM integration & multi-tier flow."
+    noteINR: "High-end custom portal, advanced filters, dynamic CMS, CRM integration & multi-tier flow.",
+    noteUSD: "High-end custom portal, advanced filters, dynamic CMS, CRM integration & multi-tier flow."
   },
   {
     id: "landing",
     label: "Standalone Project Landing Page",
-    unitPrice: 10000,
+    unitPriceINR: 10000,
+    unitPriceUSD: 120,
     unit: "page",
     hasQty: true,
     min: 1,
     max: 10,
     defaultQty: 1,
-    note: "High-converting standalone landing page with gallery, floor plans & brochure download."
+    noteINR: "High-converting standalone landing page with gallery, floor plans & brochure download.",
+    noteUSD: "High-converting standalone landing page with gallery, floor plans & brochure download."
   },
   {
     id: "ads_funnel",
     label: "Ads Campaign & Acquisition Funnel Setup",
-    unitPrice: 10000,
+    unitPriceINR: 10000,
+    unitPriceUSD: 120,
     unit: null,
     hasQty: false,
-    note: "Targeted Meta & Google ads strategy, high-converting funnel mapping & conversion tracking."
+    noteINR: "Targeted Meta & Google ads strategy, high-converting funnel mapping & conversion tracking.",
+    noteUSD: "Targeted Meta & Google ads strategy, high-converting funnel mapping & conversion tracking."
   },
   {
     id: "whatsapp",
     label: "WhatsApp Lead Automation Setup",
-    unitPrice: 10000,
+    unitPriceINR: 10000,
+    unitPriceUSD: 120,
     unit: null,
     hasQty: false,
-    note: "Instant welcome reply, requirement collection, automated qualification & appointment routing."
+    noteINR: "Instant welcome reply, requirement collection, automated qualification & appointment routing.",
+    noteUSD: "Instant welcome reply, requirement collection, automated qualification & appointment routing."
   }
 ];
 
@@ -112,9 +130,11 @@ const fixedPlans = [
   {
     name: "Starter Package",
     desc: "For individual realtors, clinics & emerging brands getting started with digital acquisition.",
-    price: "₹45,000",
+    priceINR: "₹45,000",
+    priceUSD: "$550",
     period: "one-time",
-    billed: "Includes Basic Website, 4 AI Videos & WhatsApp Lead Setup",
+    billedINR: "Includes Basic Website, 4 AI Videos & WhatsApp Lead Setup",
+    billedUSD: "Includes Basic Website, 4 AI Videos & WhatsApp Lead Setup",
     popular: false,
     btnText: "Choose Starter",
     features: [
@@ -128,16 +148,18 @@ const fixedPlans = [
   {
     name: "Growth Acquisition Package",
     desc: "Complete digital & AI acquisition system built to scale qualified leads & appointments.",
-    price: "₹85,000",
+    priceINR: "₹85,000",
+    priceUSD: "$1,050",
     period: "one-time",
-    billed: "Best value • Full connected lead pipeline",
+    billedINR: "Best value • Full connected lead pipeline",
+    billedUSD: "Best value • Full connected lead pipeline",
     popular: true,
     btnText: "Book Strategy Call",
     features: [
       "Advanced Web Portal & Custom Interactive Filters",
       "8 AI Storytelling Videos + 2 Human UGC Videos",
       "Landing Page & Ads Funnel Architecture",
-      "AI Calling System Setup + Agent Creation (₹7/min)",
+      "AI Calling System Setup + Agent Creation",
       "WhatsApp Nurturing & Appointment Automation",
       "Dedicated Onboarding & Growth Strategy"
     ]
@@ -145,9 +167,11 @@ const fixedPlans = [
   {
     name: "Enterprise & Healthcare Suite",
     desc: "For hospital chains, luxury developers & enterprises scaling multi-channel infrastructure.",
-    price: "₹1,20,000+",
+    priceINR: "₹1,20,000+",
+    priceUSD: "$1,500+",
     period: "one-time / custom",
-    billed: "Tailored scope for high-volume operations",
+    billedINR: "Tailored scope for high-volume operations",
+    billedUSD: "Tailored scope for high-volume operations",
     popular: false,
     btnText: "Talk to Sales",
     features: [
@@ -163,7 +187,7 @@ const fixedPlans = [
 
 const CALC_SHEET_URL = "https://script.google.com/macros/s/AKfycbxABRNpYSU6BJHLRJY1vE0ohMlCGNLjq6OuyECJEEZplZ4KfGebKe54_Ljrg-kJZRZy2w/exec";
 
-function PricingCalculator() {
+function PricingCalculator({ currency = "USD", setCurrency }) {
   const [selected, setSelected] = useState({});
   const [qty, setQty] = useState({ ai_videos: 4, ugc_videos: 2, landing: 1 });
   const [name, setName] = useState("");
@@ -196,10 +220,12 @@ function PricingCalculator() {
     });
   };
 
+  const getUnitPrice = (s) => (currency === "USD" ? s.unitPriceUSD : s.unitPriceINR);
+
   const total = calcServices.reduce((sum, s) => {
     if (!selected[s.id]) return sum;
     const q = s.hasQty ? (qty[s.id] || 1) : 1;
-    return sum + s.unitPrice * q;
+    return sum + getUnitPrice(s) * q;
   }, 0);
 
   const count = Object.values(selected).filter(Boolean).length;
@@ -207,7 +233,10 @@ function PricingCalculator() {
   const discounted = Math.round(total * (1 - discount));
   const saved = total - discounted;
 
-  const fmt = (n) => "₹" + n.toLocaleString("en-IN");
+  const fmt = (n) =>
+    currency === "USD"
+      ? "$" + n.toLocaleString("en-US")
+      : "₹" + n.toLocaleString("en-IN");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -219,9 +248,10 @@ function PricingCalculator() {
     const payload = new URLSearchParams({
       name: name,
       phone: phone,
+      currency: currency,
       service: selectedList.join(", "),
       budget: fmt(discounted),
-      message: `Offer Page Calculator — ${count} service(s) selected`,
+      message: `Offer Page Calculator — ${count} service(s) selected [${currency}]`,
       source: "Offer Page Calculator",
     });
     try {
@@ -238,46 +268,73 @@ function PricingCalculator() {
 
   return (
     <div className="pricing-box">
-      <div className="pricing-tag">BUILD YOUR CUSTOM PACKAGE</div>
-      <h2>Custom Calculator</h2>
-      <p className="pricing-sub">
-        Select only the services you want — the price updates instantly.
-        {count >= 2 && <span className="calc-discount-note"> Bundle discount applied</span>}
-      </p>
+      <div className="calc-header-flex">
+        <div>
+          <div className="pricing-tag">BUILD YOUR CUSTOM PACKAGE</div>
+          <h2>Custom Calculator</h2>
+          <p className="pricing-sub">
+            Select only the services you want — the price updates instantly.
+            {count >= 2 && <span className="calc-discount-note"> Bundle discount applied</span>}
+          </p>
+        </div>
+        {setCurrency && (
+          <div className="currency-selector">
+            <span className="currency-label">Currency:</span>
+            <button
+              type="button"
+              className={`currency-pill ${currency === "USD" ? "active" : ""}`}
+              onClick={() => setCurrency("USD")}
+            >
+              🇺🇸 USD ($)
+            </button>
+            <button
+              type="button"
+              className={`currency-pill ${currency === "INR" ? "active" : ""}`}
+              onClick={() => setCurrency("INR")}
+            >
+              🇮🇳 INR (₹)
+            </button>
+          </div>
+        )}
+      </div>
 
       <div className="calc-grid">
         <div className="calc-services">
-          {calcServices.map((svc) => (
-            <div
-              key={svc.id}
-              className={`calc-row${selected[svc.id] ? " calc-row--active" : ""}`}
-              onClick={() => toggle(svc.id)}
-            >
-              <div className="calc-check">
-                {selected[svc.id] ? "✓" : ""}
-              </div>
-              <div className="calc-info">
-                <div className="calc-label">{svc.label}</div>
-                {svc.note && <div className="calc-note">{svc.note}</div>}
-                <div className="calc-price-tag">
-                  {fmt(svc.unitPrice)}{svc.unit ? ` / ${svc.unit}` : ""}
+          {calcServices.map((svc) => {
+            const price = getUnitPrice(svc);
+            const note = currency === "USD" ? svc.noteUSD : svc.noteINR;
+            return (
+              <div
+                key={svc.id}
+                className={`calc-row${selected[svc.id] ? " calc-row--active" : ""}`}
+                onClick={() => toggle(svc.id)}
+              >
+                <div className="calc-check">
+                  {selected[svc.id] ? "✓" : ""}
                 </div>
-              </div>
-              {svc.hasQty && selected[svc.id] && (
-                <div className="calc-qty" onClick={e => e.stopPropagation()}>
-                  <button onClick={() => changeQty(svc.id, -1)}>−</button>
-                  <span>{qty[svc.id] || 1}</span>
-                  <button onClick={() => changeQty(svc.id, +1)}>+</button>
+                <div className="calc-info">
+                  <div className="calc-label">{svc.label}</div>
+                  {note && <div className="calc-note">{note}</div>}
+                  <div className="calc-price-tag">
+                    {fmt(price)}{svc.unit ? ` / ${svc.unit}` : ""}
+                  </div>
                 </div>
-              )}
-              {!svc.hasQty && selected[svc.id] && (
-                <div className="calc-subtotal">{fmt(svc.unitPrice)}</div>
-              )}
-              {svc.hasQty && selected[svc.id] && (
-                <div className="calc-subtotal">{fmt(svc.unitPrice * (qty[svc.id] || 1))}</div>
-              )}
-            </div>
-          ))}
+                {svc.hasQty && selected[svc.id] && (
+                  <div className="calc-qty" onClick={e => e.stopPropagation()}>
+                    <button onClick={() => changeQty(svc.id, -1)}>−</button>
+                    <span>{qty[svc.id] || 1}</span>
+                    <button onClick={() => changeQty(svc.id, +1)}>+</button>
+                  </div>
+                )}
+                {!svc.hasQty && selected[svc.id] && (
+                  <div className="calc-subtotal">{fmt(price)}</div>
+                )}
+                {svc.hasQty && selected[svc.id] && (
+                  <div className="calc-subtotal">{fmt(price * (qty[svc.id] || 1))}</div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <div className="calc-card">
@@ -298,7 +355,7 @@ function PricingCalculator() {
                 {calcServices.filter(s => selected[s.id]).map(s => (
                   <div className="calc-line" key={s.id}>
                     <span>{s.label}{s.hasQty ? ` ×${qty[s.id] || 1}` : ""}</span>
-                    <span>{fmt(s.unitPrice * (s.hasQty ? (qty[s.id] || 1) : 1))}</span>
+                    <span>{fmt(getUnitPrice(s) * (s.hasQty ? (qty[s.id] || 1) : 1))}</span>
                   </div>
                 ))}
                 {discount > 0 && (
@@ -367,19 +424,19 @@ const proposalData = {
   },
   pricingSummary: {
     heading: "Pricing Summary",
-    columns: ["Service", "Setup / One-Time", "Monthly / Usage"],
+    columns: ["Service", "US Dollar ($)", "Indian Rupee (₹)", "Monthly / Usage"],
     rows: [
-      ["AI Calling System", "₹10,000 (setup + agent creation)", "₹7 / minute (usage)"],
-      ["AI Videos (UGC / Storytelling Ads)", "₹3,000 / video", "—"],
-      ["Human Videos (UGC / Real Shoot)", "₹3,000 / video (min. 2)", "—"],
-      ["Healthcare Management System", "₹40,000 (one-time setup)", "Optional maintenance/SMS"],
-      ["Website Development (Basic)", "₹40,000 (one-time)", "Incl. 3-yr hosting + 1-yr email"],
-      ["Website Development (Advanced)", "₹90,000 (one-time)", "Incl. 3-yr hosting + 1-yr email"],
-      ["Standalone Project Landing Page", "₹10,000 / page", "—"],
-      ["Ads Campaign & Funnel Setup", "₹10,000 (setup)", "Ad spend separate"],
-      ["WhatsApp Lead Automation", "₹10,000 (setup)", "+ WhatsApp API charges"]
+      ["AI Calling System", "$120 (setup + agent)", "₹10,000 (setup + agent)", "$0.10 / min • ₹7 / min"],
+      ["AI Videos (UGC / Storytelling Ads)", "$40 / video", "₹3,000 / video", "Bulk packages available"],
+      ["Human Videos (UGC / Real Shoot)", "$40 / video (min. 2)", "₹3,000 / video (min. 2)", "On-location shoot & edit"],
+      ["Healthcare Management System", "$500 (one-time)", "₹40,000 (one-time)", "Full portal + doctor EMR"],
+      ["Website Development (Basic)", "$500 (one-time)", "₹40,000 (one-time)", "Incl. 3-yr hosting + 1-yr email"],
+      ["Website Development (Advanced)", "$1,100 (one-time)", "₹90,000 (one-time)", "Incl. 3-yr hosting + 1-yr email"],
+      ["Standalone Project Landing Page", "$120 / page", "₹10,000 / page", "High-converting funnel page"],
+      ["Ads Campaign & Funnel Setup", "$120 (setup)", "₹10,000 (setup)", "Meta & Google Ads tracking"],
+      ["WhatsApp Lead Automation", "$120 (setup)", "₹10,000 (setup)", "+ Meta WhatsApp API charges"]
     ],
-    note: "Official transparent pricing for individual modular services or full growth packages."
+    note: "Official transparent dual pricing for US ($) and India (₹) clients across individual modular services or full growth packages."
   },
   services: [
     {
@@ -387,8 +444,8 @@ const proposalData = {
       id: "ai-calling",
       title: "1. AI Calling System",
       pricing: [
-        { label: "Setup + Agent Creation:", value: "₹10,000 (one-time)" },
-        { label: "Usage:", value: "₹7 / minute" }
+        { label: "Setup + Agent Creation:", value: "$120 / ₹10,000 (one-time)" },
+        { label: "Usage:", value: "$0.10 / min ($ USD) • ₹7 / min (₹ INR)" }
       ],
       sections: [
         {
@@ -413,13 +470,13 @@ const proposalData = {
       sections: [
         {
           heading: "AI Videos (UGC / Storytelling Ads)",
-          pricing: [{ label: "Price:", value: "₹3,000 / video" }],
+          pricing: [{ label: "Price:", value: "$40 / ₹3,000 per video" }],
           packages: {
-            columns: ["Package", "Videos", "Price"],
+            columns: ["Package", "Videos", "Price (USD)", "Price (INR)"],
             rows: [
-              ["Starter", "4 Videos", "₹12,000"],
-              ["Growth", "8 Videos", "₹24,000"],
-              ["Pro", "12 Videos", "₹36,000"]
+              ["Starter", "4 Videos", "$160", "₹12,000"],
+              ["Growth", "8 Videos", "$300", "₹24,000"],
+              ["Pro", "12 Videos", "$450", "₹36,000"]
             ]
           },
           features: [
@@ -433,14 +490,14 @@ const proposalData = {
         },
         {
           heading: "Human Videos (UGC / Real Shoot)",
-          pricing: [{ label: "Price:", value: "₹3,000 / video (minimum order: 2 videos)" }],
+          pricing: [{ label: "Price:", value: "$40 / ₹3,000 per video (minimum order: 2 videos)" }],
           packages: {
-            columns: ["Package", "Videos", "Price"],
+            columns: ["Package", "Videos", "Price (USD)", "Price (INR)"],
             rows: [
-              ["Starter", "2 Videos", "₹6,000"],
-              ["Growth", "5 Videos", "₹15,000"],
-              ["Pro", "8 Videos", "₹24,000"],
-              ["Premium", "10 Videos", "₹30,000"]
+              ["Starter", "2 Videos", "$80", "₹6,000"],
+              ["Growth", "5 Videos", "$190", "₹15,000"],
+              ["Pro", "8 Videos", "$300", "₹24,000"],
+              ["Premium", "10 Videos", "$380", "₹30,000"]
             ]
           },
           features: [
@@ -457,7 +514,7 @@ const proposalData = {
       id: "healthcare",
       title: "3. Healthcare Management System",
       pricing: [
-        { label: "Setup:", value: "₹40,000 (one-time complete system)" },
+        { label: "Setup:", value: "$500 / ₹40,000 (one-time complete system)" },
         { label: "Deployment:", value: "Full web portal + admin & doctor dashboards" }
       ],
       sections: [
@@ -485,13 +542,13 @@ const proposalData = {
       id: "website",
       title: "4. Website Development (Basic & Advanced)",
       pricing: [
-        { label: "Basic Website:", value: "₹40,000 (one-time)" },
-        { label: "Advanced Website:", value: "₹90,000 (one-time)" },
+        { label: "Basic Website:", value: "$500 / ₹40,000 (one-time)" },
+        { label: "Advanced Website:", value: "$1,100 / ₹90,000 (one-time)" },
         { label: "Included:", value: "3 years hosting + 1 year custom email hosting" }
       ],
       sections: [
         {
-          heading: "Basic Website (₹40,000)",
+          heading: "Basic Website ($500 / ₹40,000)",
           features: [
             "Modern, mobile-responsive corporate / business website (Up to 6 core pages)",
             "Home, About Us, Services / Listings, Contact Us, Testimonials & FAQ",
@@ -502,7 +559,7 @@ const proposalData = {
           ]
         },
         {
-          heading: "Advanced Website (₹90,000)",
+          heading: "Advanced Website ($1,100 / ₹90,000)",
           features: [
             "Full-scale custom portal architecture with advanced dynamic features",
             "Multi-category filtering: Location, budget, amenities, BHK / product specifications",
@@ -520,12 +577,12 @@ const proposalData = {
       id: "landing-ads",
       title: "5. Landing Page & Ads / Funnel",
       pricing: [
-        { label: "Landing Page:", value: "₹10,000 / page" },
-        { label: "Ads & Funnel Setup:", value: "₹10,000 (one-time)" }
+        { label: "Landing Page:", value: "$120 / ₹10,000 per page" },
+        { label: "Ads & Funnel Setup:", value: "$120 / ₹10,000 (one-time)" }
       ],
       sections: [
         {
-          heading: "Standalone Project Landing Page (₹10,000)",
+          heading: "Standalone Project Landing Page ($120 / ₹10,000)",
           features: [
             "High-converting single-page acquisition layout engineered specifically for ad traffic",
             "Hero section with immediate value proposition, brochure download & booking CTA",
@@ -535,7 +592,7 @@ const proposalData = {
           ]
         },
         {
-          heading: "Ads Campaign & Acquisition Funnel Setup (₹10,000)",
+          heading: "Ads Campaign & Acquisition Funnel Setup ($120 / ₹10,000)",
           features: [
             "Meta (Facebook/Instagram) & Google Ads account audit & setup",
             "Target audience research: demographic, high-intent interest & geo-fencing",
@@ -551,8 +608,8 @@ const proposalData = {
       id: "whatsapp-automation",
       title: "6. WhatsApp Lead Automation",
       pricing: [
-        { label: "Setup:", value: "₹10,000 (one-time)" },
-        { label: "Monthly:", value: "₹3,000 – ₹10,000 + API Charges" }
+        { label: "Setup:", value: "$120 / ₹10,000 (one-time)" },
+        { label: "Monthly:", value: "$40 – $120 / ₹3,000 – ₹10,000 + API Charges" }
       ],
       sections: [
         {
@@ -589,7 +646,7 @@ const proposalData = {
       {
         icon: "📞",
         title: "AI Calling Usage",
-        text: "AI Calling usage (₹7/minute) is billed transparently based on actual completed call duration."
+        text: "AI Calling usage ($0.10/min USD / ₹7/min INR) is billed transparently based on actual completed call duration."
       },
       {
         icon: "🤖",
@@ -665,6 +722,7 @@ const clientWebsites = [
 ];
 
 export default function OfferPage() {
+  const [currency, setCurrency] = useState("USD");
   const [activeIndex, setActiveIndex] = useState(null);
   const [showVideo, setShowVideo] = useState(false);
   const [modalVideoUrl, setModalVideoUrl] = useState("");
@@ -799,6 +857,22 @@ export default function OfferPage() {
             wstatemedia
           </div>
           <div className="navbar-actions">
+            <div className="nav-currency-toggle">
+              <button
+                type="button"
+                className={`nav-currency-btn ${currency === "USD" ? "active" : ""}`}
+                onClick={() => setCurrency("USD")}
+              >
+                USD ($)
+              </button>
+              <button
+                type="button"
+                className={`nav-currency-btn ${currency === "INR" ? "active" : ""}`}
+                onClick={() => setCurrency("INR")}
+              >
+                INR (₹)
+              </button>
+            </div>
             <ul className="navbar-links">
               <li><a href="#calculator" className="navbar-link">Calculator</a></li>
             </ul>
@@ -818,10 +892,6 @@ export default function OfferPage() {
             Build your High-Growth <br />
             <span className="brand-highlight">Acquisition Machine with wstatemedia</span>
           </h1>
-
-          <p className="subheadline">
-            Generate qualified buyers, clients &amp; appointments automatically using AI UGC videos, high-converting websites &amp; funnels, and 24/7 AI calling &amp; WhatsApp systems.
-          </p>
 
           {/* DUAL PILL BUTTONS */}
           <div className="hero-cta-group">
@@ -942,7 +1012,8 @@ export default function OfferPage() {
             <p>{proposalData.pricingSummary.note}</p>
           </div>
 
-          <div className="table-responsive">
+          {/* DESKTOP SUMMARY TABLE */}
+          <div className="table-responsive pricing-summary-desktop">
             <table className="summary-table">
               <thead>
                 <tr>
@@ -955,12 +1026,44 @@ export default function OfferPage() {
                 {proposalData.pricingSummary.rows.map((row, idx) => (
                   <tr key={idx}>
                     <td><strong>{row[0]}</strong></td>
-                    <td><span className="price-tag">{row[1]}</span></td>
-                    <td><span className="usage-tag">{row[2]}</span></td>
+                    <td><span className="price-tag--usd">{row[1]}</span></td>
+                    <td><span className="price-tag--inr">{row[2]}</span></td>
+                    <td><span className="usage-tag">{row[3]}</span></td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* MOBILE BENTO GRID */}
+          <div className="pricing-summary-bento">
+            {proposalData.pricingSummary.rows.map((row, idx) => (
+              <div
+                className={`pricing-bento-card${idx === 0 || idx === 3 || idx === 5 ? " pricing-bento-card--accent" : ""}`}
+                key={idx}
+              >
+                <div className="bento-card-header">
+                  <span className="bento-badge">SERVICE 0{idx + 1}</span>
+                  <h3 className="bento-title">{row[0]}</h3>
+                </div>
+
+                <div className="bento-pricing-group">
+                  <div className="bento-price-item">
+                    <span className="bento-currency-tag">USD</span>
+                    <span className="price-tag--usd">{row[1]}</span>
+                  </div>
+                  <div className="bento-price-item">
+                    <span className="bento-currency-tag">INR</span>
+                    <span className="price-tag--inr">{row[2]}</span>
+                  </div>
+                </div>
+
+                <div className="bento-usage-box">
+                  <span className="bento-usage-label">BILLING / SCOPE</span>
+                  <span className="bento-usage-value">{row[3]}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1042,7 +1145,8 @@ export default function OfferPage() {
                                 <tr key={ridx}>
                                   <td><strong>{r[0]}</strong></td>
                                   <td>{r[1]}</td>
-                                  <td><span className="price-tag">{r[2]}</span></td>
+                                  <td><span className="price-tag--usd">{r[2]}</span></td>
+                                  <td><span className="price-tag--inr">{r[3]}</span></td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1212,10 +1316,30 @@ export default function OfferPage() {
             </button>
           </div>
 
-          {pricingMode === 'calc' && <PricingCalculator />}
+          {pricingMode === 'calc' && (
+            <PricingCalculator currency={currency} setCurrency={setCurrency} />
+          )}
 
           {pricingMode === 'plans' && (
             <div>
+              <div className="currency-selector" style={{ margin: "0 auto 28px", display: "flex", width: "fit-content" }}>
+                <span className="currency-label">Currency:</span>
+                <button
+                  type="button"
+                  className={`currency-pill ${currency === "USD" ? "active" : ""}`}
+                  onClick={() => setCurrency("USD")}
+                >
+                  🇺🇸 USD ($)
+                </button>
+                <button
+                  type="button"
+                  className={`currency-pill ${currency === "INR" ? "active" : ""}`}
+                  onClick={() => setCurrency("INR")}
+                >
+                  🇮🇳 INR (₹)
+                </button>
+              </div>
+
               <div className="plans-grid">
                 {fixedPlans.map((plan) => (
                   <div
@@ -1226,9 +1350,9 @@ export default function OfferPage() {
                     <div className="plan-name">{plan.name}</div>
                     <div className="plan-desc">{plan.desc}</div>
                     <div className="plan-price">
-                      {plan.price} <span>{plan.period}</span>
+                      {currency === "USD" ? plan.priceUSD : plan.priceINR} <span>{plan.period}</span>
                     </div>
-                    <div className="plan-billed">{plan.billed}</div>
+                    <div className="plan-billed">{currency === "USD" ? plan.billedUSD : plan.billedINR}</div>
                     <ul className="plan-features">
                       {plan.features.map((feat) => (
                         <li key={feat}>{feat}</li>
@@ -1295,8 +1419,8 @@ export default function OfferPage() {
             </p>
           </div>
 
-          <div style={{ maxWidth: "800px", margin: "auto", borderRadius: "16px", overflow: "hidden", background: "#fff", border: "1px solid #e2e8f0", padding: "20px" }}>
-            <div style={{ width: "100%", height: "100%", minHeight: "600px", overflow: "scroll" }} id="my-cal-inline-30min"></div>
+          <div className="cal-booking-wrapper">
+            <div className="cal-booking-frame" id="my-cal-inline-30min"></div>
           </div>
         </div>
       </section>
