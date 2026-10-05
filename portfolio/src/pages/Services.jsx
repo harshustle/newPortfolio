@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   const pageVariants = {
@@ -9,69 +10,168 @@ const Services = () => {
     exit: { opacity: 0, y: -20, transition: { duration: 0.4 } }
   };
 
+  const easeTransition = [0.16, 1, 0.3, 1];
+
+  const pillAnim = {
+    initial: { opacity: 0, y: 15, filter: 'blur(6px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.65, ease: easeTransition, delay: 0.1 } }
+  };
+
+  const titleAnim = {
+    initial: { opacity: 0, y: 25, filter: 'blur(10px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.85, ease: easeTransition, delay: 0.22 } }
+  };
+
+  const subtitleAnim = {
+    initial: { opacity: 0, y: 20, filter: 'blur(6px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: easeTransition, delay: 0.38 } }
+  };
+
   return (
-    <motion.div 
+    <motion.div
       className="page-container"
-      initial="initial" animate="animate" exit="exit" variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
         minHeight: '100vh',
-        padding: '6rem 1.5rem',
-        background: 'var(--bg-color)'
+        background: 'transparent',
+        color: 'var(--text-primary)'
       }}
     >
-        {/* DESIGN 2: Premium Dark Mode with Original Capabilities */}
-        <div 
-          style={{
-            width: '100%',
-            maxWidth: '400px',
-            aspectRatio: '9/16',
-            background: '#09090b',
-            borderRadius: '32px',
-            boxShadow: '0 40px 80px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.05) inset',
-            display: 'flex',
-            flexDirection: 'column',
-            padding: '4rem 2.5rem',
-            textAlign: 'left',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-           {/* Ambient green glow */}
-           <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '250px', height: '250px', background: '#00ff78', filter: 'blur(100px)', opacity: 0.08, borderRadius: '50%' }}></div>
-           
-           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
-               
-               <div style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1.5rem', marginBottom: '2.5rem' }}>
-                   <p style={{ color: '#00ff78', fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Harshustle</p>
-                   <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', fontWeight: 900, lineHeight: 0.9, letterSpacing: '-0.04em' }}>
-                       CORE<br />SYSTEMS<span style={{ color: '#00ff78' }}>.</span>
-                   </h1>
-               </div>
+      {/* ── EDITORIAL HERO ── */}
+      <section className="hero-ref-container" style={{ paddingBottom: '3rem' }}>
+        <div className="hero-ref-content">
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={pillAnim}
+            className="hero-ref-pill"
+          >
+            <span className="hero-ref-dot" />
+            <span className="hero-ref-pill-text">Specialized Offerings • End-to-End Execution</span>
+          </motion.div>
 
-               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem', justifyContent: 'center', flex: 1 }}>
-                   {[
-                       { id: '01', title: 'AI VIDEO', sub: 'Hyper-realistic Avatars' },
-                       { id: '02', title: 'UGC ADS', sub: 'Direct Response' },
-                       { id: '03', title: 'SOFTWARE', sub: 'React & Next.js Systems' },
-                       { id: '04', title: 'AUTOMATION', sub: 'Manual-free Workflows' },
-                       { id: '05', title: 'MARKETING', sub: 'Conversion Ecosystems' }
-                   ].map((s, i) => (
-                       <div key={s.id} style={{ display: 'grid', gridTemplateColumns: '40px 1fr', alignItems: 'center', gap: '1rem' }}>
-                           <div style={{ color: 'rgba(255,255,255,0.15)', fontSize: '1.2rem', fontWeight: 400, fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>{s.id}</div>
-                           <div>
-                               <h2 style={{ color: '#fff', fontSize: '1.35rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1 }}>{s.title}</h2>
-                               <p style={{ color: '#00ff78', fontSize: '0.8rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginTop: '0.3rem', opacity: 0.9 }}>{s.sub}</p>
-                           </div>
-                       </div>
-                   ))}
-               </div>
-               
-           </div>
+          <motion.h1
+            initial="initial"
+            animate="animate"
+            variants={titleAnim}
+            className="hero-ref-title"
+          >
+            Core systems <br />
+            <span className="hero-ref-title-accent">built for results.</span>
+          </motion.h1>
+
+          <motion.p
+            initial="initial"
+            animate="animate"
+            variants={subtitleAnim}
+            className="hero-ref-subtitle"
+          >
+            Five specialized capabilities architected to eliminate manual bottlenecks, capture attention, and scale conversions.
+          </motion.p>
         </div>
+      </section>
+
+      {/* ── SERVICES BENTO GRID ── */}
+      <section className="container" style={{ paddingBottom: '8rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          {[
+            {
+              id: '01',
+              title: 'AI UGC Assets',
+              sub: 'Synthetic Human Capital',
+              desc: 'High-conversion avatar ads, hyper-realistic voiceovers, and automated script pipelines tailored for Instagram Reels, TikTok, and Meta Ads.',
+              deliverable: '500+ assets delivered'
+            },
+            {
+              id: '02',
+              title: 'IRL Cinematic Shoots',
+              sub: 'Luxury Property & Brand Films',
+              desc: 'On-location 4K videography, architectural walkthroughs, and cinematic pacing designed for high-net-worth real estate conversion.',
+              deliverable: '40+ shoots executed'
+            },
+            {
+              id: '03',
+              title: 'Landing Page Architecture',
+              sub: 'Technical Frontend Engineering',
+              desc: 'React & Next.js web applications, lightning-fast landing pages, and interactive experiences optimized for lead capture.',
+              deliverable: '80+ pages deployed'
+            },
+            {
+              id: '04',
+              title: 'Intelligent Automations',
+              sub: 'Hands-Free Business Workflows',
+              desc: 'Custom pipelines using Make.com, n8n, OpenAI, and REST APIs. Automating lead routing, CRM synchronization, and multi-channel publishing.',
+              deliverable: '20+ systems running 24/7'
+            },
+            {
+              id: '05',
+              title: 'Complete Funnel Ecosystems',
+              sub: 'End-to-End Growth Architecture',
+              desc: 'Full-service integration linking creative video campaigns directly with high-converting pages and automated CRM qualification.',
+              deliverable: 'Custom client retainers'
+            }
+          ].map((s, i) => (
+            <motion.div
+              key={s.id}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              style={{
+                background: '#ffffff',
+                borderRadius: '28px',
+                padding: '3rem',
+                border: '1px solid rgba(0,0,0,0.06)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.8rem' }}>
+                  <span style={{ fontSize: '1.4rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#2e6347', fontWeight: 600 }}>
+                    {s.id}
+                  </span>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', background: 'rgba(46, 99, 71, 0.08)', color: '#2e6347', padding: '0.35rem 0.85rem', borderRadius: '99px' }}>
+                    {s.deliverable}
+                  </span>
+                </div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '0.4rem' }}>
+                  {s.title}
+                </h3>
+                <p style={{ color: '#2e6347', fontSize: '0.85rem', fontWeight: 700, fontFamily: 'var(--font-serif)', fontStyle: 'italic', marginBottom: '1.2rem' }}>
+                  {s.sub}
+                </p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65 }}>
+                  {s.desc}
+                </p>
+              </div>
+
+              <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+                <Link
+                  to="/contact"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    color: '#2e6347',
+                    textDecoration: 'none',
+                    fontSize: '0.82rem',
+                    fontWeight: 800,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  <span>Inquire Capability</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </motion.div>
   );
 };

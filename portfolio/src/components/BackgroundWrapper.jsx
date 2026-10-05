@@ -43,10 +43,10 @@ const BackgroundWrapper = () => {
             width: '600px',
             height: '600px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(243, 219, 211, 0.45) 0%, transparent 70%)',
             filter: 'blur(100px)',
-            top: '-200px',
-            left: '-200px'
+            bottom: '-150px',
+            left: '-150px'
           }}
         />
         <motion.div
@@ -55,12 +55,12 @@ const BackgroundWrapper = () => {
           transition={{ type: 'tween', ease: 'linear', duration: 0.5 }}
           style={{
             position: 'absolute',
-            width: '500px',
-            height: '500px',
+            width: '550px',
+            height: '550px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(220, 235, 226, 0.4) 0%, transparent 70%)',
             filter: 'blur(100px)',
-            bottom: '-100px',
+            top: '-100px',
             right: '-100px'
           }}
         />

@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer style={{ background: '#fff', borderTop: '1px solid rgba(0,0,0,0.07)', padding: '4rem 0 2rem', position: 'relative', zIndex: 2 }}>
+    <footer style={{ background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(20px)', borderTop: '1px solid rgba(0,0,0,0.06)', padding: '4rem 0 2rem', position: 'relative', zIndex: 2 }}>
       <div className="container">
 
         {/* Responsive styling for footer grid */}
@@ -36,8 +36,9 @@ const Footer = () => {
           {/* Brand Column */}
           <div>
             {/* Logo */}
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-              <img src="https://res.cloudinary.com/dobulag2p/image/upload/v1774819007/HarshPng_fynfd0.png" alt="Harshustle Logo" style={{ height: '40px', objectFit: 'contain' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
+              <img src="https://res.cloudinary.com/dobulag2p/image/upload/v1774819007/HarshPng_fynfd0.png" alt="Harshustle Logo" style={{ height: '36px', objectFit: 'contain' }} />
+              <span className="serif-italic" style={{ fontSize: '1.4rem', fontWeight: 500, color: '#111827' }}>Harshustle</span>
             </div>
 
             <p style={{ fontSize: '0.8rem', color: '#555', lineHeight: 1.65, marginBottom: '1.5rem', maxWidth: '200px' }}>
@@ -116,7 +117,7 @@ const Footer = () => {
                   href={l.href}
                   target={l.href.startsWith('http') ? '_blank' : undefined}
                   rel="noreferrer"
-                  style={{ fontSize: '0.85rem', color: l.highlight ? '#7b4dff' : '#555', textDecoration: 'none', fontWeight: l.highlight ? 700 : 400 }}
+                  style={{ fontSize: '0.85rem', color: l.highlight ? '#2e6347' : '#555', textDecoration: 'none', fontWeight: l.highlight ? 700 : 400 }}
                   onMouseEnter={e => { if (!l.highlight) e.currentTarget.style.color = '#000'; }}
                   onMouseLeave={e => { if (!l.highlight) e.currentTarget.style.color = '#555'; }}
                 >

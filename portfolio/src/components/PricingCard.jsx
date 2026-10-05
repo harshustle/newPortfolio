@@ -2,7 +2,7 @@ import React from 'react';
 
 const CheckIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" style={{ flexShrink: 0, marginTop: '2px' }}>
-    <circle cx="12" cy="12" r="12" fill="#4f46e5" />
+    <circle cx="12" cy="12" r="12" fill="#2e6347" />
     <path d="M7 12l3.5 3.5 6.5-6.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
   </svg>
 );
@@ -19,7 +19,7 @@ const PricingCard = ({ title, subtitle, price, volume, features, special, disabl
       {special && (
          <div style={{
            position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)',
-           background: '#4f46e5', color: '#fff', padding: '0.4rem 1rem', borderRadius: '99px',
+           background: '#2e6347', color: '#fff', padding: '0.4rem 1rem', borderRadius: '99px',
            fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase'
          }}>
            Most Popular

@@ -117,19 +117,19 @@ const Navbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                background: '#c084fc',
-                color: '#000',
-                padding: '0.45rem 1.1rem',
+                background: '#17261d',
+                color: '#ffffff',
+                padding: '0.45rem 1.15rem',
                 borderRadius: '99px',
                 fontSize: '0.8rem',
-                fontWeight: 900,
+                fontWeight: 700,
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
-                boxShadow: '0 2px 12px rgba(192, 132, 252, 0.4)',
-                transition: 'transform 0.2s ease',
+                boxShadow: '0 2px 10px rgba(23, 38, 29, 0.2)',
+                transition: 'transform 0.2s ease, background 0.2s ease',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.background = '#0e1a13'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = '#17261d'; }}
             >
               Book a Call <ArrowUpRight size={13} />
             </NavLink>

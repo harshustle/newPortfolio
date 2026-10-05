@@ -938,11 +938,6 @@ export default function OfferPage() {
                   alt="Watch VSL Video"
                   className="vsl-cover"
                 />
-                <div className="vsl-play-btn">
-                  <div className="vsl-play-circle">
-                    <div className="vsl-play-icon"></div>
-                  </div>
-                </div>
               </div>
             )}
           </div>
@@ -1257,12 +1252,7 @@ export default function OfferPage() {
                 ) : (
                   <>
                     <img src={getThumbnail(item.url)} alt={item.tag} className="phone-card-bg" />
-                    <div className="phone-card-overlay">
-                      <div className="play-circle" onClick={() => setPlayingIndex(idx)}>
-                        <svg viewBox="0 0 24 24">
-                          <polygon points="8,5 19,12 8,19" />
-                        </svg>
-                      </div>
+                    <div className="phone-card-overlay" onClick={() => setPlayingIndex(idx)} style={{ cursor: 'pointer' }}>
                       <span className="phone-tag">{item.tag}</span>
                     </div>
                   </>

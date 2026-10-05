@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, Linkedin, Instagram, ArrowUpRight, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, Linkedin, Instagram, ArrowUpRight, Send, CheckCircle, ArrowRight } from 'lucide-react';
 
 /* ── FAQ Accordion Item ── */
 const FAQItem = ({ q, a, index }) => {
@@ -11,21 +11,23 @@ const FAQItem = ({ q, a, index }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       style={{
-        background: open ? '#fff' : 'rgba(0,0,0,0.04)',
-        borderRadius: '16px',
+        background: open ? '#ffffff' : 'rgba(255, 255, 255, 0.7)',
+        borderRadius: '20px',
+        border: '1px solid rgba(0,0,0,0.06)',
         overflow: 'hidden',
-        transition: 'background 0.3s ease',
+        transition: 'all 0.3s ease',
         cursor: 'pointer',
+        boxShadow: open ? '0 8px 30px rgba(0,0,0,0.04)' : 'none'
       }}
       onClick={() => setOpen(!open)}
     >
       {/* Question Row */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.4rem 2rem' }}>
-        <span style={{ fontSize: '0.95rem', fontWeight: 700 }}>{q}</span>
+        <span style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)' }}>{q}</span>
         <motion.span
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.25 }}
-          style={{ fontSize: '1.4rem', fontWeight: 300, lineHeight: 1, flexShrink: 0, marginLeft: '1rem', color: open ? '#7b4dff' : 'inherit' }}
+          style={{ fontSize: '1.4rem', fontWeight: 300, lineHeight: 1, flexShrink: 0, marginLeft: '1rem', color: open ? '#2e6347' : '#888' }}
         >
           +
         </motion.span>
@@ -42,7 +44,7 @@ const FAQItem = ({ q, a, index }) => {
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             style={{ overflow: 'hidden' }}
           >
-            <p style={{ padding: '0 2rem 1.6rem', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.7 }}>
+            <p style={{ padding: '0 2rem 1.6rem', color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.7 }}>
               {a}
             </p>
           </motion.div>
@@ -62,8 +64,25 @@ const Contact = () => {
     exit: { opacity: 0, transition: { duration: 0.4 } }
   };
 
+  const easeTransition = [0.16, 1, 0.3, 1];
+
+  const pillAnim = {
+    initial: { opacity: 0, y: 15, filter: 'blur(6px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.65, ease: easeTransition, delay: 0.1 } }
+  };
+
+  const titleAnim = {
+    initial: { opacity: 0, y: 25, filter: 'blur(10px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.85, ease: easeTransition, delay: 0.22 } }
+  };
+
+  const subtitleAnim = {
+    initial: { opacity: 0, y: 20, filter: 'blur(6px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: easeTransition, delay: 0.38 } }
+  };
+
   const services = ["AI UGC Videos", "IRL Shoots", "Landing Pages", "Automation Systems"];
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState("AI UGC Videos");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -76,23 +95,22 @@ const Contact = () => {
     const data = Object.fromEntries(fd.entries());
 
     const payload = new URLSearchParams({
-      name:     data.name     || '',
-      email:    data.email    || '',
-      service:  selectedService || 'Not specified',
-      budget:   data.budget   || '',
+      name: data.name || '',
+      email: data.email || '',
+      service: selectedService || 'Not specified',
+      budget: data.budget || '',
       timeline: data.timeline || '',
-      message:  data.message  || '',
+      message: data.message || '',
     });
 
     try {
       await fetch(SHEET_URL, {
-        method:  "POST",
-        mode:    "no-cors",
+        method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body:    payload.toString(),
+        body: payload.toString(),
       });
 
-      // no-cors = can't read response, assume success if no network error
       setSubmitted(true);
     } catch (err) {
       console.error(err);
@@ -103,16 +121,16 @@ const Contact = () => {
   };
 
   const contactLinks = [
-    { icon: <Mail size={18} />, label: "Email", value: "harshustle@gmail.com", href: "mailto:harshustle@gmail.com" },
-    { icon: <Phone size={18} />, label: "Phone", value: "+91 7839661372", href: "tel:7839661372" },
-    { icon: <Linkedin size={18} />, label: "LinkedIn", value: "linkedin.com/in/harshustle", href: "https://linkedin.com/in/harshustle" },
-    { icon: <Instagram size={18} />, label: "Instagram", value: "@harshustler", href: "https://instagram.com/harshustler" },
+    { icon: <Mail size={17} />, label: "Email", value: "harshustle@gmail.com", href: "mailto:harshustle@gmail.com" },
+    { icon: <Phone size={17} />, label: "Phone", value: "+91 9161955178", href: "tel:9161955178" },
+    { icon: <Linkedin size={17} />, label: "LinkedIn", value: "linkedin.com/in/harshustle", href: "https://linkedin.com/in/harshustle" },
+    { icon: <Instagram size={17} />, label: "Instagram", value: "@harshustler", href: "https://instagram.com/harshustler" },
   ];
 
   const inputStyle = (name) => ({
-    background: focused === name ? 'rgba(123,77,255,0.04)' : 'transparent',
+    background: focused === name ? 'rgba(46, 99, 71, 0.03)' : 'transparent',
     border: 'none',
-    borderBottom: `2px solid ${focused === name ? '#7b4dff' : 'rgba(0,0,0,0.1)'}`,
+    borderBottom: `2px solid ${focused === name ? '#2e6347' : 'rgba(0,0,0,0.1)'}`,
     borderRadius: 0,
     padding: '1rem 0',
     marginTop: '0.5rem',
@@ -127,18 +145,43 @@ const Contact = () => {
   return (
     <motion.div
       className="page-container"
-      initial="initial" animate="animate" exit="exit" variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+      style={{ background: 'transparent', color: 'var(--text-primary)' }}
     >
-      {/* ── HERO ── */}
-      <section className="container" style={{ paddingTop: '10rem', paddingBottom: '4rem' }}>
-        <p style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.4, marginBottom: '1.5rem' }}>— Let's Work Together</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '2rem' }}>
-          <h1 style={{ fontSize: 'clamp(3rem, 9vw, 7rem)', fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 0.85 }}>
-            START A<br /><span className="serif-italic">Project.</span>
-          </h1>
-          <p style={{ maxWidth: '350px', color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.65 }}>
-            Whether you need AI videos, cinematic shoots, a landing page, or an automation system — let's build it.
-          </p>
+      {/* ── EDITORIAL HERO ── */}
+      <section className="hero-ref-container" style={{ paddingBottom: '3rem' }}>
+        <div className="hero-ref-content">
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={pillAnim}
+            className="hero-ref-pill"
+          >
+            <span className="hero-ref-dot" />
+            <span className="hero-ref-pill-text">Direct Inquiries • Q4 Production Schedule Open</span>
+          </motion.div>
+
+          <motion.h1
+            initial="initial"
+            animate="animate"
+            variants={titleAnim}
+            className="hero-ref-title"
+          >
+            Start a <br />
+            <span className="hero-ref-title-accent">partnership.</span>
+          </motion.h1>
+
+          <motion.p
+            initial="initial"
+            animate="animate"
+            variants={subtitleAnim}
+            className="hero-ref-subtitle"
+          >
+            Whether you need high-converting AI video assets, on-location cinematic production, a custom landing page, or an autonomous lead machine.
+          </motion.p>
         </div>
       </section>
 
@@ -147,24 +190,26 @@ const Contact = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '3rem', alignItems: 'start' }}>
 
           {/* ── LEFT: FORM ── */}
-          <div style={{ background: '#fff', borderRadius: '32px', padding: '4rem' }}>
+          <div style={{ background: '#ffffff', borderRadius: '32px', padding: '4rem', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 24px rgba(0,0,0,0.02)' }}>
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 style={{ textAlign: 'center', padding: '4rem 0' }}
               >
-                <CheckCircle size={60} color="#00aa55" strokeWidth={1.5} style={{ marginBottom: '2rem' }} />
-                <h2 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem' }}>Message Sent!</h2>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>I'll get back to you within 24 hours.</p>
+                <CheckCircle size={60} color="#2e6347" strokeWidth={1.5} style={{ marginBottom: '1.5rem' }} />
+                <h2 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '0.8rem' }}>Inquiry Received</h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>I will review your project brief and get back to you within 24 hours.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, marginBottom: '3rem', letterSpacing: '-0.02em' }}>Tell me about your project</h3>
+                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '2.5rem', letterSpacing: '-0.02em' }}>Tell me about your project</h3>
 
                 {/* Service Selector */}
                 <div style={{ marginBottom: '3rem' }}>
-                  <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em', display: 'block', marginBottom: '1rem' }}>What do you need?</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#2e6347', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block', marginBottom: '1rem' }}>
+                    What capability are you looking for?
+                  </span>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
                     {services.map((s) => (
                       <button
@@ -172,12 +217,12 @@ const Contact = () => {
                         type="button"
                         onClick={() => setSelectedService(s)}
                         style={{
-                          padding: '0.5rem 1.2rem',
+                          padding: '0.55rem 1.2rem',
                           borderRadius: '99px',
-                          border: `1.5px solid ${selectedService === s ? '#7b4dff' : 'rgba(0,0,0,0.12)'}`,
-                          background: selectedService === s ? '#7b4dff' : 'transparent',
-                          color: selectedService === s ? '#fff' : 'var(--text-primary)',
-                          fontSize: '0.8rem',
+                          border: `1.5px solid ${selectedService === s ? '#2e6347' : 'rgba(0,0,0,0.08)'}`,
+                          background: selectedService === s ? '#2e6347' : 'transparent',
+                          color: selectedService === s ? '#ffffff' : 'var(--text-primary)',
+                          fontSize: '0.82rem',
                           fontWeight: 700,
                           cursor: 'pointer',
                           transition: 'all 0.2s ease',
@@ -193,11 +238,11 @@ const Contact = () => {
                 {/* Name + Email Row */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }}>
                   <div>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Full Name</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 800, opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.15em' }}>Full Name</span>
                     <input
                       name="name"
                       type="text"
-                      placeholder="Harsh Srivastav"
+                      placeholder="e.g. Rahul Sharma"
                       required
                       style={inputStyle('name')}
                       onFocus={() => setFocused('name')}
@@ -205,7 +250,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Email</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 800, opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.15em' }}>Email Address</span>
                     <input
                       name="email"
                       type="email"
@@ -221,7 +266,7 @@ const Contact = () => {
                 {/* Budget + Timeline Row */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }}>
                   <div>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Budget Range</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 800, opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.15em' }}>Budget Range</span>
                     <select
                       name="budget"
                       style={{ ...inputStyle('budget'), cursor: 'pointer' }}
@@ -229,14 +274,14 @@ const Contact = () => {
                       onBlur={() => setFocused(null)}
                     >
                       <option value="">Select range</option>
-                      <option>Under ₹10,000</option>
-                      <option>₹10,000 – ₹50,000</option>
-                      <option>₹50,000 – ₹1,00,000</option>
-                      <option>₹1,00,000+</option>
+                      <option>Under ₹15,000 / $200</option>
+                      <option>₹15,000 – ₹50,000 / $600</option>
+                      <option>₹50,000 – ₹1,50,000 / $1800</option>
+                      <option>₹1,50,000+ / $2000+</option>
                     </select>
                   </div>
                   <div>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Timeline</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 800, opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.15em' }}>Desired Timeline</span>
                     <select
                       name="timeline"
                       style={{ ...inputStyle('timeline'), cursor: 'pointer' }}
@@ -244,20 +289,20 @@ const Contact = () => {
                       onBlur={() => setFocused(null)}
                     >
                       <option value="">Select timeline</option>
-                      <option>ASAP (less than 1 week)</option>
+                      <option>Immediate / ASAP</option>
                       <option>1–2 weeks</option>
                       <option>1 month</option>
-                      <option>Ongoing / Monthly</option>
+                      <option>Ongoing Monthly Retainer</option>
                     </select>
                   </div>
                 </div>
 
                 {/* Message */}
                 <div style={{ marginBottom: '3rem' }}>
-                  <span style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.4, textTransform: 'uppercase', letterSpacing: '0.2em' }}>Project Details</span>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 800, opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.15em' }}>Project Specifics</span>
                   <textarea
                     name="message"
-                    placeholder="Tell me what you're building, what results you need, and any specific requirements..."
+                    placeholder="Tell me what you're building, target audience, and current bottlenecks..."
                     rows="4"
                     required
                     style={{ ...inputStyle('msg'), resize: 'none' }}
@@ -266,19 +311,20 @@ const Contact = () => {
                   />
                 </div>
 
-                {/* Submit */}
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
+                  className="hero-ref-btn"
                   style={{
                     width: '100%',
                     padding: '1.2rem 2rem',
-                    background: isSubmitting ? '#555' : '#000',
-                    color: '#fff',
+                    background: '#2e6347',
+                    color: '#ffffff',
                     border: 'none',
-                    borderRadius: '16px',
-                    fontSize: '0.85rem',
-                    fontWeight: 900,
+                    borderRadius: '99px',
+                    fontSize: '0.92rem',
+                    fontWeight: 800,
                     fontFamily: 'inherit',
                     cursor: isSubmitting ? 'not-allowed' : 'pointer',
                     display: 'flex',
@@ -287,12 +333,13 @@ const Contact = () => {
                     gap: '0.7rem',
                     letterSpacing: '0.05em',
                     textTransform: 'uppercase',
-                    transition: 'transform 0.2s ease, background 0.2s ease',
+                    boxShadow: '0 10px 30px rgba(46, 99, 71, 0.35)',
+                    transition: 'all 0.2s ease',
                   }}
-                  onMouseEnter={e => !isSubmitting && (e.currentTarget.style.background = '#7b4dff')}
-                  onMouseLeave={e => !isSubmitting && (e.currentTarget.style.background = '#000')}
+                  onMouseEnter={e => !isSubmitting && (e.currentTarget.style.transform = 'translateY(-2px)')}
+                  onMouseLeave={e => !isSubmitting && (e.currentTarget.style.transform = 'translateY(0)')}
                 >
-                  {isSubmitting ? 'SENDING...' : <><Send size={16} /> SEND MESSAGE</>}
+                  {isSubmitting ? 'TRANSMITTING...' : <><Send size={16} /> TRANSMIT PROJECT BRIEF</>}
                 </button>
               </form>
             )}
@@ -302,20 +349,22 @@ const Contact = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
             {/* Availability Card */}
-            <div style={{ background: '#00ff78', borderRadius: '24px', padding: '2.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#000', animation: 'pulse 2s infinite' }} />
-                <span style={{ fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.15em' }}>Available for work</span>
+            <div style={{ background: '#151a17', borderRadius: '28px', padding: '2.5rem', color: '#fff' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.2rem' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#4ade80' }} />
+                <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#4ade80' }}>Open for Work</span>
               </div>
-              <p style={{ fontSize: '1.2rem', fontWeight: 900, lineHeight: 1.3, marginBottom: '0.8rem' }}>
-                Taking on new clients<br />in <span className="serif-italic">March 2026.</span>
+              <p style={{ fontSize: '1.35rem', fontWeight: 800, lineHeight: 1.25, marginBottom: '0.8rem' }}>
+                Accepting select <br />new projects <span className="serif-italic" style={{ color: '#4ade80' }}>today.</span>
               </p>
-              <p style={{ fontSize: '0.8rem', opacity: 0.65, lineHeight: 1.5 }}>Typical response time: under 24 hours.</p>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, margin: 0 }}>Average response turnaround: under 24 hours.</p>
             </div>
 
             {/* Contact Links */}
-            <div style={{ background: '#fff', borderRadius: '24px', padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '0' }}>
-              <p style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.35, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem' }}>— Direct Contact</p>
+            <div style={{ background: '#ffffff', borderRadius: '28px', padding: '2.5rem', border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', gap: '0' }}>
+              <p style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#2e6347', marginBottom: '1.5rem' }}>
+                — Direct Channels
+              </p>
               {contactLinks.map((link, i) => (
                 <a
                   key={i}
@@ -327,37 +376,39 @@ const Contact = () => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     padding: '1rem 0',
-                    borderBottom: i < contactLinks.length - 1 ? '1px solid var(--border-color)' : 'none',
+                    borderBottom: i < contactLinks.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none',
                     color: 'inherit',
                     textDecoration: 'none',
-                    transition: 'opacity 0.2s',
+                    transition: 'all 0.2s ease',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = '0.6'}
-                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  onMouseEnter={e => { e.currentTarget.style.color = '#2e6347'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'inherit'; }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <div style={{ opacity: 0.45 }}>{link.icon}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
+                    <div style={{ color: '#2e6347', opacity: 0.8 }}>{link.icon}</div>
                     <div>
-                      <p style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.4 }}>{link.label}</p>
-                      <p style={{ fontSize: '0.82rem', fontWeight: 600, marginTop: '0.1rem' }}>{link.value}</p>
+                      <p style={{ fontSize: '0.62rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.45 }}>{link.label}</p>
+                      <p style={{ fontSize: '0.85rem', fontWeight: 600, marginTop: '0.1rem' }}>{link.value}</p>
                     </div>
                   </div>
-                  <ArrowUpRight size={14} style={{ opacity: 0.25 }} />
+                  <ArrowUpRight size={14} style={{ opacity: 0.3 }} />
                 </a>
               ))}
             </div>
 
-            {/* Quick Stats */}
-            <div style={{ background: 'var(--bg-secondary)', borderRadius: '24px', padding: '2.5rem' }}>
-              <p style={{ fontSize: '0.65rem', fontWeight: 900, opacity: 0.35, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem' }}>— Why Work With Me</p>
+            {/* Quick Guarantees */}
+            <div style={{ background: '#ffffff', borderRadius: '28px', padding: '2.5rem', border: '1px solid rgba(0,0,0,0.06)' }}>
+              <p style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#2e6347', marginBottom: '1.2rem' }}>
+                — Operational Commitments
+              </p>
               {[
                 { n: "900+", l: "AI Assets Delivered" },
-                { n: "24h", l: "Average Response Time" },
-                { n: "100%", l: "Client Satisfaction Goal" },
+                { n: "<24h", l: "Average Response Time" },
+                { n: "100%", l: "Production Confidentiality" },
               ].map((s, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.7rem 0', borderBottom: i < 2 ? '1px solid var(--border-color)' : 'none' }}>
-                  <span style={{ fontSize: '0.82rem', opacity: 0.55 }}>{s.l}</span>
-                  <span style={{ fontSize: '0.95rem', fontWeight: 900, color: '#7b4dff' }}>{s.n}</span>
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: i < 2 ? '1px solid rgba(0,0,0,0.05)' : 'none' }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{s.l}</span>
+                  <span style={{ fontSize: '0.98rem', fontWeight: 900, color: '#2e6347' }}>{s.n}</span>
                 </div>
               ))}
             </div>
@@ -368,48 +419,44 @@ const Contact = () => {
 
       {/* ── FAQ SECTION ── */}
       <section className="container" style={{ paddingBottom: '8rem' }}>
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-          <p style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.3em', opacity: 0.4, marginBottom: '1.2rem' }}>Questions</p>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1 }}>
-            Frequently asked <span className="serif-italic">questions.</span>
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <p style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', color: '#2e6347', marginBottom: '1rem' }}>
+            — Transparent Answers
+          </p>
+          <h2 className="editorial-section-title">
+            Frequently asked <span className="editorial-title-accent">questions.</span>
           </h2>
         </div>
 
-        {/* Accordion */}
-        <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+        <div style={{ maxWidth: '850px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
           {[
             {
               q: "How quickly can you deliver AI UGC videos?",
-              a: "Most AI UGC videos are delivered within 24–72 hours depending on the complexity. For bulk orders (50+ assets), I work on a structured weekly delivery pipeline so you always have fresh content."
+              a: "Most AI UGC videos are delivered within 24–72 hours depending on the complexity. For ongoing packages, I deliver on a structured weekly cadence so your ad pipeline is always stocked."
             },
             {
               q: "What platforms are the videos optimized for?",
-              a: "All videos are natively cut for Instagram Reels (9:16), TikTok Ads, YouTube Shorts, and Meta/Facebook Ad creatives. I can also deliver in 1:1 or 16:9 formats on request."
+              a: "All videos are natively cut for Instagram Reels (9:16), TikTok Ads, YouTube Shorts, and Meta ad formats. Clean vertical layout with high audio and visual retention."
             },
             {
               q: "Do you work with international brands?",
-              a: "Yes. I've worked with brands across UAE, Europe, and Southeast Asia including Dambe Properties, eSanad, and EuroDigital. Remote collaboration works seamlessly — all briefs are handled via Notion or Google Docs."
+              a: "Yes. I have partnered with brands across UAE, Europe, and Southeast Asia including Dambe Properties, eSanad, and EuroDigital. Remote collaboration is streamlined via Notion or Google Drive."
             },
             {
               q: "What does an IRL shoot include?",
-              a: "A full on-location shoot includes pre-production planning, on-site filming (property walkthroughs, cinematic reveals), professional editing, color grading, subtitle overlays, and ready-to-post exports — all delivered within 3–5 days."
+              a: "Full on-location shoots include pre-production planning, on-site filming (cinematic property tours, reveals), editing, grading, motion subtitles, and ready-to-run exports."
             },
             {
               q: "How long does a landing page take to build?",
-              a: "A single high-converting landing page typically takes 3–7 days from brief to delivery. The timeline includes design, development, form integration, WhatsApp/CRM setup, and speed optimization."
+              a: "A single high-converting landing page takes 3–7 days from initial brief to live deployment, including CRM integration, WhatsApp API routing, and speed optimization."
             },
             {
-              q: "What automations can you build?",
-              a: "I build lead qualification bots, content-to-publish pipelines, CRM routing (Airtable, HubSpot, Google Sheets), AI chatbots for WhatsApp/Instagram DMs, and scheduled social media posting workflows using Make (Integromat) and n8n."
+              q: "What automations can you deploy?",
+              a: "I deploy lead qualification logic, CRM sync (HubSpot, Airtable, Google Sheets), WhatsApp AI notification bots, and scheduled social media workflows using Make.com and n8n."
             },
             {
               q: "Do you offer monthly retainers?",
-              a: "Yes — monthly retainers are available for ongoing AI UGC production, social media automation, and landing page management. Retainer clients get priority delivery and dedicated support."
-            },
-            {
-              q: "How do I get started?",
-              a: "Just fill out the form above or drop me a message on Instagram @harshustler or email harshustle@gmail.com. I'll respond within 24 hours with a proposal tailored to your goals."
+              a: "Yes. Retainers are available for continuous AI video production, regular landing page testing, and pipeline maintenance with priority SLA support."
             },
           ].map((item, i) => (
             <FAQItem key={i} q={item.q} a={item.a} index={i} />

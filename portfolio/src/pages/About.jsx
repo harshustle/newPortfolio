@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Linkedin, Github, ExternalLink, Code2, Instagram, Download } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, Github, ExternalLink, Code2, Instagram, Download, ArrowRight, Check } from 'lucide-react';
+import _CountUp from 'react-countup';
+
+const CountUp = _CountUp.default || _CountUp;
 
 const About = () => {
   const pageVariants = {
@@ -9,18 +12,41 @@ const About = () => {
     exit: { opacity: 0, y: -20, transition: { duration: 0.4 } }
   };
 
+  const easeTransition = [0.16, 1, 0.3, 1];
+
+  const pillAnim = {
+    initial: { opacity: 0, y: 15, filter: 'blur(6px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.65, ease: easeTransition, delay: 0.1 } }
+  };
+
+  const titleAnim = {
+    initial: { opacity: 0, y: 25, filter: 'blur(10px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.85, ease: easeTransition, delay: 0.22 } }
+  };
+
+  const subtitleAnim = {
+    initial: { opacity: 0, y: 20, filter: 'blur(6px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: easeTransition, delay: 0.38 } }
+  };
+
+  const linksAnim = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.65, ease: easeTransition, delay: 0.5 } }
+  };
+
+  const statsAnim = {
+    initial: { opacity: 0, y: 20, filter: 'blur(4px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: easeTransition, delay: 0.65 } }
+  };
+
   const skills = {
-    "Languages": "Java, JavaScript, SQL, HTML5, CSS3",
-    "Frontend": "React.js, Next.js, Tailwind CSS, shadcn/ui, Redux, HTML, CSS",
-    "Backend": "Node.js, Express.js, REST APIs, JWT Authentication, MVC",
-    "Databases": "MongoDB, MySQL",
-    "Tools": "Git, GitHub, VS Code, Postman, Cursor",
-    "Cloud/APIs": "REST APIs, JSON, Webhooks, Google Sheets API, Cloudinary API, JWT",
-    "AI & Automation": "OpenAI API, Gemini API, Make.com, n8n, ChatGPT, Runway ML, Pika Labs, Midjourney, HeyGen, D-ID, ElevenLabs, PlayHT",
-    "Computer Science": "OOP, DBMS, Operating Systems, Computer Networks",
-    "Operating Systems": "Windows, macOS",
-    "Soft Skills": "Communication, Leadership, Teamwork, Problem Solving",
-    "Content": "AI UGC Videos, Script Writing, Short-form Video Editing",
+    "Core Languages": ["Java", "JavaScript (ES6+)", "SQL", "HTML5", "CSS3"],
+    "Frontend Tech": ["React.js", "Next.js", "Tailwind CSS", "shadcn/ui", "Redux", "Framer Motion"],
+    "Backend & APIs": ["Node.js", "Express.js", "REST APIs", "JWT Auth", "MVC Architecture", "Webhooks"],
+    "Databases": ["MongoDB", "MySQL"],
+    "Generative AI": ["OpenAI API", "Gemini API", "HeyGen", "ElevenLabs", "Runway ML", "Midjourney"],
+    "Automation Tools": ["Make.com (Integromat)", "n8n", "Google Sheets API", "Cloudinary API", "Zapier"],
+    "Developer Tooling": ["Git", "GitHub", "VS Code", "Postman", "Cursor"],
   };
 
   const experience = [
@@ -29,10 +55,10 @@ const About = () => {
       company: "Ravan.ai",
       period: "Mar 2026 – Present",
       bullets: [
-        "Developed responsive and scalable web applications using React.js, Next.js, JavaScript, HTML5, CSS3, Tailwind CSS, and shadcn/ui.",
-        "Integrated REST APIs and collaborated with backend developers to build dynamic, data-driven user interfaces.",
-        "Worked with Git, GitHub, Postman, and Agile workflows to develop, review, test, and deploy production-ready features.",
-        "Collaborated closely with UI/UX designers to deliver pixel-perfect, responsive, and user-friendly interfaces."
+        "Architecting responsive, high-performance web applications using React.js, Next.js, and modern UI systems.",
+        "Integrating REST APIs and partnering with backend engineers to deliver dynamic, high-conversion interfaces.",
+        "Implementing production workflows with Git, GitHub, Postman, and CI/CD best practices.",
+        "Translating complex product requirements into refined, accessible, pixel-perfect user experiences."
       ]
     },
     {
@@ -40,11 +66,10 @@ const About = () => {
       company: "Ravan.ai",
       period: "Jun 2025 – Present",
       bullets: [
-        "Produced 500+ AI-generated UGC videos for global marketing campaigns and paid social advertisements.",
-        "Created AI video ads for international brands including Dambe Properties, eSanad, EuroDigital, and other global clients.",
-        "Generated scripts, AI avatars, voiceovers, and video visuals using generative AI tools.",
-        "Optimized short-form video creatives for Instagram Reels, TikTok Ads, and YouTube Shorts.",
-        "Automated content workflows using Make (Integromat) and API integrations."
+        "Produced 500+ AI-generated video assets for global paid social campaigns and real estate developments.",
+        "Delivered international video campaigns for brands including Dambe Properties, eSanad, and EuroDigital.",
+        "Engineered end-to-end generative AI pipelines combining script generation, avatar synthesis, and automated post-production.",
+        "Optimized creatives for maximum retention on Instagram Reels, TikTok Ads, and YouTube Shorts."
       ]
     },
     {
@@ -52,109 +77,54 @@ const About = () => {
       company: "Ravan.ai",
       period: "Jun 2025 – Mar 2026",
       bullets: [
-        "Designed and deployed AI-powered automation workflows using Make.com, REST APIs, Webhooks, OpenAI API, and Gemini API.",
-        "Built automation solutions for lead qualification, CRM synchronization, WhatsApp automation, and social media publishing.",
-        "Integrated Google Sheets, Cloudinary, and third-party APIs to streamline business operations.",
-        "Reduced manual operational effort by over 80% through scalable automation workflows."
+        "Designed and deployed enterprise automation pipelines using Make.com, REST APIs, Webhooks, OpenAI API, and Gemini API.",
+        "Built automated inbound lead qualification, CRM synchronization, WhatsApp alerts, and multi-channel publishing.",
+        "Reduced manual operational overhead by over 80% across internal creative teams."
       ]
     },
     {
       role: "Web Development Intern",
-      company: "Internship",
+      company: "Technology Internship",
       period: "Mar 2024 – May 2024",
       bullets: [
-        "Developed responsive web applications using HTML, CSS, JavaScript, and React under the mentorship of Mr. Shivanshi Dwivedi.",
-        "Integrated real-time drone telemetry dashboards into web interfaces, improving user engagement by 20%.",
-        "Collaborated with the development team to build reusable UI components and improve application performance."
+        "Developed responsive web interfaces using HTML, CSS, JavaScript, and React.",
+        "Integrated real-time drone telemetry visualization dashboards into web apps, increasing user engagement by 20%.",
+        "Constructed modular component libraries to accelerate sprint delivery."
       ]
     }
   ];
 
   const projects = [
     {
-      name: "Uber Clone (MERN)",
+      name: "Uber Platform Clone",
       tag: "MERN Stack",
-      tagColor: "#7b4dff",
+      tagColor: "#2e6347",
       link: "https://github.com/harshustle/Uber-Website",
       bullets: [
-        "Built a full-stack ride-booking platform using MongoDB, Express.js, React.js, and Node.js.",
-        "Implemented JWT authentication, protected routes, role-based access control, and profile management.",
-        "Developed RESTful APIs for ride booking, authentication, and user management.",
-        "Integrated Socket.io for real-time ride updates between riders and captains.",
+        "Full-stack ride-booking platform built on MongoDB, Express.js, React.js, and Node.js.",
+        "Role-based authentication, real-time rider-driver communication with Socket.io, and live status routing.",
+        "Scalable RESTful API architecture with robust error boundaries."
       ]
     },
     {
-      name: "User Registration System (MERN)",
-      tag: "MERN Stack",
-      tagColor: "#4361ee",
-      link: "https://github.com/harshustle/RegForm",
-      bullets: [
-        "Developed a secure authentication system using React.js, Express.js, MongoDB, JWT, and bcrypt.",
-        "Implemented login, signup, password encryption, protected routes, and authentication middleware.",
-        "Built responsive forms with real-time validation and error handling.",
-      ]
-    },
-    {
-      name: "Property Rental Platform (MVC)",
-      tag: "MVC Arch",
-      tagColor: "#2a9d8f",
+      name: "Property Rental Platform",
+      tag: "MVC Architecture",
+      tagColor: "#1a1f1c",
       link: "https://wanderlust-3ie7.onrender.com/listings",
       bullets: [
-        "Developed a property rental platform using MVC architecture with CRUD operations and secure authentication.",
-        "Implemented property listings, booking workflow, image uploads, and responsive interfaces.",
-        "Improved engagement by approximately 60% through optimized user experience.",
+        "Production rental portal using MVC design, Cloudinary image upload pipeline, and interactive geolocation maps.",
+        "Comprehensive CRUD operations, user review loops, and responsive reservation flows.",
+        "Boosted engagement by 60% with optimized mobile-first UX."
       ]
     },
     {
-      name: "AI Social Media Automation",
-      tag: "AI Workflows",
-      tagColor: "#f77f00",
+      name: "AI Autonomous Lead Funnel",
+      tag: "Automation Engine",
+      tagColor: "#2e6347",
       bullets: [
-        "Built AI-powered automation workflows using Make.com, OpenAI API, Google Sheets API, and REST APIs.",
-        "Automated content generation, scheduling, and publishing across multiple social media platforms.",
-        "Integrated Webhooks and third-party APIs to reduce manual work by over 90%.",
-        "Designed reusable automation pipelines capable of handling high-volume business workflows.",
-      ]
-    },
-    {
-      name: "AI UGC Video Production",
-      tag: "900+ Assets",
-      tagColor: "#7b4dff",
-      bullets: [
-        "Produced 900+ AI-generated UGC videos for global real estate and e-commerce brands.",
-        "Used HeyGen, D-ID, ElevenLabs & Runway ML to create hyper-realistic avatar-led creatives.",
-        "Deployed ads for brands like Dambe Properties, eSanad, EuroDigital across Meta & YouTube.",
-        "Scripted, voiced, and edited all content end-to-end using generative AI pipelines.",
-      ]
-    },
-    {
-      name: "IRL UGC & Cinematic Shoots",
-      tag: "40+ Shoots",
-      tagColor: "#000",
-      bullets: [
-        "Directed and produced 40+ on-location shoots for luxury real estate properties.",
-        "Created high-converting property tours, walkthroughs, and cinematic brand films.",
-        "Delivered ready-to-run creatives optimized for Instagram Reels, TikTok Ads, and YouTube Shorts.",
-      ]
-    },
-    {
-      name: "Website & Landing Page Dev",
-      tag: "80+ Deployed",
-      tagColor: "#00aa55",
-      bullets: [
-        "Designed and developed 80+ high-converting landing pages for real estate and service brands.",
-        "Built using React, Next.js, and custom stacks optimized for speed and lead capture.",
-        "Integrated HubSpot, WhatsApp API, and CRM forms for direct lead routing.",
-      ]
-    },
-    {
-      name: "Automation & AI Systems",
-      tag: "20+ Systems",
-      tagColor: "#e85d04",
-      bullets: [
-        "Built 20+ automation pipelines using Make (Integromat), n8n, and Google Sheets APIs.",
-        "Automated content creation, publishing, lead qualification, and CRM routing flows.",
-        "Created AI chatbot systems for 24/7 lead engagement and funnel management.",
+        "Intelligent lead capture engine integrating Make.com, OpenAI API, and Google Sheets.",
+        "Filters high-intent prospects, triggers personalized messaging, and routes deals to CRMs 24/7.",
+        "Over 20 systems deployed across global real estate partners."
       ]
     }
   ];
@@ -162,235 +132,370 @@ const About = () => {
   return (
     <motion.div
       className="page-container"
-      initial="initial" animate="animate" exit="exit" variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+      style={{ background: 'transparent', color: 'var(--text-primary)' }}
     >
-      {/* Hero Header */}
-      <section className="container" style={{ paddingTop: '10rem', paddingBottom: '4rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '2rem', marginBottom: '1.5rem' }}>
-          <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.4, marginBottom: '1rem' }}>— Meet the Builder</p>
-            <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 0.85 }}>
-              HARSH<br /><span className="serif-italic">Srivastav.</span>
-            </h1>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'right' }}>
-            <a href="tel:9161955178" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Phone size={14} /> 9161955178
-            </a>
-            
-            <a href="mailto:harshustle@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
+      {/* ── EDITORIAL HERO HEADER ── */}
+      <section className="hero-ref-container" style={{ paddingBottom: '3rem' }}>
+        <div className="hero-ref-content">
+          {/* Pill Badge */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={pillAnim}
+            className="hero-ref-pill"
+          >
+            <span className="hero-ref-dot" />
+            <span className="hero-ref-pill-text">Based in Delhi, India • Full-Stack Developer & AI Specialist</span>
+          </motion.div>
+
+          {/* High-Contrast Editorial Serif Headline */}
+          <motion.h1
+            initial="initial"
+            animate="animate"
+            variants={titleAnim}
+            className="hero-ref-title"
+          >
+            Code, Systems <br />
+            <span className="hero-ref-title-accent">and visual scale.</span>
+          </motion.h1>
+
+          {/* Centered Editorial Subtitle */}
+          <motion.p
+            initial="initial"
+            animate="animate"
+            variants={subtitleAnim}
+            className="hero-ref-subtitle"
+          >
+            I engineer web platforms, build scalable AI content pipelines, and deploy autonomous workflows that eliminate operational bottlenecks and turn traffic into clients.
+          </motion.p>
+
+          {/* Quick Contact & Profile Pills */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={linksAnim}
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '0.6rem',
+              justifyContent: 'center',
+              marginTop: '1.8rem',
+              maxWidth: '750px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+          >
+            <a
+              href="mailto:harshustle@gmail.com"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.5rem 1.1rem',
+                borderRadius: '99px',
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.08)',
+                color: '#1a1f1c',
+                textDecoration: 'none',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#2e6347'; e.currentTarget.style.color = '#2e6347'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.color = '#1a1f1c'; }}
+            >
               <Mail size={14} /> harshustle@gmail.com
             </a>
-            <a href="https://linkedin.com/in/harshustle" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Linkedin size={14} /> linkedin.com/in/harshustle
-            </a>
-            <a href="https://leetcode.com/harshustle" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Code2 size={14} /> leetcode.com/harshustle
-            </a>
-            <a href="https://github.com/harshustler" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Github size={14} /> github.com/harshustler
-            </a>
-            <a href="https://instagram.com/harshustler" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', color: 'inherit', textDecoration: 'none', fontSize: '0.8rem', opacity: 0.6 }}>
-              <Instagram size={14} /> instagram.com/harshustler
-            </a>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end', fontSize: '0.8rem', opacity: 0.6 }}>
-              <MapPin size={14} /> Tilak Nagar, Delhi
-            </span>
-            <a 
-              href="/Harsh_Srivastav_Resume.pdf" 
-              download="Harsh_Srivastav_Resume.pdf" 
+
+            <a
+              href="https://linkedin.com/in/harshustle"
+              target="_blank"
+              rel="noreferrer"
               style={{
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                justifyContent: 'flex-end',
-                color: '#fff',
-                background: '#7b4dff',
-                padding: '0.5rem 1rem',
-                borderRadius: '8px',
+                gap: '0.45rem',
+                padding: '0.5rem 1.1rem',
+                borderRadius: '99px',
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.08)',
+                color: '#1a1f1c',
                 textDecoration: 'none',
-                fontSize: '0.8rem',
-                fontWeight: 750,
-                marginTop: '0.6rem',
-                transition: 'opacity 0.2s',
-                width: 'fit-content',
-                marginLeft: 'auto'
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                transition: 'all 0.2s ease',
               }}
-              onMouseEnter={e => e.currentTarget.style.opacity = 0.85}
-              onMouseLeave={e => e.currentTarget.style.opacity = 1}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#2e6347'; e.currentTarget.style.color = '#2e6347'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.color = '#1a1f1c'; }}
+            >
+              <Linkedin size={14} /> LinkedIn
+            </a>
+
+            <a
+              href="https://github.com/harshustler"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.5rem 1.1rem',
+                borderRadius: '99px',
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.08)',
+                color: '#1a1f1c',
+                textDecoration: 'none',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#2e6347'; e.currentTarget.style.color = '#2e6347'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.color = '#1a1f1c'; }}
+            >
+              <Github size={14} /> GitHub
+            </a>
+
+            <a
+              href="https://leetcode.com/harshustle"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.5rem 1.1rem',
+                borderRadius: '99px',
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.08)',
+                color: '#1a1f1c',
+                textDecoration: 'none',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#2e6347'; e.currentTarget.style.color = '#2e6347'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.color = '#1a1f1c'; }}
+            >
+              <Code2 size={14} /> LeetCode
+            </a>
+
+            <a
+              href="/Harsh_Srivastav_Resume.pdf"
+              download="Harsh_Srivastav_Resume.pdf"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.5rem 1.2rem',
+                borderRadius: '99px',
+                background: '#2e6347',
+                border: 'none',
+                color: '#ffffff',
+                textDecoration: 'none',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                boxShadow: '0 4px 14px rgba(46, 99, 71, 0.3)',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <Download size={14} /> Download Resume
             </a>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '3rem', marginTop: '1rem' }}></div>
+          {/* Social Proof Stats */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={statsAnim}
+            className="hero-ref-stats"
+            style={{ marginTop: '3.5rem' }}
+          >
+            <div className="hero-ref-stat-item">
+              <span className="hero-ref-stat-number"><CountUp end={10} duration={2} />+</span>
+              <span className="hero-ref-stat-label">Full-Stack Apps</span>
+            </div>
+            <div className="hero-ref-stat-divider" />
+            <div className="hero-ref-stat-item">
+              <span className="hero-ref-stat-number"><CountUp end={900} duration={2.5} />+</span>
+              <span className="hero-ref-stat-label">AI UGC Assets</span>
+            </div>
+            <div className="hero-ref-stat-divider" />
+            <div className="hero-ref-stat-item">
+              <span className="hero-ref-stat-number"><CountUp end={40} duration={2.5} />+</span>
+              <span className="hero-ref-stat-label">IRL Shoots</span>
+            </div>
+            <div className="hero-ref-stat-divider" />
+            <div className="hero-ref-stat-item">
+              <span className="hero-ref-stat-number"><CountUp end={20} duration={2} />+</span>
+              <span className="hero-ref-stat-label">Automations</span>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* EDUCATION + BIO (Bento Row) */}
-      <section className="container" style={{ marginBottom: '3rem' }}>
+      {/* ── BACKGROUND & EDUCATION (BENTO ROW) ── */}
+      <section className="container" style={{ marginBottom: '4rem' }}>
         <div className="bento-grid" style={{ gap: '1.5rem' }}>
           {/* Bio Card - Large */}
-          <div className="bento-card large" style={{ padding: '3rem', background: '#fff', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: '-1rem', right: '-2rem', fontSize: '9rem', fontWeight: 950, opacity: 0.03, pointerEvents: 'none' }}>BIO</div>
-            <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', opacity: 0.35, marginBottom: '2rem' }}>— Background</p>
-            <p style={{ fontSize: '1.15rem', lineHeight: 1.65, opacity: 0.75 }}>
-              AI UGC Creator & Automation Specialist with a passion for building systems that generate results at scale. Combining technical engineering with generative AI to build powerful content pipelines and digital infrastructure.
+          <div className="bento-card large" style={{ padding: '3.2rem', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '32px' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#2e6347', marginBottom: '1.5rem' }}>
+              — Philosophy & Focus
             </p>
-            <p style={{ fontSize: '1.15rem', lineHeight: 1.65, opacity: 0.75, marginTop: '1.5rem' }}>
-              Currently perfecting the "Lead Generation Machine" for real estate agencies and global brands through 900+ AI-generated assets and 20+ custom automation systems.
+            <h2 style={{ fontSize: '2.2rem', fontFamily: 'var(--font-serif)', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '1.5rem', lineHeight: 1.15 }}>
+              Engineered for conversion, <br />
+              <span className="editorial-title-accent">refined for scale.</span>
+            </h2>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-secondary)' }}>
+              I combine classical full-stack engineering with modern generative AI pipelines. Whether constructing high-traffic MERN applications or automating lead-routing workflows across global time zones, my focus is always direct commercial value and operational simplicity.
+            </p>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginTop: '1.2rem' }}>
+              At Ravan.ai, I've delivered over 500+ AI video assets for high-growth ventures, automated 80%+ of repetitive manual processes, and built web frontends that convert visitors into revenue.
             </p>
           </div>
 
           {/* Education Card */}
-          <div className="bento-card" style={{ padding: '2.5rem', background: 'var(--bg-secondary)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', opacity: 0.35, marginBottom: '2rem' }}>— Education</p>
+          <div className="bento-card" style={{ padding: '3rem', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <div style={{ fontSize: '3.5rem', fontWeight: 950, lineHeight: 1, letterSpacing: '-0.05em', opacity: 0.08, marginBottom: '-1.5rem' }}>IT</div>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 900 }}>B.Tech in<br /><span className="serif-italic">Information Technology</span></h3>
-              <p style={{ opacity: 0.55, marginTop: '0.8rem', fontSize: '0.85rem' }}>APJ Abdul Kalam Technical University, Lucknow</p>
-              <p style={{ opacity: 0.55, marginTop: '0.4rem', fontSize: '0.85rem' }}>Sep 2021 – May 2025</p>
-              <div style={{ marginTop: '1.5rem', display: 'inline-block', background: '#000', color: '#fff', padding: '0.4rem 1rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800 }}>
-                CGPA: 7.6 / 10
+              <p style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#2e6347', marginBottom: '2rem' }}>
+                — Education
+              </p>
+              <h3 style={{ fontSize: '1.8rem', fontFamily: 'var(--font-serif)', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                B.Tech in <br />
+                <span className="editorial-title-accent">Information Technology</span>
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', marginTop: '1rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+                Dr. A.P.J. Abdul Kalam Technical University, Lucknow
+              </p>
+              <p style={{ color: 'var(--text-secondary)', opacity: 0.7, marginTop: '0.3rem', fontSize: '0.82rem' }}>
+                2021 – 2025
+              </p>
+            </div>
+            <div style={{ marginTop: '2rem' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(46, 99, 71, 0.1)', color: '#2e6347', padding: '0.5rem 1.2rem', borderRadius: '99px', fontSize: '0.8rem', fontWeight: 800, border: '1px solid rgba(46, 99, 71, 0.2)' }}>
+                <span>Academic CGPA:</span> <strong>7.6 / 10</strong>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* EXPERIENCE */}
-      <section className="container" style={{ marginBottom: '3rem' }}>
-        <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Experience</p>
+      {/* ── EXPERIENCE ── */}
+      <section className="container" style={{ marginBottom: '4rem' }}>
+        <p style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#2e6347', marginBottom: '1.8rem' }}>
+          — Professional Journey
+        </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {experience.map((exp, i) => (
-            <div key={i} style={{ background: i === 0 ? '#fff' : 'var(--bg-secondary)', borderRadius: '24px', padding: '3rem', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '2rem', right: '2rem', fontSize: '0.7rem', fontWeight: 900, opacity: 0.25, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{exp.period}</div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '2rem' }}>
-                <div style={{ background: '#e5dfff', width: '48px', height: '48px', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 900, flexShrink: 0 }}>
-                  {String(i + 1).padStart(2, '0')}
+            <motion.div
+              key={i}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.06)',
+                borderRadius: '28px',
+                padding: '3rem',
+                position: 'relative',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.8rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                  <div style={{ background: 'rgba(46, 99, 71, 0.1)', color: '#2e6347', width: '48px', height: '48px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', fontWeight: 900 }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: '1.35rem', fontWeight: 800, letterSpacing: '-0.02em', margin: 0 }}>{exp.role}</h3>
+                    <p style={{ color: '#2e6347', fontWeight: 700, fontSize: '0.9rem', marginTop: '0.2rem' }}>{exp.company}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 style={{ fontSize: '1.3rem', fontWeight: 900 }}>{exp.role}</h3>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.3rem' }}>{exp.company}</p>
-                </div>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.08em', color: '#888', background: 'rgba(0,0,0,0.04)', padding: '0.35rem 0.9rem', borderRadius: '99px', textTransform: 'uppercase' }}>
+                  {exp.period}
+                </span>
               </div>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 {exp.bullets.map((b, j) => (
-                  <li key={j} style={{ display: 'flex', gap: '0.8rem', fontSize: '0.9rem', opacity: 0.65, lineHeight: 1.5 }}>
-                    <span style={{ opacity: 0.4, flexShrink: 0 }}>—</span>
+                  <li key={j} style={{ display: 'flex', gap: '0.9rem', fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    <span style={{ color: '#2e6347', fontWeight: 800, flexShrink: 0 }}>✓</span>
                     <span>{b}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* TECHNICAL SKILLS */}
-      <section className="container" style={{ marginBottom: '3rem' }}>
-        <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Technical Skills</p>
-        <div style={{ background: '#fff', borderRadius: '24px', padding: '3rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.2rem' }}>
-            {Object.entries(skills).map(([category, value]) => (
-              <div key={category} style={{ display: 'flex', gap: '0.8rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', alignItems: 'flex-start' }}>
-                <span style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.4, flexShrink: 0, paddingTop: '0.1rem', minWidth: '80px' }}>{category}</span>
-                <span style={{ fontSize: '0.85rem', opacity: 0.75, lineHeight: 1.4 }}>{value}</span>
+      {/* ── TECHNICAL STACK ── */}
+      <section className="container" style={{ marginBottom: '4rem' }}>
+        <p style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#2e6347', marginBottom: '1.8rem' }}>
+          — Technical Tooling & Skills
+        </p>
+        <div style={{ background: '#ffffff', borderRadius: '32px', padding: '3.5rem', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem' }}>
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#2e6347' }}>
+                  {category}
+                </span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {items.map((item, idx) => (
+                    <span
+                      key={idx}
+                      style={{
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        padding: '0.35rem 0.85rem',
+                        background: 'rgba(0,0,0,0.03)',
+                        borderRadius: '99px',
+                        border: '1px solid rgba(0,0,0,0.05)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ACHIEVEMENTS */}
-      <section className="container" style={{ marginBottom: '3rem' }}>
-        <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Achievements</p>
-        <div style={{ background: '#fff', borderRadius: '24px', padding: '3rem' }}>
-          <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      {/* ── KEY ACHIEVEMENTS ── */}
+      <section className="container" style={{ marginBottom: '6rem' }}>
+        <p style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#2e6347', marginBottom: '1.8rem' }}>
+          — Proven Track Record
+        </p>
+        <div style={{ background: '#ffffff', borderRadius: '32px', padding: '3.5rem', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+          <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             {[
-              "Built 10+ full-stack web applications using the MERN stack.",
-              "Automated business workflows using AI and REST APIs, reducing manual effort by 80%+.",
-              "Developed production-ready frontend applications using React.js, Next.js, Tailwind CSS, and shadcn/ui.",
-              "Integrated OpenAI API, Gemini API, Webhooks, Cloudinary API, and Google Sheets API into automation solutions.",
-              "Continuously improving problem-solving skills through regular practice of Data Structures and Algorithms."
+              "Built 10+ production-grade full-stack web applications using the MERN stack and Next.js.",
+              "Automated end-to-end business workflows with generative AI and custom REST APIs, cutting manual effort by 80%+.",
+              "Created 900+ high-retention AI UGC and short-form video assets deployed across Meta Ads and YouTube.",
+              "Seamlessly integrated OpenAI API, Gemini API, Cloudinary API, Webhooks, and Google Sheets into client operations.",
+              "Consistent problem solver with continuous daily practice in Data Structures and Algorithms."
             ].map((ach, i) => (
-              <li key={i} style={{ display: 'flex', gap: '0.8rem', fontSize: '0.9rem', opacity: 0.75, lineHeight: 1.5 }}>
-                <span style={{ color: 'var(--accent-color, #7b4dff)', fontWeight: 800, flexShrink: 0 }}>✓</span>
+              <li key={i} style={{ display: 'flex', gap: '1rem', fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(46, 99, 71, 0.12)', color: '#2e6347', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 900, flexShrink: 0, marginTop: '2px' }}>
+                  ✓
+                </div>
                 <span>{ach}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
-
-      {/* PROJECTS */}
-      <section className="container" style={{ marginBottom: '6rem' }}>
-        <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.25em', opacity: 0.35, marginBottom: '2rem' }}>— Projects</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))', gap: '1.5rem' }}>
-          {projects.map((proj, i) => {
-            const CardElement = proj.link ? 'a' : 'div';
-            const cardProps = proj.link ? {
-              href: proj.link,
-              target: "_blank",
-              rel: "noreferrer",
-              style: {
-                display: 'block',
-                textDecoration: 'none',
-                color: 'inherit',
-                background: i % 2 === 0 ? 'var(--bg-secondary)' : '#fff',
-                borderRadius: '24px',
-                padding: '2.5rem',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                cursor: 'pointer',
-              },
-              onMouseEnter: e => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.06)';
-              },
-              onMouseLeave: e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }
-            } : {
-              style: {
-                background: i % 2 === 0 ? 'var(--bg-secondary)' : '#fff',
-                borderRadius: '24px',
-                padding: '2.5rem',
-              }
-            };
-
-            return (
-              <CardElement key={i} {...cardProps}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.8rem' }}>
-                  <h3 style={{ 
-                    fontSize: '1.1rem', 
-                    fontWeight: 900, 
-                    maxWidth: '65%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                  }}>
-                    {proj.name} {proj.link && <ExternalLink size={14} style={{ opacity: 0.6 }} />}
-                  </h3>
-                  <div style={{ background: proj.tagColor, color: '#fff', padding: '0.35rem 0.9rem', borderRadius: '99px', fontSize: '0.7rem', fontWeight: 900, flexShrink: 0 }}>
-                    {proj.tag}
-                  </div>
-                </div>
-                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                  {proj.bullets.map((b, j) => (
-                    <li key={j} style={{ display: 'flex', gap: '0.8rem', fontSize: '0.85rem', opacity: 0.65, lineHeight: 1.5 }}>
-                      <span style={{ opacity: 0.4, flexShrink: 0 }}>—</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardElement>
-            );
-          })}
-        </div>
-      </section>
-
     </motion.div>
   );
 };
