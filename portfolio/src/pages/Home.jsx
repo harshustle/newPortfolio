@@ -580,21 +580,21 @@ const Home = () => {
       </section>
 
       {/* Performance Package Section / Conversion Details */}
-      <section id="pricing" className="section container performance-section" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', color: '#111', padding: '6rem 20px', textAlign: 'center', borderRadius: '32px', margin: '4rem auto' }}>
-        <p style={{ color: '#2e6347', letterSpacing: '2px', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase' }}>— PERFORMANCE CONTENT SYSTEMS</p>
-        <h1 className="editorial-section-title" style={{ margin: '20px auto 30px' }}>
-          Video Content That <br className="hide-on-mobile" /><span className="editorial-title-accent">Drives Results.</span>
-        </h1>
-        <p style={{ color: '#4b5563', fontSize: '1.15rem', maxWidth: '700px', margin: '0 auto 4rem', lineHeight: 1.6 }}>
+      <section id="pricing" className="section container performance-section" style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', color: '#111', padding: '2.5rem 1.5rem', textAlign: 'center', borderRadius: '28px', margin: '2rem auto' }}>
+        <p style={{ color: '#2e6347', letterSpacing: '2px', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', marginBottom: '4px' }}>— PERFORMANCE CONTENT SYSTEMS</p>
+        <h2 className="editorial-section-title" style={{ margin: '6px auto 10px', fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', lineHeight: 1.15 }}>
+          Video Content That <span className="editorial-title-accent">Drives Results.</span>
+        </h2>
+        <p style={{ color: '#4b5563', fontSize: '0.92rem', maxWidth: '640px', margin: '0 auto 1.2rem', lineHeight: 1.45 }}>
           We don’t just create videos — we build a <strong style={{ color: '#111' }}>content system designed to attract, engage, and convert your audience.</strong>
         </p>
 
-        <div style={{ marginBottom: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
-          <label style={{ fontSize: '1.2rem', fontWeight: 600 }}>Select Region:</label>
+        <div style={{ marginBottom: '1.2rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.6rem' }}>
+          <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Select Region:</label>
           <select
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-            style={{ padding: '0.8rem 1.5rem', fontSize: '1rem', borderRadius: '12px', border: '2px solid #ccc', outline: 'none', cursor: 'pointer', background: '#fff', color: '#000', fontWeight: '600' }}
+            style={{ padding: '0.35rem 1rem', fontSize: '0.85rem', borderRadius: '10px', border: '1.5px solid #ccc', outline: 'none', cursor: 'pointer', background: '#fff', color: '#000', fontWeight: '600' }}
           >
             <option value="India">India</option>
             <option value="Global">Global (USA/UK/etc.)</option>
@@ -602,7 +602,7 @@ const Home = () => {
         </div>
 
         {/* Bento Grid layout for Pricing */}
-        <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1050px', margin: '0 auto' }}>
+        <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', maxWidth: '1020px', margin: '0 auto' }}>
 
           <PricingCard
             title="Starter Pack"
@@ -652,47 +652,47 @@ const Home = () => {
           />
         </div>
 
-        <div style={{ borderTop: '1px solid #e6e2de', margin: '4rem auto 0', maxWidth: '900px', paddingTop: '4rem', paddingBottom: '1rem' }}>
-          <h3 style={{ color: '#111', fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '1.5rem', lineHeight: 1.1 }}>
-            <span className="serif-italic highlight-purple">You only commit</span> <br /> after seeing real results.
-          </h3>
+        <div style={{ borderTop: '1px solid #eee', margin: '1.5rem auto 0', maxWidth: '850px', paddingTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.2rem', flexWrap: 'wrap' }}>
+          <span style={{ color: '#111', fontSize: '0.92rem', fontWeight: 700 }}>
+            ✦ <span className="serif-italic" style={{ color: '#2e6347' }}>You only commit</span> after seeing real results.
+          </span>
 
-          <a href="#contact" className="btn pill-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', marginTop: '30px', background: '#2e6347', color: '#fff', fontWeight: 900, textDecoration: 'none', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.95rem', boxShadow: '0 10px 30px rgba(46, 99, 71, 0.25)' }}>
-            RESERVE YOUR TRIAL <ArrowRight size={18} />
+          <a href="#contact" className="btn pill-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.45rem 1.2rem', background: '#2e6347', color: '#fff', fontWeight: 800, textDecoration: 'none', borderRadius: '99px', transition: 'transform 0.2s', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '0.78rem', boxShadow: '0 6px 18px rgba(46, 99, 71, 0.2)' }}>
+            RESERVE YOUR TRIAL <ArrowRight size={14} />
           </a>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="section container" id="contact" style={{ padding: '8rem 20px', background: '#050505', borderRadius: '40px', margin: '4rem auto', color: '#fff' }}>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(46, 99, 71, 0.25)', color: '#4ade80', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem', border: '1px solid rgba(74, 222, 128, 0.2)' }}>Limited Availability</span>
-          <h2 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: '1.5rem' }}>Ready to <span className="serif-italic" style={{ color: '#4ade80' }}>Scale?</span></h2>
-          <p style={{ color: '#aaa', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Book a free discovery call. We'll map out a custom content and conversion strategy for your brand, completely free of charge.</p>
+      <section className="section container" id="contact" style={{ padding: '2.5rem 1.5rem', background: '#050505', borderRadius: '28px', margin: '2rem auto', color: '#fff' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+          <span style={{ display: 'inline-block', padding: '0.3rem 0.8rem', background: 'rgba(46, 99, 71, 0.25)', color: '#4ade80', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.6rem', border: '1px solid rgba(74, 222, 128, 0.2)' }}>Limited Availability</span>
+          <h2 style={{ color: '#fff', fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)', fontWeight: 900, lineHeight: 1.15, marginBottom: '0.5rem' }}>Ready to <span className="serif-italic" style={{ color: '#4ade80' }}>Scale?</span></h2>
+          <p style={{ color: '#aaa', fontSize: '0.92rem', maxWidth: '540px', margin: '0 auto', lineHeight: 1.5 }}>Book a free discovery call. We'll map out a custom content and conversion strategy for your brand, completely free of charge.</p>
         </div>
-        <div className="contact-form-container">
+        <div className="contact-form-container" style={{ maxWidth: '720px', margin: '0 auto' }}>
           {submitted ? (
-            <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-              <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Message Sent!</h3>
+            <div style={{ textAlign: 'center', padding: '2.5rem 0' }}>
+              <h3 style={{ fontSize: '1.6rem', marginBottom: '0.8rem' }}>Message Sent!</h3>
               <p style={{ color: 'var(--text-secondary)' }}>We'll get back to you shortly.</p>
             </div>
           ) : (
             <form className="contact-form" onSubmit={handleSubmit}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
                 <div className="form-group">
                   <span className="form-label">FULL NAME</span>
-                  <input type="text" name="name" required placeholder="John Doe" className="form-input" style={{ width: '100%', padding: '1rem 0' }} />
+                  <input type="text" name="name" required placeholder="John Doe" className="form-input" style={{ width: '100%', padding: '0.5rem 0', fontSize: '1rem' }} />
                 </div>
                 <div className="form-group">
                   <span className="form-label">EMAIL ADDRESS</span>
-                  <input type="email" name="email" required placeholder="john@example.com" className="form-input" style={{ width: '100%', padding: '1rem 0' }} />
+                  <input type="email" name="email" required placeholder="john@example.com" className="form-input" style={{ width: '100%', padding: '0.5rem 0', fontSize: '1rem' }} />
                 </div>
               </div>
-              <div className="form-group" style={{ marginTop: '3rem' }}>
-                <span className="form-label" style={{ color: '#bbb' }}>TELL US ABOUT YOUR CURRENT ROADBLOCKS</span>
-                <textarea name="message" required placeholder="What's your main bottleneck right now? (e.g. need more leads, better video content...)" rows="4" className="form-input textarea" style={{ width: '100%', padding: '1rem 0', background: 'transparent', color: '#fff', borderColor: '#333' }}></textarea>
+              <div className="form-group" style={{ marginTop: '1.25rem' }}>
+                <span className="form-label">TELL US ABOUT YOUR CURRENT ROADBLOCKS</span>
+                <textarea name="message" required placeholder="What's your main bottleneck right now? (e.g. need more leads, better video content...)" rows="2" className="form-input textarea" style={{ width: '100%', padding: '0.5rem 0', background: 'transparent', color: '#fff', borderColor: '#333', fontSize: '0.95rem' }}></textarea>
               </div>
-              <button type="submit" disabled={isSubmitting} className="btn btn-primary pill-cta" style={{ marginTop: '3rem', padding: '1.5rem 4rem', width: '100%', opacity: isSubmitting ? 0.7 : 1, background: '#2e6347', color: '#fff', fontWeight: 900, border: 'none', fontSize: '1.1rem', boxShadow: '0 0 30px rgba(46, 99, 71, 0.35)' }}>
+              <button type="submit" disabled={isSubmitting} className="btn btn-primary pill-cta" style={{ marginTop: '1.5rem', padding: '0.95rem 2.5rem', width: '100%', opacity: isSubmitting ? 0.7 : 1, background: '#2e6347', color: '#fff', fontWeight: 900, border: 'none', fontSize: '0.95rem', letterSpacing: '0.05em', boxShadow: '0 0 25px rgba(46, 99, 71, 0.35)' }}>
                 {isSubmitting ? "BOOKING..." : "CLAIM YOUR FREE STRATEGY CALL"}
               </button>
             </form>

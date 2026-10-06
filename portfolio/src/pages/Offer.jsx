@@ -474,9 +474,9 @@ const proposalData = {
           packages: {
             columns: ["Package", "Videos", "Price (USD)", "Price (INR)"],
             rows: [
-              ["Starter", "4 Videos", "$160", "₹12,000"],
-              ["Growth", "8 Videos", "$300", "₹24,000"],
-              ["Pro", "12 Videos", "$450", "₹36,000"]
+              ["Starter", "3 Videos", "$55", "₹4,000"],
+              ["Growth", "8 Videos", "$130", "₹9,999"],
+              ["Pro", "15 Videos", "$240", "₹18,000"]
             ]
           },
           features: [
