@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MonitorPlay, Globe, Instagram, Workflow, MessageSquare, Heart, Send, Bookmark, Music } from 'lucide-react';
+import { ArrowRight, MonitorPlay, Globe, Instagram, Workflow, MessageSquare, Heart, Send, Bookmark, Music, Check } from 'lucide-react';
 import _CountUp from 'react-countup';
 import PricingCard from '../components/PricingCard';
 
@@ -134,6 +134,7 @@ const Home = () => {
     }
   });
   const [tickerIndex, setTickerIndex] = useState(0);
+  const [isPlayingVsl, setIsPlayingVsl] = useState(false);
 
   useEffect(() => {
     // Silent automatic location detection (does not display anything to the visitor)
@@ -257,17 +258,6 @@ const Home = () => {
       {/* Editorial Reference Hero Section */}
       <section className="hero-ref-container">
         <div className="hero-ref-content">
-          {/* Pill Badge */}
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={pillAnim}
-            className="hero-ref-pill"
-          >
-            <span className="hero-ref-dot" />
-            <span className="hero-ref-pill-text">{tickerItems[tickerIndex]}</span>
-          </motion.div>
-
           {/* High-Contrast Editorial Serif Headline */}
           <motion.h1
             initial="initial"
@@ -289,18 +279,86 @@ const Home = () => {
             Stop leaving money on the table. We build high-converting video assets and automated sales funnels that turn views into qualified appointments.
           </motion.p>
 
-          {/* Primary CTA Button */}
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={ctaAnim}
-            className="hero-ref-cta-group"
-          >
-            <a href="#contact" className="hero-ref-btn">
+          {/* VSL Video Section (Matching Requested Structure) */}
+          <div className="hero-video-wrapper">
+            <div className="hero-video-frame" onClick={() => setIsPlayingVsl(true)}>
+              {isPlayingVsl ? (
+                <iframe
+                  src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Compiled_bboouj&autoplay=true&controls=true"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  title="Client Acquisition Video"
+                  className="hero-video-iframe"
+                />
+              ) : (
+                <>
+                  <img
+                    src="https://res.cloudinary.com/dobulag2p/image/upload/v1778540902/__I_know_Your_Problem_202605120355_srntis.jpg"
+                    alt="Watch Client Acquisition Strategy"
+                    className="hero-video-poster"
+                  />
+                  <div className="hero-video-overlay">
+                    <div className="hero-video-play-btn" aria-label="Play Video">
+                      <div className="hero-video-play-triangle" />
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* 3 Value Proposition Checkmarks */}
+          <div className="hero-checkmarks-row">
+            <div className="hero-checkmark-item">
+              <Check className="hero-checkmark-icon" size={18} strokeWidth={3} />
+              <span>Automated Hook Testing</span>
+            </div>
+            <div className="hero-checkmark-item">
+              <Check className="hero-checkmark-icon" size={18} strokeWidth={3} />
+              <span>20+ Hooks Daily</span>
+            </div>
+            <div className="hero-checkmark-item">
+              <Check className="hero-checkmark-icon" size={18} strokeWidth={3} />
+              <span>No Extra Editing Or Filming</span>
+            </div>
+          </div>
+
+          {/* Primary CTA Button & Trust Proof */}
+          <div className="hero-vsl-cta-wrap">
+            <a href="#contact" className="hero-vsl-btn">
               <span>Book a Strategy Call</span>
-              <ArrowRight size={17} />
+              <ArrowRight size={18} />
             </a>
-          </motion.div>
+
+            <div className="hero-vsl-trust">
+              <div className="hero-avatar-stack">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80"
+                  alt="Client"
+                  className="hero-avatar-img"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=80"
+                  alt="Client"
+                  className="hero-avatar-img"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=80"
+                  alt="Client"
+                  className="hero-avatar-img"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=80"
+                  alt="Client"
+                  className="hero-avatar-img"
+                />
+              </div>
+              <span>97+ creators &amp; brands trust us</span>
+            </div>
+          </div>
 
           {/* Social Proof Stats */}
           <motion.div
