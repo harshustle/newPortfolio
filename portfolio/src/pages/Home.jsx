@@ -125,8 +125,42 @@ const ShortFormStyleCard = ({ v, idx }) => {
 const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [country, setCountry] = useState('India');
+  const [country, setCountry] = useState(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      return (tz.includes('Calcutta') || tz.includes('Kolkata')) ? 'India' : 'Global';
+    } catch {
+      return 'India';
+    }
+  });
   const [tickerIndex, setTickerIndex] = useState(0);
+
+  useEffect(() => {
+    // Silent automatic location detection (does not display anything to the visitor)
+    let resolved = false;
+
+    fetch('https://api.country.is')
+      .then(res => res.json())
+      .then(data => {
+        if (!resolved && data && data.country) {
+          resolved = true;
+          setCountry(data.country.toUpperCase() === 'IN' ? 'India' : 'Global');
+        }
+      })
+      .catch(() => {
+        if (!resolved) {
+          fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => {
+              if (!resolved && data && data.country_code) {
+                resolved = true;
+                setCountry(data.country_code.toUpperCase() === 'IN' ? 'India' : 'Global');
+              }
+            })
+            .catch(() => {});
+        }
+      });
+  }, []);
 
   const tickerItems = [
     "🔥 28 qualified leads routed in 48 hours for Real Estate partner",
@@ -220,71 +254,85 @@ const Home = () => {
       initial="initial" animate="animate" exit="exit" variants={pageVariants}
       style={{ background: 'transparent', color: 'var(--text-primary)' }}
     >
-      {/* Editorial Reference Hero Section */}
-      <section className="hero-ref-container">
-        <div className="hero-ref-content">
-          {/* Pill Badge */}
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={pillAnim}
-            className="hero-ref-pill"
-          >
-            <span className="hero-ref-dot" />
-            <span className="hero-ref-pill-text">{tickerItems[tickerIndex]}</span>
-          </motion.div>
-
-          {/* High-Contrast Editorial Serif Headline */}
-          <motion.h1
-            initial="initial"
-            animate="animate"
-            variants={titleAnim}
-            className="hero-ref-title"
-          >
-            Short form <br />
-            <span className="hero-ref-title-accent">done right.</span>
-          </motion.h1>
-
-          {/* Centered Subtitle */}
-          <motion.p
-            initial="initial"
-            animate="animate"
-            variants={subtitleAnim}
-            className="hero-ref-subtitle"
-          >
-            Stop leaving money on the table. We build high-converting video assets and automated sales funnels that turn views into qualified appointments.
-          </motion.p>
-
-          {/* Primary CTA Button */}
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={ctaAnim}
-            className="hero-ref-cta-group"
-          >
-            <a href="#contact" className="hero-ref-btn">
-              <span>Book a Strategy Call</span>
-              <ArrowRight size={17} />
-            </a>
-          </motion.div>
-
-          {/* Social Proof Stats */}
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={statsAnim}
-            className="hero-ref-stats"
-          >
-            <div className="hero-ref-stat-item">
-              <span className="hero-ref-stat-number"><CountUp end={900} duration={2.5} />+</span>
-              <span className="hero-ref-stat-label">Assets Created</span>
+      {/* ═══════════════════════════════════════════
+          REFERENCE STYLE FLOATING CANVAS HOMEPAGE HERO
+      ═══════════════════════════════════════════ */}
+      {/* ═══════════════════════════════════════════
+          HERO SECTION (MATCHING REFERENCE LAYOUT & REAL AGENCY CONTENT)
+      ═══════════════════════════════════════════ */}
+      <section className="hero-canvas-frame">
+        {/* 2-Column Asymmetrical Grid */}
+        <div className="hero-canvas-grid">
+          {/* Left Column: Typography & CTAs */}
+          <div>
+            <div className="hero-canvas-tag">
+              <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#00875a', marginRight: '6px' }} />
+              SHORT FORM &amp; AI UGC STUDIO
             </div>
-            <div className="hero-ref-stat-divider" />
-            <div className="hero-ref-stat-item">
-              <span className="hero-ref-stat-number"><CountUp end={40} duration={2.5} />+</span>
-              <span className="hero-ref-stat-label">IRL Productions</span>
+
+            <h1 className="hero-canvas-title">
+              Short Form <br />
+              Done <span className="hero-canvas-title-accent">Right.</span>
+            </h1>
+
+            <p className="hero-canvas-desc">
+              Stop leaving money on the table. We engineer scroll-stopping AI UGC ads, cinematic property tours, and automated funnels that turn views into qualified appointments.
+            </p>
+
+            <div className="hero-canvas-cta-group">
+              <a 
+                href="#pricing"
+                className="hero-canvas-btn"
+              >
+                <span>View Packages</span>
+                <ArrowRight size={16} />
+              </a>
+
+              <a
+                href="https://wa.me/919161955178?text=Hi%2C%20I%20want%20to%20book%20a%20strategy%20call"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.85rem 1.6rem',
+                  borderRadius: '99px',
+                  border: '1.5px solid #e5e7eb',
+                  color: '#111827',
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease',
+                  background: '#ffffff'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#111827'; e.currentTarget.style.background = '#f9fafb'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.background = '#ffffff'; }}
+              >
+                Book Strategy Call
+              </a>
             </div>
-          </motion.div>
+
+            {/* Bottom Outline Tags */}
+            <div className="hero-canvas-pills">
+              <span className="hero-canvas-pill-tag">AI UGC Videos</span>
+              <span className="hero-canvas-pill-tag">Cinematic IRL Shoots</span>
+              <span className="hero-canvas-pill-tag">Viral Hooks</span>
+              <span className="hero-canvas-pill-tag">Lead Funnels</span>
+              <span className="hero-canvas-pill-tag">AI Calling Systems</span>
+            </div>
+          </div>
+
+          {/* Right Column: Architectural Arch + Classical Statue with Film Reel */}
+          <div className="hero-canvas-visual-wrap">
+            <div className="hero-canvas-arch-card">
+              <img 
+                src="/hero_statue.jpg" 
+                alt="Creative Acquisition Engine" 
+                className="hero-canvas-statue-img" 
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -585,21 +633,9 @@ const Home = () => {
         <h2 className="editorial-section-title" style={{ margin: '6px auto 10px', fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', lineHeight: 1.15 }}>
           Video Content That <span className="editorial-title-accent">Drives Results.</span>
         </h2>
-        <p style={{ color: '#4b5563', fontSize: '0.92rem', maxWidth: '640px', margin: '0 auto 1.2rem', lineHeight: 1.45 }}>
-          We don’t just create videos — we build a <strong style={{ color: '#111' }}>content system designed to attract, engage, and convert your audience.</strong>
-        </p>
+        <div style={{ marginBottom: '1.5rem' }}></div>
 
-        <div style={{ marginBottom: '1.2rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.6rem' }}>
-          <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Select Region:</label>
-          <select
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            style={{ padding: '0.35rem 1rem', fontSize: '0.85rem', borderRadius: '10px', border: '1.5px solid #ccc', outline: 'none', cursor: 'pointer', background: '#fff', color: '#000', fontWeight: '600' }}
-          >
-            <option value="India">India</option>
-            <option value="Global">Global (USA/UK/etc.)</option>
-          </select>
-        </div>
+
 
         {/* Bento Grid layout for Pricing */}
         <div className="pricing-bento" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', maxWidth: '1020px', margin: '0 auto' }}>
@@ -607,9 +643,10 @@ const Home = () => {
           <PricingCard
             title="Starter Pack"
             subtitle="Quick launch & high-impact test"
-            price={country === 'India' ? "₹4,000" : "$55"}
+            price={country === 'India' ? "₹4,000" : "$99"}
             volume="3 videos"
-            buttonText="GET STARTED"
+            buttonText="Book now"
+            whatsappMessage={country === 'India' ? "Hi, I want to book the Starter Pack (3 Videos - ₹4,000)" : "Hi, I want to book the Starter Pack (3 Videos - $99)"}
             features={[
               "3 High-Retention Videos",
               "Scriptwriting & Hook Optimization",
@@ -622,9 +659,10 @@ const Home = () => {
           <PricingCard
             title="Growth Pack"
             subtitle="Consistent content & viral scale"
-            price={country === 'India' ? "₹9,999" : "$130"}
+            price={country === 'India' ? "₹9,999" : "$199"}
             volume="8 videos"
-            buttonText="GET STARTED"
+            buttonText="Book now"
+            whatsappMessage={country === 'India' ? "Hi, I want to book the Growth Pack (8 Videos - ₹9,999)" : "Hi, I want to book the Growth Pack (8 Videos - $199)"}
             special={true}
             features={[
               "8 High-Retention Videos",
@@ -641,7 +679,8 @@ const Home = () => {
             subtitle="On-location luxury storytelling"
             price={country === 'India' ? "Custom" : "Custom"}
             volume="Tailored deliverables"
-            buttonText="BOOK STRATEGY CALL"
+            buttonText="Book now"
+            whatsappMessage="Hi, I want to book a Custom / IRL Shoot consultation"
             features={[
               "On-Location Shoot & Directing",
               "High-End Production Gear",
