@@ -254,85 +254,71 @@ const Home = () => {
       initial="initial" animate="animate" exit="exit" variants={pageVariants}
       style={{ background: 'transparent', color: 'var(--text-primary)' }}
     >
-      {/* ═══════════════════════════════════════════
-          REFERENCE STYLE FLOATING CANVAS HOMEPAGE HERO
-      ═══════════════════════════════════════════ */}
-      {/* ═══════════════════════════════════════════
-          HERO SECTION (MATCHING REFERENCE LAYOUT & REAL AGENCY CONTENT)
-      ═══════════════════════════════════════════ */}
-      <section className="hero-canvas-frame">
-        {/* 2-Column Asymmetrical Grid */}
-        <div className="hero-canvas-grid">
-          {/* Left Column: Typography & CTAs */}
-          <div>
-            <div className="hero-canvas-tag">
-              <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#00875a', marginRight: '6px' }} />
-              SHORT FORM &amp; AI UGC STUDIO
+      {/* Editorial Reference Hero Section */}
+      <section className="hero-ref-container">
+        <div className="hero-ref-content">
+          {/* Pill Badge */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={pillAnim}
+            className="hero-ref-pill"
+          >
+            <span className="hero-ref-dot" />
+            <span className="hero-ref-pill-text">{tickerItems[tickerIndex]}</span>
+          </motion.div>
+
+          {/* High-Contrast Editorial Serif Headline */}
+          <motion.h1
+            initial="initial"
+            animate="animate"
+            variants={titleAnim}
+            className="hero-ref-title"
+          >
+            Short form <br />
+            <span className="hero-ref-title-accent">done right.</span>
+          </motion.h1>
+
+          {/* Centered Subtitle */}
+          <motion.p
+            initial="initial"
+            animate="animate"
+            variants={subtitleAnim}
+            className="hero-ref-subtitle"
+          >
+            Stop leaving money on the table. We build high-converting video assets and automated sales funnels that turn views into qualified appointments.
+          </motion.p>
+
+          {/* Primary CTA Button */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={ctaAnim}
+            className="hero-ref-cta-group"
+          >
+            <a href="#contact" className="hero-ref-btn">
+              <span>Book a Strategy Call</span>
+              <ArrowRight size={17} />
+            </a>
+          </motion.div>
+
+          {/* Social Proof Stats */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={statsAnim}
+            className="hero-ref-stats"
+          >
+            <div className="hero-ref-stat-item">
+              <span className="hero-ref-stat-number"><CountUp end={900} duration={2.5} />+</span>
+              <span className="hero-ref-stat-label">Assets Created</span>
             </div>
-
-            <h1 className="hero-canvas-title">
-              Short Form <br />
-              Done <span className="hero-canvas-title-accent">Right.</span>
-            </h1>
-
-            <p className="hero-canvas-desc">
-              Stop leaving money on the table. We engineer scroll-stopping AI UGC ads, cinematic property tours, and automated funnels that turn views into qualified appointments.
-            </p>
-
-            <div className="hero-canvas-cta-group">
-              <a 
-                href="#pricing"
-                className="hero-canvas-btn"
-              >
-                <span>View Packages</span>
-                <ArrowRight size={16} />
-              </a>
-
-              <a
-                href="https://wa.me/919161955178?text=Hi%2C%20I%20want%20to%20book%20a%20strategy%20call"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.85rem 1.6rem',
-                  borderRadius: '99px',
-                  border: '1.5px solid #e5e7eb',
-                  color: '#111827',
-                  fontWeight: 600,
-                  fontSize: '0.92rem',
-                  textDecoration: 'none',
-                  transition: 'all 0.2s ease',
-                  background: '#ffffff'
-                }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#111827'; e.currentTarget.style.background = '#f9fafb'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.background = '#ffffff'; }}
-              >
-                Book Strategy Call
-              </a>
+            <div className="hero-ref-stat-divider" />
+            <div className="hero-ref-stat-item">
+              <span className="hero-ref-stat-number"><CountUp end={40} duration={2.5} />+</span>
+              <span className="hero-ref-stat-label">IRL Productions</span>
             </div>
-
-            {/* Bottom Outline Tags */}
-            <div className="hero-canvas-pills">
-              <span className="hero-canvas-pill-tag">AI UGC Videos</span>
-              <span className="hero-canvas-pill-tag">Cinematic IRL Shoots</span>
-              <span className="hero-canvas-pill-tag">Viral Hooks</span>
-              <span className="hero-canvas-pill-tag">Lead Funnels</span>
-              <span className="hero-canvas-pill-tag">AI Calling Systems</span>
-            </div>
-          </div>
-
-          {/* Right Column: Architectural Arch + Classical Statue with Film Reel */}
-          <div className="hero-canvas-visual-wrap">
-            <div className="hero-canvas-arch-card">
-              <img 
-                src="/hero_statue.jpg" 
-                alt="Creative Acquisition Engine" 
-                className="hero-canvas-statue-img" 
-              />
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
