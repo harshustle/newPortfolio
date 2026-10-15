@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MonitorPlay, Globe, Instagram, Workflow, MessageSquare, Heart, Send, Bookmark, Music, Check } from 'lucide-react';
+import { ArrowRight, MonitorPlay, Globe, Instagram, Workflow, MessageSquare, Heart, Send, Bookmark, Music, Check, Play, Pause, Volume2, VolumeX, Maximize, Maximize2, Minimize2 } from 'lucide-react';
 import _CountUp from 'react-countup';
 import PricingCard from '../components/PricingCard';
 
@@ -135,6 +135,117 @@ const Home = () => {
   });
   const [tickerIndex, setTickerIndex] = useState(0);
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
+  const [isVslPaused, setIsVslPaused] = useState(false);
+  const [isVslMuted, setIsVslMuted] = useState(false);
+  const [vslProgress, setVslProgress] = useState(0);
+  const [videoLang, setVideoLang] = useState('en');
+  const [vslStage, setVslStage] = useState('full'); // 'full' | 'ugc' | 'funnel' | 'whatsapp' | 'crm' | 'cta'
+  const [isPipActive, setIsPipActive] = useState(false);
+  const [manualPipOverride, setManualPipOverride] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const vslVideoRef = useRef(null);
+
+  const switchVideoLang = (newLang, e) => {
+    if (e) e.stopPropagation();
+    if (newLang === videoLang) return;
+    setVideoLang(newLang);
+    if (isPlayingVsl) {
+      setTimeout(() => {
+        if (vslVideoRef.current) {
+          vslVideoRef.current.play().catch(() => {});
+          setIsVslPaused(false);
+        }
+      }, 60);
+    }
+  };
+
+  const startVsl = () => {
+    setIsPlayingVsl(true);
+    setIsVslPaused(false);
+    setTimeout(() => {
+      if (vslVideoRef.current) {
+        vslVideoRef.current.play().catch(() => {});
+      }
+    }, 50);
+  };
+
+  const toggleVslPlay = (e) => {
+    if (e) e.stopPropagation();
+    if (vslVideoRef.current) {
+      if (vslVideoRef.current.paused) {
+        vslVideoRef.current.play().catch(() => {});
+        setIsVslPaused(false);
+      } else {
+        vslVideoRef.current.pause();
+        setIsVslPaused(true);
+      }
+    }
+  };
+
+  const toggleVslMute = (e) => {
+    if (e) e.stopPropagation();
+    if (vslVideoRef.current) {
+      vslVideoRef.current.muted = !vslVideoRef.current.muted;
+      setIsVslMuted(vslVideoRef.current.muted);
+    }
+  };
+
+  const handleVslTimeUpdate = () => {
+    if (vslVideoRef.current && vslVideoRef.current.duration) {
+      const t = vslVideoRef.current.currentTime;
+      const p = (t / vslVideoRef.current.duration) * 100;
+      setVslProgress(p);
+
+      // Automated Transition to Picture-in-Picture when AI UGC is introduced (~4.0s)
+      if (t >= 4.0) {
+        if (!manualPipOverride && !isPipActive) {
+          setIsPipActive(true);
+        }
+      } else {
+        if (!manualPipOverride && isPipActive) {
+          setIsPipActive(false);
+        }
+      }
+
+      // Sync active architecture highlight stage with dialogue
+      if (t < 4.0) {
+        setVslStage('full');
+      } else if (t < 8.2) {
+        setVslStage('ugc');
+      } else if (t < 12.8) {
+        setVslStage('funnel');
+      } else if (t < 19.2) {
+        // WhatsApp & AI Chatbot strongly highlighted
+        setVslStage('whatsapp');
+      } else if (t < 23.5) {
+        setVslStage('crm');
+      } else {
+        setVslStage('cta');
+      }
+    }
+  };
+
+  const handleVslSeek = (e) => {
+    if (e) e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const pct = Math.max(0, Math.min(1, clickX / rect.width));
+    if (vslVideoRef.current && vslVideoRef.current.duration) {
+      vslVideoRef.current.currentTime = pct * vslVideoRef.current.duration;
+      setVslProgress(pct * 100);
+    }
+  };
+
+  const toggleVslFullscreen = (e) => {
+    if (e) e.stopPropagation();
+    if (vslVideoRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      } else if (vslVideoRef.current.requestFullscreen) {
+        vslVideoRef.current.requestFullscreen().catch(() => {});
+      }
+    }
+  };
 
   useEffect(() => {
     // Silent automatic location detection (does not display anything to the visitor)
@@ -279,28 +390,272 @@ const Home = () => {
             Stop leaving money on the table. We build high-converting video assets and automated sales funnels that turn views into qualified appointments.
           </motion.p>
 
-          {/* VSL Video Section (Matching Requested Structure) */}
+          {/* VSL Video Section (Starting at 13.8s, No Time Display) */}
           <div className="hero-video-wrapper">
-            <div className="hero-video-frame" onClick={() => setIsPlayingVsl(true)}>
+            <div 
+              className={`hero-video-frame ${isVslPaused ? 'is-paused' : ''}`}
+            >
+              {/* Language Selector Switch (English / Hindi) */}
+              <div className="hero-video-lang-pill" onClick={e => e.stopPropagation()}>
+                <button
+                  type="button"
+                  className={`hero-lang-btn ${videoLang === 'en' ? 'active' : ''}`}
+                  onClick={(e) => switchVideoLang('en', e)}
+                  aria-label="Play in English"
+                >
+                  🇺🇸 English
+                </button>
+                <button
+                  type="button"
+                  className={`hero-lang-btn ${videoLang === 'hi' ? 'active' : ''}`}
+                  onClick={(e) => switchVideoLang('hi', e)}
+                  aria-label="Play in Hindi"
+                >
+                  🇮🇳 Hindi
+                </button>
+              </div>
+
+              {/* Lead Management Architecture Screen (Shown while video plays in PiP) */}
+              <div className="hero-vsl-architecture-screen">
+                <div className="arch-screen-header">
+                  <div className="arch-screen-badge">
+                    <span className="arch-badge-dash">—</span>
+                    <span>LEAD MANAGEMENT ARCHITECTURE</span>
+                    <span className="arch-badge-dash">—</span>
+                  </div>
+                  <h3 className="arch-screen-title">
+                    20+ <span className="arch-title-serif">Live Solutions.</span>
+                  </h3>
+                  <p className="arch-screen-desc">
+                    Systems that work while you sleep, ensuring no lead goes unqualified and no opportunity is missed.
+                  </p>
+                </div>
+
+                <div className="arch-cards-grid">
+                  {/* Card 1: 01 / ARCHITECTURE */}
+                  <div 
+                    className={`arch-card ${vslStage === 'ugc' || vslStage === 'funnel' || hoveredCard === 'qualification' ? 'highlighted' : ''}`}
+                    onMouseEnter={() => setHoveredCard('qualification')}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className="arch-card-top">
+                      <div className="arch-card-icon-wrap">
+                        <Workflow size={20} className="arch-card-icon" />
+                      </div>
+                      <span className="arch-card-num">01 / ARCHITECTURE</span>
+                    </div>
+                    <h4 className="arch-card-heading">Qualification</h4>
+                    <p className="arch-card-text">
+                      Sophisticated logic flows that filter noise and prioritize high-value intent.
+                    </p>
+                    {(vslStage === 'ugc' || vslStage === 'funnel' || hoveredCard === 'qualification') && (
+                      <div className="arch-card-live-pill">
+                        <span className="pulse-dot" />
+                        <span>{vslStage === 'ugc' ? 'Scroll-Stopping AI UGC' : 'High-Intent Funnel'}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card 2: 02 / ENGAGEMENT (WhatsApp Connect & AI Chatbot) - STRONGLY HIGHLIGHTED */}
+                  <div 
+                    className={`arch-card arch-card-whatsapp ${vslStage === 'whatsapp' || hoveredCard === 'whatsapp' ? 'highlighted whatsapp-active' : ''}`}
+                    onMouseEnter={() => setHoveredCard('whatsapp')}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className="arch-card-top">
+                      <div className="arch-card-icon-wrap whatsapp-icon-bg">
+                        <MessageSquare size={20} className="arch-card-icon" />
+                      </div>
+                      <span className="arch-card-num">02 / ENGAGEMENT</span>
+                    </div>
+                    <h4 className="arch-card-heading">Live Sync</h4>
+                    <p className="arch-card-text">
+                      Instant WhatsApp connect & automated AI chatbot responding even at 2:00 AM.
+                    </p>
+
+                    {(vslStage === 'whatsapp' || hoveredCard === 'whatsapp') ? (
+                      <div className="arch-whatsapp-live-callout">
+                        <div className="arch-whatsapp-pill">
+                          <span className="whatsapp-radar-dot" />
+                          <span>WhatsApp Connect: Active (2:00 AM)</span>
+                        </div>
+                        <div className="arch-whatsapp-bubble">
+                          <span className="arch-bubble-sender">AI Chatbot</span>
+                          <span className="arch-bubble-msg">Instant reply sent to lead in 3s</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="arch-card-tag">Instant WhatsApp Connect</div>
+                    )}
+                  </div>
+
+                  {/* Card 3: 03 / SCALING */}
+                  <div 
+                    className={`arch-card ${vslStage === 'crm' || hoveredCard === 'crm' ? 'highlighted' : ''}`}
+                    onMouseEnter={() => setHoveredCard('crm')}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className="arch-card-top">
+                      <div className="arch-card-icon-wrap">
+                        <Globe size={20} className="arch-card-icon" />
+                      </div>
+                      <span className="arch-card-num">03 / SCALING</span>
+                    </div>
+                    <h4 className="arch-card-heading">CRM Global</h4>
+                    <p className="arch-card-text">
+                      Seamless integration with your existing global marketing technology stack.
+                    </p>
+                    {(vslStage === 'crm' || hoveredCard === 'crm') && (
+                      <div className="arch-card-live-pill">
+                        <span className="pulse-dot" />
+                        <span>Right Ad • Right Person • Right Time</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="arch-screen-bottom">
+                  <a
+                    href="#contact"
+                    className={`arch-deploy-btn ${vslStage === 'cta' ? 'pulse-cta' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const c = document.getElementById('contact');
+                      if (c) c.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    <span>DEPLOY YOUR ARCHITECTURE</span>
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+
+              {/* Video Player Box (Smoothly transitions between Fullscreen & PiP in bottom right) */}
               {isPlayingVsl ? (
-                <iframe
-                  src="https://player.cloudinary.com/embed/?cloud_name=dobulag2p&public_id=Compiled_bboouj&autoplay=true&controls=true"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  title="Client Acquisition Video"
-                  className="hero-video-iframe"
-                />
+                <div 
+                  className={`hero-vsl-video-box ${isPipActive ? 'is-pip' : 'is-full'}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isPipActive) {
+                      toggleVslPlay();
+                    }
+                  }}
+                >
+                  <video
+                    ref={vslVideoRef}
+                    key={videoLang}
+                    src={videoLang === 'en' ? "/vsl_english.mp4?v=2" : "https://res.cloudinary.com/dobulag2p/video/upload/so_13.8,q_auto:eco,vc_h264/Compiled_bboouj.mp4"}
+                    playsInline
+                    autoPlay
+                    onTimeUpdate={handleVslTimeUpdate}
+                    onEnded={() => setIsVslPaused(true)}
+                    className="hero-video-element"
+                  />
+
+                  {/* PiP Header Badge with Live Indicator & Expand/Minimize */}
+                  {isPipActive && (
+                    <div className="hero-pip-badge-bar" onClick={e => e.stopPropagation()}>
+                      <div className="hero-pip-live-indicator">
+                        <span className="pip-live-dot" />
+                        <span>SPEAKER</span>
+                      </div>
+                      <button
+                        type="button"
+                        className="hero-pip-toggle-btn"
+                        onClick={() => {
+                          setIsPipActive(false);
+                          setManualPipOverride(true);
+                        }}
+                        title="Maximize video"
+                      >
+                        <Maximize2 size={12} />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Center Play Button Overlay when paused */}
+                  {isVslPaused && (
+                    <div className="hero-video-overlay" onClick={toggleVslPlay}>
+                      <div className="hero-video-play-btn" aria-label="Play">
+                        <div className="hero-video-play-triangle" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Minimal Control Bar */}
+                  <div className="hero-video-controls" onClick={e => e.stopPropagation()}>
+                    <div className="hero-video-scrubber" onClick={handleVslSeek}>
+                      <div className="hero-video-progress" style={{ width: `${vslProgress}%` }} />
+                    </div>
+
+                    <div className="hero-video-controls-bottom">
+                      <div className="hero-video-controls-left">
+                        <button
+                          type="button"
+                          className="hero-video-ctrl-btn"
+                          onClick={toggleVslPlay}
+                          aria-label={isVslPaused ? "Play" : "Pause"}
+                        >
+                          {isVslPaused ? <Play size={16} fill="#ffffff" /> : <Pause size={16} fill="#ffffff" />}
+                        </button>
+
+                        <button
+                          type="button"
+                          className="hero-video-ctrl-btn"
+                          onClick={toggleVslMute}
+                          aria-label={isVslMuted ? "Unmute" : "Mute"}
+                        >
+                          {isVslMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                        </button>
+                      </div>
+
+                      <div className="hero-video-controls-right">
+                        {isPipActive ? (
+                          <button
+                            type="button"
+                            className="hero-video-ctrl-btn"
+                            onClick={() => {
+                              setIsPipActive(false);
+                              setManualPipOverride(true);
+                            }}
+                            title="Expand video"
+                          >
+                            <Maximize2 size={14} />
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            className="hero-video-ctrl-btn"
+                            onClick={() => {
+                              setIsPipActive(true);
+                              setManualPipOverride(true);
+                            }}
+                            title="Mini player"
+                          >
+                            <Minimize2 size={14} />
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          className="hero-video-ctrl-btn"
+                          onClick={toggleVslFullscreen}
+                          aria-label="Fullscreen"
+                        >
+                          <Maximize size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <>
                   <img
                     src="https://res.cloudinary.com/dobulag2p/image/upload/v1778540902/__I_know_Your_Problem_202605120355_srntis.jpg"
                     alt="Watch Client Acquisition Strategy"
                     className="hero-video-poster"
+                    onClick={startVsl}
                   />
-                  <div className="hero-video-overlay">
+                  <div className="hero-video-overlay" onClick={startVsl}>
                     <div className="hero-video-play-btn" aria-label="Play Video">
                       <div className="hero-video-play-triangle" />
                     </div>
@@ -617,13 +972,17 @@ const Home = () => {
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.8rem', lineHeight: 1.6 }}>Sophisticated logic flows that filter noise and prioritize high-value intent.</p>
           </motion.div>
 
-          <motion.div className="chatbot-card mobile-center" whileHover={{ y: -5 }} style={{ background: '#fff', border: 'none', boxShadow: '0 25px 60px rgba(0,0,0,0.04)', padding: '3rem', textAlign: 'left' }}>
+          <motion.div className="chatbot-card mobile-center" whileHover={{ y: -5, boxShadow: '0 25px 60px rgba(37, 211, 102, 0.15)' }} style={{ background: '#fff', border: '1px solid rgba(37, 211, 102, 0.25)', boxShadow: '0 25px 60px rgba(0,0,0,0.04)', padding: '3rem', textAlign: 'left', position: 'relative' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }} className="mobile-center-parent">
-              <div style={{ background: '#f7f7f7', padding: '1.2rem', borderRadius: '20px' }}><MessageSquare size={28} color="#000" /></div>
-              <span style={{ fontSize: '0.7rem', fontWeight: 900, opacity: 0.3, letterSpacing: '0.05em' }}>02 / ENGAGEMENT</span>
+              <div style={{ background: '#f0fdf4', color: '#16a34a', padding: '1.2rem', borderRadius: '20px' }}><MessageSquare size={28} /></div>
+              <span style={{ fontSize: '0.7rem', fontWeight: 900, color: '#16a34a', letterSpacing: '0.05em' }}>02 / ENGAGEMENT</span>
             </div>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 400 }}>Live Sync</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.8rem', lineHeight: 1.6 }}>Instant, hyper-personalized engagement across all customer touchpoints.</p>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 400 }}>WhatsApp & AI Bot</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.8rem', lineHeight: 1.6 }}>Instant WhatsApp connect & automated AI chatbot responding 24/7 even at 2:00 AM.</p>
+            <div style={{ marginTop: '1.2rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#25D366', color: '#fff', fontSize: '0.72rem', fontWeight: 800, padding: '0.35rem 0.75rem', borderRadius: '999px', boxShadow: '0 4px 12px rgba(37, 211, 102, 0.35)' }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fff' }}></span>
+              <span>Instant 2:00 AM Auto-Reply</span>
+            </div>
           </motion.div>
 
           <motion.div className="chatbot-card mobile-center" whileHover={{ y: -5 }} style={{ background: '#fff', border: 'none', boxShadow: '0 25px 60px rgba(0,0,0,0.04)', padding: '3rem', textAlign: 'left' }}>

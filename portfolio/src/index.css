@@ -1629,26 +1629,21 @@ h4 {
 /* ── Video Frame Structure (Matching User Reference) ── */
 .hero-video-wrapper {
   width: 100%;
-  max-width: 860px;
+  max-width: 980px;
   margin: 0 auto 1.8rem;
 }
 
 .hero-video-frame {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 widescreen */
-  border-radius: 24px;
+  min-height: 590px;
+  border-radius: 28px;
   overflow: hidden;
-  background: #0f1418;
+  background: #fbfbf9;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hero-video-frame:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  cursor: default;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-video-poster {
@@ -1659,10 +1654,12 @@ h4 {
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .hero-video-frame:hover .hero-video-poster {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
 .hero-video-overlay {
@@ -1672,7 +1669,8 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 12;
+  cursor: pointer;
 }
 
 /* Center Play Button Badge */
@@ -1706,6 +1704,559 @@ h4 {
 
 .hero-video-frame:hover .hero-video-play-triangle {
   border-color: transparent transparent transparent #ffffff;
+}
+
+/* Architecture Visual Screen */
+.hero-vsl-architecture-screen {
+  position: absolute;
+  inset: 0;
+  padding: 2.4rem 2.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f7f4 100%);
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.arch-screen-header {
+  text-align: right;
+  margin-left: auto;
+  max-width: 540px;
+}
+
+.arch-screen-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #2e6347;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.arch-badge-dash {
+  color: #2e6347;
+  font-weight: 300;
+}
+
+.arch-screen-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.15;
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.02em;
+}
+
+.arch-title-serif {
+  font-family: "Newsreader", "Playfair Display", "Georgia", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #2e6347;
+}
+
+.arch-screen-desc {
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.45;
+  font-weight: 450;
+}
+
+/* 3 Architecture Cards Grid */
+.arch-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.arch-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem 1.35rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.arch-card.highlighted {
+  transform: translateY(-4px);
+  border-color: rgba(46, 99, 71, 0.35);
+  box-shadow: 0 18px 40px -10px rgba(46, 99, 71, 0.15);
+}
+
+/* Special WhatsApp Connect Strong Highlight */
+.arch-card-whatsapp.whatsapp-active {
+  border: 2px solid #25D366 !important;
+  box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.15), 0 20px 45px -8px rgba(37, 211, 102, 0.35) !important;
+  transform: translateY(-6px) scale(1.02);
+  background: #ffffff;
+}
+
+.arch-card-whatsapp.whatsapp-active .arch-card-heading {
+  color: #128c7e;
+}
+
+.arch-card-whatsapp.whatsapp-active .whatsapp-icon-bg {
+  background: #25D366 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.arch-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.arch-card-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827;
+  transition: all 0.3s ease;
+}
+
+.arch-card.highlighted .arch-card-icon-wrap {
+  background: #eaf2ed;
+  color: #2e6347;
+}
+
+.whatsapp-icon-bg {
+  background: #f0fdf4 !important;
+  color: #16a34a !important;
+}
+
+.arch-card-num {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+.arch-card-heading {
+  font-family: "Newsreader", "Playfair Display", "Georgia", serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.45rem;
+  line-height: 1.2;
+}
+
+.arch-card-text {
+  font-size: 0.82rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+/* Micro badges inside cards */
+.arch-card-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #2e6347;
+  background: #eaf2ed;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2e6347;
+  animation: archPulse 1.4s infinite;
+}
+
+@keyframes archPulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* WhatsApp Live Callout & Bubble */
+.arch-whatsapp-live-callout {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.arch-whatsapp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #25D366;
+  color: #ffffff;
+  padding: 0.32rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  width: fit-content;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-radar-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+  animation: radarPing 1.2s infinite;
+}
+
+@keyframes radarPing {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(0.8); }
+}
+
+.arch-whatsapp-bubble {
+  background: #dcf8c6;
+  border-radius: 10px;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.arch-bubble-sender {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #075e54;
+}
+
+.arch-bubble-msg {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #128c7e;
+}
+
+.arch-card-tag {
+  margin-top: auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+/* Deploy Architecture Button */
+.arch-screen-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 0.8rem;
+}
+
+.arch-deploy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #2e6347;
+  color: #ffffff !important;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 0.95rem 2.2rem;
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(46, 99, 71, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.arch-deploy-btn:hover {
+  background: #24523a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(46, 99, 71, 0.36);
+}
+
+.arch-deploy-btn.pulse-cta {
+  animation: deployPulse 1.5s infinite;
+}
+
+@keyframes deployPulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 99, 71, 0.6); }
+  70% { box-shadow: 0 0 0 14px rgba(46, 99, 71, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 99, 71, 0); }
+}
+
+/* Picture-in-Picture Video Box */
+.hero-vsl-video-box {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  background: #000000;
+}
+
+/* When full (first 4 seconds) */
+.hero-vsl-video-box.is-full {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  border-radius: 28px;
+}
+
+/* When PiP is active (4s onwards: glides to bottom right) */
+.hero-vsl-video-box.is-pip {
+  position: absolute;
+  right: 2.2rem;
+  bottom: 1.8rem;
+  width: 216px;
+  height: 122px; /* 16:9 widescreen */
+  border-radius: 16px;
+  z-index: 25;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45), 0 0 0 2.5px rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+}
+
+.hero-vsl-video-box.is-pip:hover {
+  transform: scale(1.03);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55), 0 0 0 2.5px #2e6347;
+}
+
+.hero-pip-badge-bar {
+  position: absolute;
+  top: 0.45rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 22;
+  pointer-events: auto;
+}
+
+.hero-pip-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.pip-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pipDotPulse 1.2s infinite;
+}
+
+@keyframes pipDotPulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.hero-pip-toggle-btn {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  border: none;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hero-pip-toggle-btn:hover {
+  transform: scale(1.1);
+  background: #2e6347;
+}
+
+.hero-video-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+/* Custom Sleek Control Bar (NO TIME DISPLAY) */
+.hero-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.2rem 0.8rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-video-frame:hover .hero-video-controls,
+.hero-video-frame:focus-within .hero-video-controls,
+.hero-video-frame.is-paused .hero-video-controls {
+  opacity: 1;
+}
+
+/* Scrubber / Progress track WITHOUT time numbers */
+.hero-video-scrubber {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 99px;
+  cursor: pointer;
+  position: relative;
+  transition: height 0.2s ease;
+}
+
+.hero-video-scrubber:hover {
+  height: 7px;
+}
+
+.hero-video-progress {
+  height: 100%;
+  background: #2e6347;
+  border-radius: 99px;
+  position: relative;
+  transition: width 0.1s linear;
+}
+
+.hero-video-progress::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hero-video-scrubber:hover .hero-video-progress::after {
+  opacity: 1;
+}
+
+.hero-video-controls-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hero-video-controls-left,
+.hero-video-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero-video-ctrl-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-video-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
+}
+
+/* Language Toggle Pill */
+.hero-video-lang-pill {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  background: rgba(15, 20, 24, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+  z-index: 6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero-lang-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1;
+}
+
+.hero-lang-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-lang-btn.active {
+  background: #2e6347;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(46, 99, 71, 0.5);
+}
+
+/* Ensure no native video controls ever show time */
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-controls-timeline-container {
+  display: none !important;
 }
 
 .hero-video-iframe {
@@ -1856,6 +2407,42 @@ h4 {
 
   .hero-video-frame {
     border-radius: 18px;
+    min-height: auto;
+  }
+
+  .hero-vsl-architecture-screen {
+    padding: 1.6rem 1.2rem 1.4rem;
+  }
+
+  .arch-screen-header {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .arch-screen-title {
+    font-size: 1.85rem;
+  }
+
+  .arch-screen-desc {
+    font-size: 0.82rem;
+  }
+
+  .arch-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin: 1.2rem 0;
+  }
+
+  .arch-card {
+    padding: 1.2rem 1.1rem;
+  }
+
+  .hero-vsl-video-box.is-pip {
+    width: 145px;
+    height: 82px;
+    right: 0.8rem;
+    bottom: 0.8rem;
+    border-radius: 12px;
   }
 
   .hero-video-play-btn {
