@@ -122,6 +122,15 @@ const ShortFormStyleCard = ({ v, idx }) => {
   );
 };
 
+const HERO_UGC_VIDEOS = [
+  { title: "AI UGC — 1", duration: "0:26", publicId: "Ai_ugc_10_ygvpdh", so: "2" },
+  { title: "AI UGC — 2", duration: "0:36", publicId: "ai_ugc_9_ovpev5", so: "2" },
+  { title: "AI AVATAR — REALTOR", duration: "0:34", publicId: "0404_itrkrs", so: "1" },
+  { title: "STOCK AUTOMATION", duration: "0:44", publicId: "7_lpgoxu", so: "2" },
+  { title: "REAL ESTATE AD", duration: "0:55", publicId: "8_l0wsbr", so: "2" },
+  { title: "LUXURY TOUR", duration: "0:26", publicId: "Edited_wlnmjv", so: "3" },
+];
+
 const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -139,7 +148,8 @@ const Home = () => {
   const [isVslMuted, setIsVslMuted] = useState(false);
   const [vslProgress, setVslProgress] = useState(0);
   const [videoLang, setVideoLang] = useState('en');
-  const [vslStage, setVslStage] = useState('full'); // 'full' | 'ugc' | 'funnel' | 'whatsapp' | 'crm' | 'cta'
+  const [vslStage, setVslStage] = useState('full'); // 'full' | 'ugc' | 'whatsapp' | 'crm' | 'cta'
+  const [activeScreenTab, setActiveScreenTab] = useState('auto'); // 'auto' | 'ugc' | 'arch'
   const [isPipActive, setIsPipActive] = useState(false);
   const [manualPipOverride, setManualPipOverride] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -196,8 +206,8 @@ const Home = () => {
       const p = (t / vslVideoRef.current.duration) * 100;
       setVslProgress(p);
 
-      // Automated Transition to Picture-in-Picture when AI UGC is introduced (~4.0s)
-      if (t >= 4.0) {
+      // Automated Transition to Picture-in-Picture when AI UGC is introduced (~3.8s)
+      if (t >= 3.8) {
         if (!manualPipOverride && !isPipActive) {
           setIsPipActive(true);
         }
@@ -207,15 +217,17 @@ const Home = () => {
         }
       }
 
-      // Sync active architecture highlight stage with dialogue
-      if (t < 4.0) {
+      // Sync active dialogue milestone with screen content:
+      // 0s - 3.8s: Full video presenter talking about real location shoots
+      // 3.8s - 10.8s: Speaker says "UGC ads engineered to stop the scroll" -> SHOW UGC VIDEOS SCREEN!
+      // 10.8s - 19.5s: Speaker says "A high-converting sales funnel... WhatsApp connect & automated AI chatbot" -> SHOW LEAD ARCHITECTURE with WHATSAPP HIGHLIGHT!
+      // 19.5s - 23.5s: Speaker says "Targeted ads, right audience, right time" -> CRM Global highlight
+      // 23.5s+: Action CTA pulse
+      if (t < 3.8) {
         setVslStage('full');
-      } else if (t < 8.2) {
+      } else if (t < 10.8) {
         setVslStage('ugc');
-      } else if (t < 12.8) {
-        setVslStage('funnel');
-      } else if (t < 19.2) {
-        // WhatsApp & AI Chatbot strongly highlighted
+      } else if (t < 19.5) {
         setVslStage('whatsapp');
       } else if (t < 23.5) {
         setVslStage('crm');
@@ -224,6 +236,10 @@ const Home = () => {
       }
     }
   };
+
+  const currentScreen = activeScreenTab !== 'auto'
+    ? activeScreenTab
+    : (vslStage === 'ugc' ? 'ugc' : 'arch');
 
   const handleVslSeek = (e) => {
     if (e) e.stopPropagation();
@@ -396,6 +412,27 @@ const Home = () => {
               className={`hero-video-frame ${isVslPaused ? 'is-paused' : ''}`}
             >
               {/* Language Selector Switch (English / Hindi) */}
+              {/* Top View Mode Switcher Pills */}
+              <div className="hero-vsl-screen-switcher" onClick={e => e.stopPropagation()}>
+                <button
+                  type="button"
+                  className={`hero-switcher-btn ${currentScreen === 'ugc' ? 'active' : ''}`}
+                  onClick={() => setActiveScreenTab('ugc')}
+                  aria-label="Show AI UGC Styles"
+                >
+                  📱 AI UGC Styles
+                </button>
+                <button
+                  type="button"
+                  className={`hero-switcher-btn ${currentScreen === 'arch' ? 'active' : ''}`}
+                  onClick={() => setActiveScreenTab('arch')}
+                  aria-label="Show Lead Management Architecture"
+                >
+                  ⚡ Lead Architecture & WhatsApp
+                </button>
+              </div>
+
+              {/* Language Selector Switch (English / Hindi) */}
               <div className="hero-video-lang-pill" onClick={e => e.stopPropagation()}>
                 <button
                   type="button"
@@ -415,120 +452,180 @@ const Home = () => {
                 </button>
               </div>
 
-              {/* Lead Management Architecture Screen (Shown while video plays in PiP) */}
-              <div className="hero-vsl-architecture-screen">
-                <div className="arch-screen-header">
-                  <div className="arch-screen-badge">
-                    <span className="arch-badge-dash">—</span>
-                    <span>LEAD MANAGEMENT ARCHITECTURE</span>
-                    <span className="arch-badge-dash">—</span>
-                  </div>
-                  <h3 className="arch-screen-title">
-                    20+ <span className="arch-title-serif">Live Solutions.</span>
-                  </h3>
-                  <p className="arch-screen-desc">
-                    Systems that work while you sleep, ensuring no lead goes unqualified and no opportunity is missed.
-                  </p>
-                </div>
-
-                <div className="arch-cards-grid">
-                  {/* Card 1: 01 / ARCHITECTURE */}
-                  <div 
-                    className={`arch-card ${vslStage === 'ugc' || vslStage === 'funnel' || hoveredCard === 'qualification' ? 'highlighted' : ''}`}
-                    onMouseEnter={() => setHoveredCard('qualification')}
-                    onMouseLeave={() => setHoveredCard(null)}
-                  >
-                    <div className="arch-card-top">
-                      <div className="arch-card-icon-wrap">
-                        <Workflow size={20} className="arch-card-icon" />
-                      </div>
-                      <span className="arch-card-num">01 / ARCHITECTURE</span>
-                    </div>
-                    <h4 className="arch-card-heading">Qualification</h4>
-                    <p className="arch-card-text">
-                      Sophisticated logic flows that filter noise and prioritize high-value intent.
-                    </p>
-                    {(vslStage === 'ugc' || vslStage === 'funnel' || hoveredCard === 'qualification') && (
-                      <div className="arch-card-live-pill">
-                        <span className="pulse-dot" />
-                        <span>{vslStage === 'ugc' ? 'Scroll-Stopping AI UGC' : 'High-Intent Funnel'}</span>
-                      </div>
-                    )}
+              {/* Screen 1: AI UGC Video Cards Screen ("ENGINEERED FOR CONTENT GROWTH") */}
+              {currentScreen === 'ugc' && (
+                <div className="hero-vsl-ugc-screen">
+                  <div className="hero-ugc-screen-header">
+                    <p className="hero-ugc-subtitle">ENGINEERED FOR CONTENT GROWTH</p>
+                    <h3 className="hero-ugc-title">Short Form <span className="arch-title-serif">Styles.</span></h3>
                   </div>
 
-                  {/* Card 2: 02 / ENGAGEMENT (WhatsApp Connect & AI Chatbot) - STRONGLY HIGHLIGHTED */}
-                  <div 
-                    className={`arch-card arch-card-whatsapp ${vslStage === 'whatsapp' || hoveredCard === 'whatsapp' ? 'highlighted whatsapp-active' : ''}`}
-                    onMouseEnter={() => setHoveredCard('whatsapp')}
-                    onMouseLeave={() => setHoveredCard(null)}
-                  >
-                    <div className="arch-card-top">
-                      <div className="arch-card-icon-wrap whatsapp-icon-bg">
-                        <MessageSquare size={20} className="arch-card-icon" />
-                      </div>
-                      <span className="arch-card-num">02 / ENGAGEMENT</span>
-                    </div>
-                    <h4 className="arch-card-heading">Live Sync</h4>
-                    <p className="arch-card-text">
-                      Instant WhatsApp connect & automated AI chatbot responding even at 2:00 AM.
-                    </p>
-
-                    {(vslStage === 'whatsapp' || hoveredCard === 'whatsapp') ? (
-                      <div className="arch-whatsapp-live-callout">
-                        <div className="arch-whatsapp-pill">
-                          <span className="whatsapp-radar-dot" />
-                          <span>WhatsApp Connect: Active (2:00 AM)</span>
-                        </div>
-                        <div className="arch-whatsapp-bubble">
-                          <span className="arch-bubble-sender">AI Chatbot</span>
-                          <span className="arch-bubble-msg">Instant reply sent to lead in 3s</span>
+                  <div className="hero-ugc-cards-row">
+                    {HERO_UGC_VIDEOS.map((v, idx) => (
+                      <div 
+                        key={idx} 
+                        className="hero-ugc-mini-card"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const el = document.getElementById('short-form-styles');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        title={v.title}
+                      >
+                        <img 
+                          src={`https://res.cloudinary.com/dobulag2p/video/upload/so_${v.so || '2'},w_360,h_640,c_fill,q_auto,f_auto/${v.publicId}.jpg`}
+                          alt={v.title}
+                          className="hero-ugc-card-img"
+                        />
+                        {/* Bottom Royal Blue Audio Pill matching user's reference image */}
+                        <div className="hero-ugc-card-pill">
+                          <span className="hero-ugc-pill-time">{v.duration}</span>
+                          <div className="hero-ugc-pill-wave">
+                            <span style={{ width: '8px', height: '2px', background: '#fff', borderRadius: '1px' }}></span>
+                            <span style={{ width: '3px', height: '3px', background: '#fff', borderRadius: '50%' }}></span>
+                            <span style={{ width: '12px', height: '2px', background: '#fff', borderRadius: '1px' }}></span>
+                            <span style={{ width: '3px', height: '3px', background: '#fff', borderRadius: '50%' }}></span>
+                            <span style={{ width: '6px', height: '2px', background: '#fff', borderRadius: '1px' }}></span>
+                          </div>
+                          <span className="hero-ugc-pill-dots">•••</span>
                         </div>
                       </div>
-                    ) : (
-                      <div className="arch-card-tag">Instant WhatsApp Connect</div>
-                    )}
+                    ))}
                   </div>
 
-                  {/* Card 3: 03 / SCALING */}
-                  <div 
-                    className={`arch-card ${vslStage === 'crm' || hoveredCard === 'crm' ? 'highlighted' : ''}`}
-                    onMouseEnter={() => setHoveredCard('crm')}
-                    onMouseLeave={() => setHoveredCard(null)}
-                  >
-                    <div className="arch-card-top">
-                      <div className="arch-card-icon-wrap">
-                        <Globe size={20} className="arch-card-icon" />
-                      </div>
-                      <span className="arch-card-num">03 / SCALING</span>
+                  <div className="hero-ugc-screen-bottom">
+                    <a 
+                      href="#short-form-styles" 
+                      className="hero-ugc-action-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const el = document.getElementById('short-form-styles');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <span>EXPLORE ALL UGC VIDEOS</span>
+                      <ArrowRight size={15} />
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {/* Screen 2: Lead Management Architecture Screen */}
+              {currentScreen === 'arch' && (
+                <div className="hero-vsl-architecture-screen">
+                  <div className="arch-screen-header">
+                    <div className="arch-screen-badge">
+                      <span className="arch-badge-dash">—</span>
+                      <span>LEAD MANAGEMENT ARCHITECTURE</span>
+                      <span className="arch-badge-dash">—</span>
                     </div>
-                    <h4 className="arch-card-heading">CRM Global</h4>
-                    <p className="arch-card-text">
-                      Seamless integration with your existing global marketing technology stack.
+                    <h3 className="arch-screen-title">
+                      20+ <span className="arch-title-serif">Live Solutions.</span>
+                    </h3>
+                    <p className="arch-screen-desc">
+                      Systems that work while you sleep, ensuring no lead goes unqualified and no opportunity is missed.
                     </p>
-                    {(vslStage === 'crm' || hoveredCard === 'crm') && (
-                      <div className="arch-card-live-pill">
-                        <span className="pulse-dot" />
-                        <span>Right Ad • Right Person • Right Time</span>
+                  </div>
+
+                  <div className="arch-cards-grid">
+                    {/* Card 1: 01 / ARCHITECTURE */}
+                    <div 
+                      className={`arch-card ${vslStage === 'ugc' || vslStage === 'funnel' || hoveredCard === 'qualification' ? 'highlighted' : ''}`}
+                      onMouseEnter={() => setHoveredCard('qualification')}
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      <div className="arch-card-top">
+                        <div className="arch-card-icon-wrap">
+                          <Workflow size={20} className="arch-card-icon" />
+                        </div>
+                        <span className="arch-card-num">01 / ARCHITECTURE</span>
                       </div>
-                    )}
+                      <h4 className="arch-card-heading">Qualification</h4>
+                      <p className="arch-card-text">
+                        Sophisticated logic flows that filter noise and prioritize high-value intent.
+                      </p>
+                      {(vslStage === 'ugc' || vslStage === 'funnel' || hoveredCard === 'qualification') && (
+                        <div className="arch-card-live-pill">
+                          <span className="pulse-dot" />
+                          <span>High-Intent Funnel</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Card 2: 02 / ENGAGEMENT (WhatsApp Connect & AI Chatbot) - STRONGLY HIGHLIGHTED */}
+                    <div 
+                      className={`arch-card arch-card-whatsapp ${vslStage === 'whatsapp' || hoveredCard === 'whatsapp' ? 'highlighted whatsapp-active' : ''}`}
+                      onMouseEnter={() => setHoveredCard('whatsapp')}
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      <div className="arch-card-top">
+                        <div className="arch-card-icon-wrap whatsapp-icon-bg">
+                          <MessageSquare size={20} className="arch-card-icon" />
+                        </div>
+                        <span className="arch-card-num">02 / ENGAGEMENT</span>
+                      </div>
+                      <h4 className="arch-card-heading">Live Sync</h4>
+                      <p className="arch-card-text">
+                        Instant WhatsApp connect & automated AI chatbot responding even at 2:00 AM.
+                      </p>
+
+                      {(vslStage === 'whatsapp' || hoveredCard === 'whatsapp') ? (
+                        <div className="arch-whatsapp-live-callout">
+                          <div className="arch-whatsapp-pill">
+                            <span className="whatsapp-radar-dot" />
+                            <span>WhatsApp Connect: Active (2:00 AM)</span>
+                          </div>
+                          <div className="arch-whatsapp-bubble">
+                            <span className="arch-bubble-sender">AI Chatbot</span>
+                            <span className="arch-bubble-msg">Instant reply sent to lead in 3s</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="arch-card-tag">Instant WhatsApp Connect</div>
+                      )}
+                    </div>
+
+                    {/* Card 3: 03 / SCALING */}
+                    <div 
+                      className={`arch-card ${vslStage === 'crm' || hoveredCard === 'crm' ? 'highlighted' : ''}`}
+                      onMouseEnter={() => setHoveredCard('crm')}
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      <div className="arch-card-top">
+                        <div className="arch-card-icon-wrap">
+                          <Globe size={20} className="arch-card-icon" />
+                        </div>
+                        <span className="arch-card-num">03 / SCALING</span>
+                      </div>
+                      <h4 className="arch-card-heading">CRM Global</h4>
+                      <p className="arch-card-text">
+                        Seamless integration with your existing global marketing technology stack.
+                      </p>
+                      {(vslStage === 'crm' || hoveredCard === 'crm') && (
+                        <div className="arch-card-live-pill">
+                          <span className="pulse-dot" />
+                          <span>Right Ad • Right Person • Right Time</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="arch-screen-bottom">
+                    <a
+                      href="#contact"
+                      className={`arch-deploy-btn ${vslStage === 'cta' ? 'pulse-cta' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const c = document.getElementById('contact');
+                        if (c) c.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      <span>DEPLOY YOUR ARCHITECTURE</span>
+                      <ArrowRight size={16} />
+                    </a>
                   </div>
                 </div>
-
-                <div className="arch-screen-bottom">
-                  <a
-                    href="#contact"
-                    className={`arch-deploy-btn ${vslStage === 'cta' ? 'pulse-cta' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const c = document.getElementById('contact');
-                      if (c) c.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    <span>DEPLOY YOUR ARCHITECTURE</span>
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
-              </div>
+              )}
 
               {/* Video Player Box (Smoothly transitions between Fullscreen & PiP in bottom right) */}
               {isPlayingVsl ? (
