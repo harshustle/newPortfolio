@@ -122,7 +122,7 @@ const Contact = () => {
 
   const contactLinks = [
     { icon: <Mail size={17} />, label: "Email", value: "harshustle@gmail.com", href: "mailto:harshustle@gmail.com" },
-    { icon: <Phone size={17} />, label: "Phone", value: "+91 9161955178", href: "tel:9161955178" },
+    { icon: <Phone size={17} />, label: "Phone", value: "+91 7839661372", href: "tel:7839661372" },
     { icon: <Linkedin size={17} />, label: "LinkedIn", value: "linkedin.com/in/harshustle", href: "https://linkedin.com/in/harshustle" },
     { icon: <Instagram size={17} />, label: "Instagram", value: "@harshustler", href: "https://instagram.com/harshustler" },
   ];

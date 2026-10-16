@@ -81,7 +81,7 @@ def build_resume():
     # Calculate widths for perfect spacing
     # Phone
     pdf.set_text_color(0, 0, 238)
-    pdf.write(4, "9161955178", link="tel:9161955178")
+    pdf.write(4, "7839661372", link="tel:7839661372")
     pdf.set_text_color(0, 0, 0)
     pdf.write(4, "   |   ")
     

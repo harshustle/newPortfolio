@@ -26,7 +26,7 @@ const PricingCard = ({
   disabled = false,
   buttonText = "Book now",
   whatsappMessage,
-  whatsappNumber = "919161955178",
+  whatsappNumber = "917839661372",
   variant
 }) => {
   const defaultMessage = `Hi, I want to book the ${title} (${volume} - ${price})`;
